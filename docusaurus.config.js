@@ -7,11 +7,7 @@ module.exports = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'favicon.ico',
   organizationName: 'gr4vy',
-  projectName: 'developer-documentation',
-  stylesheets: [
-    "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700",
-    "/css/code-block-buttons.css"
-  ],
+  projectName: 'gr4vy-developer-documentation',
   themeConfig: {
     colorMode: {
       disableSwitch: true,
@@ -97,12 +93,12 @@ module.exports = {
           routeBasePath: 'guides',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/gr4vy/developer-documentation/edit/main/guides',
+            'https://github.com/gr4vy/gr4vy-developer-documentation/edit/main/guides',
         },
         blog: {
           showReadingTime: true,
           editUrl:
-            'https://github.com/gr4vy/developer-documentation/edit/main/blog/',
+            'https://github.com/gr4vy/gr4vy-developer-documentation/edit/main/blog/',
         },
         theme: {
           colorMode: {
@@ -110,6 +106,10 @@ module.exports = {
           },
           customCss: require.resolve('./src/css/custom.css'),
         },
+        stylesheets: [
+          "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700",
+          "/css/code-block-buttons.css"
+        ],
       },
     ],
   ],

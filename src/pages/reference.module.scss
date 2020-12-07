@@ -17,4 +17,29 @@
     border: unset;
     background-color: white;
   }
+
+  :global(.menu-content) {
+    padding-top: 1em;
+    font-size: 16px;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell,
+      "Noto Sans", sans-serif, system-ui, "Segoe UI", Helvetica, Arial,
+      sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: white !important;
+    border-right: 1px solid #ddd;
+
+    label {
+      margin: 0.25em 1em;
+      padding: 0.5em 1em;
+      border-radius: 0.3em;
+
+      &:hover {
+        background-color: #f1f2f1;
+      }
+
+      &:global(.active) {
+        font-weight: 500;
+        background-color: #f1f2f1;
+      }
+    }
+  }
 }

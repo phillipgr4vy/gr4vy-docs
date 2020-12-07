@@ -1,11 +1,7 @@
 /* stylelint-disable docusaurus/copyright-header */
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
 
-/* You can override the default Infima variables here. */
+@import url("https://fonts.googleapis.com/css2?family=Text+Me+One&display=swap");
+
 :root {
   --ifm-color-primary: #368871;
   --ifm-color-primary-dark: #317a66;
@@ -26,4 +22,12 @@
 
 .navbar__brand img {
   border-radius: 50%;
+}
+
+.navbar__brand strong {
+  font-family: "Text Me One", "sans-serif";
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 1.2em;
+  margin-left: 0.2em;
 }

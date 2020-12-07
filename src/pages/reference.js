@@ -32,6 +32,12 @@ function Reference() {
                 primary: {
                   main: "#368871"
                 }
+              },
+              typography: {
+                fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans- serif, system- ui, "Segoe UI", Helvetica, Arial, sans- serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+              },
+              sidebar: {
+                width: '300px',
               }
             }
           }}
