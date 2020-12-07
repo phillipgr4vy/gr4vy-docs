@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   title: 'Gr4vy Developer Documentation',
   tagline: 'Get started with the cloud payment orchestration platform',
@@ -38,7 +40,7 @@ module.exports = {
       style: 'light',
       links: [
         {
-          title: 'Docs',
+          title: 'Guides',
           items: [
             {
               label: 'Style Guide',
@@ -113,5 +115,8 @@ module.exports = {
       },
     ],
   ],
-  plugins: ['docusaurus-plugin-sass'],
+  plugins: [
+    'docusaurus-plugin-sass',
+    path.resolve(__dirname, 'plugins', 'webpack-buffer-polyfill')
+  ],
 };
