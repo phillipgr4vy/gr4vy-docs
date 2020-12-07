@@ -95,12 +95,12 @@ module.exports = {
           routeBasePath: 'guides',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/gr4vy/gr4vy-developer-documentation/edit/main/guides',
+            'https://github.com/gr4vy/gr4vy-developer-documentation/edit/main',
         },
         blog: {
           showReadingTime: true,
           editUrl:
-            'https://github.com/gr4vy/gr4vy-developer-documentation/edit/main/blog/',
+            'https://github.com/gr4vy/gr4vy-developer-documentation/edit/main/',
         },
         theme: {
           colorMode: {
