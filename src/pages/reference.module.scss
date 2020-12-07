@@ -1,0 +1,20 @@
+.reference {
+  :global(.api-content) > div:first-child {
+    display: none;
+  }
+
+  :global(.redoc-json code) {
+    color: white;
+    background-color: #10171a;
+  }
+
+  table tr {
+    border: none;
+  }
+
+  table th,
+  table td {
+    border: unset;
+    background-color: white;
+  }
+}
