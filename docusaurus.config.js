@@ -28,12 +28,6 @@ module.exports = {
           position: 'left',
         },
         { to: 'reference', label: 'API Reference', position: 'left' },
-        { to: 'blog', label: 'Blog', position: 'left' },
-        {
-          href: 'https://github.com/gr4vy',
-          label: 'GitHub',
-          position: 'right',
-        },
       ],
     },
     footer: {
@@ -53,19 +47,15 @@ module.exports = {
           ],
         },
         {
-          title: 'Community',
+          title: 'Code',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'NPM',
+              href: 'https://twitter.com/gr4vy',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              label: 'GitHub',
+              href: 'https://github.com/gr4vy',
             },
           ],
         },
@@ -73,13 +63,9 @@ module.exports = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
+              label: 'Twitter',
+              href: 'https://twitter.com/gr4vypop',
+            }
           ],
         },
       ],
@@ -97,11 +83,11 @@ module.exports = {
           editUrl:
             'https://github.com/gr4vy/gr4vy-developer-documentation/edit/main',
         },
-        blog: {
-          showReadingTime: true,
-          editUrl:
-            'https://github.com/gr4vy/gr4vy-developer-documentation/edit/main/',
-        },
+        // blog: {
+        //   showReadingTime: true,
+        //   editUrl:
+        //     'https://github.com/gr4vy/gr4vy-developer-documentation/edit/main/',
+        // },
         theme: {
           colorMode: {
             disableSwitch: true,
