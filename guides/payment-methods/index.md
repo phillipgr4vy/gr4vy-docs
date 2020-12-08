@@ -1,6 +1,7 @@
 ---
 title: Payment methods
 sidebar_label: Introduction
+slug: /payment-methods
 ---
 
 In Gr4vy, a payment method represents a way in which a payment can be processed,
