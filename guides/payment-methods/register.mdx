@@ -63,15 +63,15 @@ The response object is a PayPal account resource.
 
 ## Option 2
 
-In option 2, we don't have seperate APIs for different payment methods, instead
-we have payment method definitions and use these to register distict payment
+In option 2, we don't have separate APIs for different payment methods, instead
+we have payment method definitions and use these to register distinct payment
 methods.
 
 ### Get a definition
 
 Though technically not necessary, we could fetch a list of payment method
 definitions to know what fields are required for a payment method to be
-registed.
+registered.
 
 ```bash
 curl -i -X GET "https://***.api.gr4vy.com/payment-method-definitions/card" \
