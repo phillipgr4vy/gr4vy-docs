@@ -1,14 +1,12 @@
 ---
-id: index
 title: Buyers
 sidebar_label: Introduction
-slug: /buyers
 ---
 
 In Gr4vy, a buyer represents a merchant's customer, the shopper who's performing
 a checkout and making a purchase.
 
-## Buyer features
+## Features
 
 A buyer can be used by a merchant to:
 
