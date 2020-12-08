@@ -52,6 +52,7 @@ const Reference = ({ showInternal = false }) => {
                 }
               },
               typography: {
+                fontSize: '16px',
                 fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans- serif, system- ui, "Segoe UI", Helvetica, Arial, sans- serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
               },
               sidebar: {
