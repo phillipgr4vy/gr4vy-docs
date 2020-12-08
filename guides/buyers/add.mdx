@@ -31,7 +31,7 @@ be [automatically created][transactions] and associated.
 >
   <TabItem value="curl">
 
-```bash
+```bash {4-7}
 curl -i -X POST "https://***.api.gr4vy.com/buyers" \
     -H "Authorization: Bearer [JWT_TOKEN]>" \
     -H "Content-Type: application/json" \
@@ -44,7 +44,7 @@ curl -i -X POST "https://***.api.gr4vy.com/buyers" \
   </TabItem>
   <TabItem value="node">
 
-```js
+```js {9-12}
 const fetch = require("node-fetch");
 
 fetch("https://***.api.gr4vy.com/buyers", {
