@@ -33,7 +33,7 @@ be [automatically created][transactions] and associated.
 
 ```bash {4-7}
 curl -i -X POST "https://***.api.gr4vy.com/buyers" \
-    -H "Authorization: Bearer [JWT_TOKEN]>" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
         "external_identifier": "412231123",
@@ -50,7 +50,7 @@ const fetch = require("node-fetch");
 fetch("https://***.api.gr4vy.com/buyers", {
   method: "POST",
   headers: {
-    Authorization: "Bearer [JWT_TOKEN]>",
+    Authorization: "Bearer [JWT_TOKEN]",
     "Content-Type": "application/json",
   },
   body: JSON.stringify({

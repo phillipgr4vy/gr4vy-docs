@@ -28,7 +28,7 @@ buyer with that `id` could not be found it's ignored.
 
 ```bash {7}
 curl -i -X POST "https://***.api.gr4vy.com/transactions" \
-    -H "Authorization: Bearer [JWT_TOKEN]>" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
       "amount": 1299,
@@ -52,7 +52,7 @@ const fetch = require("node-fetch");
 fetch("https://***.api.gr4vy.com/transactions", {
   method: "POST",
   headers: {
-    Authorization: "Bearer [JWT_TOKEN]>",
+    Authorization: "Bearer [JWT_TOKEN]",
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -90,7 +90,7 @@ found it's ignored.
 
 ```bash {7}
 curl -i -X POST "https://***.api.gr4vy.com/transactions" \
-    -H "Authorization: Bearer [JWT_TOKEN]>" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
       "amount": 1299,
@@ -114,7 +114,7 @@ const fetch = require("node-fetch");
 fetch("https://***.api.gr4vy.com/transactions", {
   method: "POST",
   headers: {
-    Authorization: "Bearer [JWT_TOKEN]>",
+    Authorization: "Bearer [JWT_TOKEN]",
     "Content-Type": "application/json",
   },
   body: JSON.stringify({

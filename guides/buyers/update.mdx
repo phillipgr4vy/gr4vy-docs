@@ -24,7 +24,7 @@ user's email, username, or a database ID) and an optional update to the
 
 ```bash {4-7}
 curl -i -X PUT "https://***.api.gr4vy.com/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9" \
-    -H "Authorization: Bearer [JWT_TOKEN]>" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
         "display_name": "John D."
@@ -40,7 +40,7 @@ const fetch = require("node-fetch");
 fetch("https://***.api.gr4vy.com/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9", {
   method: "PUT",
   headers: {
-    Authorization: "Bearer [JWT_TOKEN]>",
+    Authorization: "Bearer [JWT_TOKEN]",
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
