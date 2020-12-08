@@ -9,7 +9,9 @@
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
-    "clear": "docusaurus clear"
+    "clear": "docusaurus clear",
+    "lint": "yarn lint:spelling",
+    "lint:spelling": "mdspell 'guides/**/*.md' 'guides/**/*.mdx' -a -n --en-us -d dictionaries/en_US -r"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-alpha.69",
@@ -18,6 +20,7 @@
     "clsx": "^1.1.1",
     "core-js": "^3.8.1",
     "docusaurus-plugin-sass": "^0.1.11",
+    "markdown-spellcheck": "^1.3.1",
     "mobx": "^6.0.4",
     "openapi-filter": "^3.1.0",
     "react": "^16.8.4",
