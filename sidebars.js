@@ -8,7 +8,7 @@ module.exports = {
       'buyer/add',
       'buyer/find',
       'buyer/update',
-      'buyer/associate'
+      'buyer/associate-transaction'
     ]
   },
 

@@ -41,8 +41,8 @@ module.exports = {
           title: 'Guides',
           items: [
             {
-              label: 'Style Guide',
-              to: 'guides/',
+              label: 'Buyers',
+              to: '/guides/buyers',
             },
           ],
         },

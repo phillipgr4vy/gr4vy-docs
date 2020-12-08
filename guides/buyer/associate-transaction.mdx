@@ -1,0 +1,150 @@
+---
+id: associate-transaction
+title: Associate a transaction to a buyer
+sidebar_label: Associate transaction
+slug: /buyers/associate-transaction
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+There are a few ways to associate a transaction to a buyer.
+
+## Automatic buyer creation and association
+
+The simplest way to associate a buyer to a transaction is to simply pass in a
+`buyer` object with the `external_identifier` and an optional `display_name`
+value when creating a transaction.
+
+This will either create a new buyer with those values, or find a buyer with that
+`external_identifier` and associate the transaction to it's buyer ID. Any
+`display_name` passed in will be automatically applied to the buyer.
+
+<Tabs
+  groupId="lang"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash
+curl -i -X POST "https://***.api.gr4vy.com/transactions" \
+    -H "Authorization: Bearer [JWT_TOKEN]>" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "amount": 1299,
+      "currency": "USD",
+      "payment_method_type": "card",
+      "buyer": {
+        "external_identifier": "412231123",
+        "display_name": "John L."
+      },
+      "payment_method": {
+        "number": "4111111111111111",
+        "expiration_date": "11/25",
+        "security_code": "123"
+      }
+    }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+const fetch = require("node-fetch");
+
+fetch("https://***.api.gr4vy.com/transactions", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]>",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    amount: 1299,
+    currency: "USD",
+    payment_method_type: "card",
+    buyer: { external_identifier: "412231123", display_name: "John L." },
+    payment_method: {
+      number: "4111111111111111",
+      expiration_date: "11/25",
+      security_code: "123",
+    },
+  }),
+});
+```
+
+  </TabItem>
+</Tabs>
+
+## Associate by the buyer `id`
+
+Alternatively, a transaction can be associated to a buyer by it's Gr4vy ID. In
+this case, the `external_identifier` and `display_name` will be used to update
+the buyer object.
+
+<Tabs
+  groupId="lang"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash
+curl -i -X POST "https://***.api.gr4vy.com/transactions" \
+    -H "Authorization: Bearer [JWT_TOKEN]>" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "amount": 1299,
+      "currency": "USD",
+      "payment_method_type": "card",
+      "buyer": {
+        "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+        "external_identifier": "412231123",
+        "display_name": "John L."
+      },
+      "payment_method": {
+        "number": "4111111111111111",
+        "expiration_date": "11/25",
+        "security_code": "123"
+      }
+    }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+const fetch = require("node-fetch");
+
+fetch("https://***.api.gr4vy.com/transactions", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]>",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    amount: 1299,
+    currency: "USD",
+    payment_method_type: "card",
+    buyer: {
+      id: "fe26475d-ec3e-4884-9553-f7356683f7f9",d
+      external_identifier: "412231123",
+      display_name: "John L.",
+    },
+    payment_method: {
+      number: "4111111111111111",
+      expiration_date: "11/25",
+      security_code: "123",
+    },
+  }),
+});
+```
+
+  </TabItem>
+</Tabs>
