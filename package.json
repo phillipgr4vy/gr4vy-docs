@@ -11,12 +11,14 @@
     "serve": "docusaurus serve",
     "clear": "docusaurus clear",
     "lint": "yarn lint:spelling",
-    "lint:spelling": "mdspell 'guides/**/*.md' 'guides/**/*.mdx' -a -n --en-us -d dictionaries/en_US -r"
+    "lint:spelling": "mdspell 'guides/**/*.md' 'guides/**/*.mdx' -a -n --en-us -d dictionaries/en_US -r",
+    "lint:alex": "alex guides/**/*.mdx guides/**/*.md -q"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-alpha.69",
     "@docusaurus/preset-classic": "2.0.0-alpha.69",
     "@mdx-js/react": "^1.6.21",
+    "alex": "^9.1.0",
     "clsx": "^1.1.1",
     "core-js": "^3.8.1",
     "docusaurus-plugin-sass": "^0.1.11",

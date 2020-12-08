@@ -12,9 +12,9 @@ There are a few ways to associate a transaction to a buyer.
 
 ## Automatic buyer creation and association
 
-The simplest way to associate a buyer to a transaction is to simply pass in a
-`buyer` object with the `external_identifier` and an optional `display_name`
-value when creating a transaction.
+The easiest way to associate a buyer to a transaction is to pass in a `buyer`
+object with the `external_identifier` and an optional `display_name` value when
+creating a transaction.
 
 This will either create a new buyer with those values, or find a buyer with that
 `external_identifier` and associate the transaction to it's buyer ID. Any
