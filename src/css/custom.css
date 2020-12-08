@@ -22,6 +22,7 @@
 
 .navbar__brand img {
   border-radius: 50%;
+  margin-left: 0.5em;
 }
 
 .navbar__brand strong {

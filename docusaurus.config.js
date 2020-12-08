@@ -27,7 +27,11 @@ module.exports = {
           label: 'Guides',
           position: 'left',
         },
-        { to: 'reference', label: 'API Reference', position: 'left' },
+        {
+          to: 'reference',
+          label: 'API Reference',
+          position: 'left'
+        },
       ],
     },
     footer: {
@@ -39,10 +43,6 @@ module.exports = {
             {
               label: 'Style Guide',
               to: 'guides/',
-            },
-            {
-              label: 'Second Doc',
-              to: 'guides/doc2/',
             },
           ],
         },

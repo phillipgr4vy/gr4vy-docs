@@ -1,0 +1,80 @@
+---
+id: add
+title: Add a buyer
+sidebar_label: Add a buyer
+slug: /buyers/add
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+A buyer can be added with a simple call to the [`POST /buyers`][api] API. The
+call accepts an optional `external_identifier` (e.g. the user's email, username,
+or a database ID) and an optional `display_name` which will be shown in the
+admin panel.
+
+[api]: /reference#operation/add-buyer
+
+<Tabs
+  groupId="lang"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash
+curl -i -X POST "https://***.api.gr4vy.com/buyers" \
+    -H "Authorization: Bearer [JWT_TOKEN]>" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "external_identifier": "412231123",
+        "display_name": "John L."
+      }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+const fetch = require("node-fetch");
+
+fetch("https://***.api.gr4vy.com/buyers", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]>",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    external_identifier: "412231123",
+    display_name: "John L.",
+  }),
+});
+```
+
+  </TabItem>
+</Tabs>
+
+:::note
+
+A buyer can be created without an `external_identifier` or `display_name`. In
+that case the buyer only serves as a way to link tokenized payments methods to a
+user ID. In this case you will need to keep track of the `external_identifier`
+in your own database to link it back to a user record.
+
+:::
+
+The API returns a new buyer resource.
+
+```json
+{
+  "type": "buyer",
+  "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  "external_identifier": "412231123",
+  "display_name": "John L.",
+  "created_at": "2013-07-16T19:23:00.000Z",
+  "updated_at": "2013-07-16T19:23:00.000Z"
+}
+```

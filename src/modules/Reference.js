@@ -41,6 +41,7 @@ const Reference = ({ showInternal = false }) => {
             requiredPropsFirst: true,
             scrollYOffset: 60,
             sortPropsAlphabetically: true,
+            hideLoading: true,
             theme: {
               spacing: {
                 sectionVertical: ({ spacing }) => spacing.unit * 3,

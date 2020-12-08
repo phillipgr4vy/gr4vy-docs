@@ -1,0 +1,69 @@
+---
+id: update
+title: Update a buyer
+sidebar_label: Update a buyer
+slug: /buyers/update
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+A buyer can be added with a simple call to the [`PUT /buyers/{buyers_id}`][api]
+API. The call accepts an optional update to the `external_identifier` (e.g. the
+user's email, username, or a database ID) and an optional update to the
+`display_name` which will be shown in the admin panel.
+
+[api]: /reference#operation/update-buyer
+
+<Tabs
+  groupId="lang"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash
+curl -i -X PUT "https://***.api.gr4vy.com/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9" \
+    -H "Authorization: Bearer [JWT_TOKEN]>" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "display_name": "John D."
+      }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+const fetch = require("node-fetch");
+
+fetch("https://***.api.gr4vy.com/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9", {
+  method: "PUT",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]>",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    display_name: "John D.",
+  }),
+});
+```
+
+  </TabItem>
+</Tabs>
+
+The API returns an updated buyer resource.
+
+```json
+{
+  "type": "buyer",
+  "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  "external_identifier": "412231123",
+  "display_name": "John D.",
+  "created_at": "2013-07-16T19:23:00.000Z",
+  "updated_at": "2013-07-16T19:23:00.000Z"
+}
+```
