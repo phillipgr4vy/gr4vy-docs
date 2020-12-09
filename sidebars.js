@@ -24,7 +24,10 @@ module.exports = {
       collapsed: false,
       items: [
         'payment-methods/index',
-        'payment-methods/register',
+        // 'payment-methods/list-available-payment-methods',
+        'payment-methods/tokenize-card',
+        'payment-methods/tokenize-paypal',
+        'payment-methods/list-for-buyer',
       ]
     }
   ]
