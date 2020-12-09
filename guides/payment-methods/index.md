@@ -15,3 +15,13 @@ The payment method API can be used to:
 * Determine the available payment method for a buyer in a specific currency and country
 * Register (also known as tokenize) a payment method for a buyer
 * Fetch all previously tokenized payment methods for a buyer
+
+:::tip Use Gr4vy Embed
+
+There is no need to use these APIs directly if you are using [Gr4vy Embed]
+instead. [Gr4vy Embed] automatically registers eligable payment methods against
+these APIs and binds them to a `buyer_id` of your configuration.
+
+:::
+
+[Gr4vy Embed]: https://www.npmjs.com/package/@gr4vy/embed
