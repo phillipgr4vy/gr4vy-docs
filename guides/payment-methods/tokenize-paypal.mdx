@@ -73,7 +73,7 @@ fetch("https://***.api.gr4vy.com/payment-methods", {
 The API returns a new `payment-method` resource for which the
 `payment_method_status` is set to `buyer_authorization_required`.
 
-```json
+```json title="POST /payment-methods"
 {
   "type": "payment-method",
   "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
@@ -129,7 +129,7 @@ payment method using the `payment_method_id` from the query parameter.
 >
   <TabItem value="curl">
 
-```bash {5-9}
+```bash
 curl -i -X POST "https://***.api.gr4vy.com/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5/authorize" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json"
@@ -138,7 +138,7 @@ curl -i -X POST "https://***.api.gr4vy.com/payment-methods/77a76f7e-d2de-4bbc-ad
   </TabItem>
   <TabItem value="node">
 
-```js {10-14}
+```js
 const fetch = require("node-fetch");
 
 fetch(
@@ -159,7 +159,7 @@ fetch(
 The API will return the same `payment-method` resource with an updated
 `payment_method_status` is set to `registered`.
 
-```json
+```json title="POST /payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5/authorize"
 {
   "type": "payment-method",
   "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",

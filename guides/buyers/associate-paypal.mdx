@@ -1,0 +1,111 @@
+---
+title: Associate a PayPal account to a buyer
+sidebar_label: Associate PayPal account
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+There are a few ways to associate a paypal account to a buyer.
+
+## Associate by `buyer_id`
+
+The easiest way to associate a buyer to a paypal account is to pass along a
+`buyer_id` when creating a paypal account.
+
+This will find a buyer with that `id` and associate the paypal account to it. If
+a buyer with that `id` could not be found it's ignored.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {7}
+curl -i -X POST "https://***.api.gr4vy.com/payment-methods" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "method": "paypal",
+        "redirect_url": "https://example.com/callback",
+        "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9"
+      }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js {12}
+const fetch = require("node-fetch");
+
+fetch("https://***.api.gr4vy.com/payment-methods", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    method: "paypal",
+    redirect_url: "https://example.com/callback",
+    buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  }),
+});
+```
+
+  </TabItem>
+</Tabs>
+
+## Associate by `buyer_external_identifier`
+
+Alternatively, a paypal account can be associated to a buyer by it's
+`external_identifier`. If a buyer with that `external_identifier` could not be
+found it's ignored.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {7}
+curl -i -X POST "https://***.api.gr4vy.com/payment-methods" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "method": "paypal",
+        "redirect_url": "https://example.com/callback",
+        "buyer_external_identifier": "412231123"
+      }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js {12}
+const fetch = require("node-fetch");
+
+fetch("https://***.api.gr4vy.com/payment-methods", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    method: "paypal",
+    redirect_url: "https://example.com/callback",
+    buyer_external_identifier: "412231123",
+  }),
+});
+```
+
+  </TabItem>
+</Tabs>

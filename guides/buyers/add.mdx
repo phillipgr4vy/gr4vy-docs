@@ -31,7 +31,7 @@ be [automatically created][transactions] and associated.
 >
   <TabItem value="curl">
 
-```bash {4-7}
+```bash {5-6}
 curl -i -X POST "https://***.api.gr4vy.com/buyers" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
@@ -44,7 +44,7 @@ curl -i -X POST "https://***.api.gr4vy.com/buyers" \
   </TabItem>
   <TabItem value="node">
 
-```js {9-12}
+```js {10-11}
 const fetch = require("node-fetch");
 
 fetch("https://***.api.gr4vy.com/buyers", {
@@ -74,7 +74,7 @@ in your own database to link it back to a user record.
 
 The API returns a new buyer resource.
 
-```json
+```json title="POST /buyers"
 {
   "type": "buyer",
   "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",

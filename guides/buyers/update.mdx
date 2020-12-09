@@ -22,7 +22,7 @@ user's email, username, or a database ID) and an optional update to the
 >
   <TabItem value="curl">
 
-```bash {4-7}
+```bash {5-6}
 curl -i -X PUT "https://***.api.gr4vy.com/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
@@ -34,7 +34,7 @@ curl -i -X PUT "https://***.api.gr4vy.com/buyers/fe26475d-ec3e-4884-9553-f735668
   </TabItem>
   <TabItem value="node">
 
-```js {9-11}
+```js {10}
 const fetch = require("node-fetch");
 
 fetch("https://***.api.gr4vy.com/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9", {
@@ -54,7 +54,7 @@ fetch("https://***.api.gr4vy.com/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9", {
 
 The API returns an updated buyer resource.
 
-```json
+```json title="PUT /buyers/fe26475d-ec3e-4884-9553-f7356683f7f9"
 {
   "type": "buyer",
   "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
