@@ -6,14 +6,14 @@ sidebar_label: Associate PayPal account
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-There are a few ways to associate a paypal account to a buyer.
+There are a few ways to associate a PayPal account to a buyer.
 
 ## Associate by `buyer_id`
 
-The easiest way to associate a buyer to a paypal account is to pass along a
-`buyer_id` when creating a paypal account.
+The easiest way to associate a buyer to a PayPal account is to pass along a
+`buyer_id` when creating a PayPal account.
 
-This will find a buyer with that `id` and associate the paypal account to it. If
+This will find a buyer with that `id` and associate the PayPal account to it. If
 a buyer with that `id` could not be found it's ignored.
 
 <Tabs
@@ -62,7 +62,7 @@ fetch("https://api.***.gr4vy.com/payment-methods", {
 
 ## Associate by `buyer_external_identifier`
 
-Alternatively, a paypal account can be associated to a buyer by it's
+Alternatively, a PayPal account can be associated to a buyer by it's
 `external_identifier`. If a buyer with that `external_identifier` could not be
 found it's ignored.
 

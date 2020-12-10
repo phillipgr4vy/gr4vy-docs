@@ -19,7 +19,7 @@ The payment method API can be used to:
 :::tip Use Gr4vy Embed
 
 There is no need to use these APIs directly if you are using [Gr4vy Embed]
-instead. [Gr4vy Embed] automatically registers eligable payment methods against
+instead. [Gr4vy Embed] automatically registers eligible payment methods against
 these APIs and binds them to a `buyer_id` of your configuration.
 
 :::
