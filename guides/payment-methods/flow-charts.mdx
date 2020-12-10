@@ -1,0 +1,75 @@
+---
+title: Flow charts
+---
+
+import Mermaid from "@theme/Mermaid";
+
+## Example without Gr4vy Embed
+
+<Mermaid
+  chart={`
+    sequenceDiagram
+      participant m as Merchant Site
+      participant g as Gr4vy API
+      participant p as PayPal Site
+      note over m: Buyer clicks to use PayPal
+      note over m: API call: Start PayPal tokenization
+      m-->>g: POST /payment-methods { redirect_url: "..." }
+      note over g: API call: Create PayPal order
+      g-->>p: POST /v2/checkout/orders
+      p-->>g: { id: "5O190127TN364715T" }
+      note over g: Create payment-method record
+      g-->>m: { id: '...', authorization_url: "https://redirect.gr4vy.com..." }
+      note over m: Redirect buyer to authorization URL
+      m-->>g: GET https://redirect.gr4vy.com...
+      note over g: Get payment-method record
+      note over g: Redirect buyer to PayPal auth url
+      g->p: GET https://paypal.com...
+      note over p: Buyer logs in
+      note over p: Buyer confirms authorization
+      note over p: Redirect buyer back to Gr4vy
+      p->>g: GET https://api.gr4vy.com/???/payment-methods?token=123121212
+      note over g: Update payment method record
+      note over g: Redirect buyer back to merchant site
+      g->>m: GET ::redirect_url::
+      note over m: Fetch payment method status
+      m-->>g: POST /payment-methods/{id}
+      g-->>m: { payment_method_status: 'registered' }
+`}
+/>
+
+## Example with Gr4vy Embed
+
+<Mermaid
+  chart={`
+    sequenceDiagram
+      participant m as Gr4vy Embed
+      participant g as Gr4vy API
+      participant p as PayPal Site
+      note over m: Buyer clicks to use PayPal
+      note over m: API call: Start PayPal tokenization
+      m-->>g: POST /payment-methods { redirect_url: null }
+      note over g: API call: Create PayPal order
+      g-->>p: POST /v2/checkout/orders
+      p-->>g: { id: "5O190127TN364715T" }
+      note over g: Create payment-method record
+      g-->>m: { id: '...', authorization_url: "https://redirect.gr4vy.com..." }
+      note over m: Embed opens popup for authorization URL
+      m->>g: GET https://redirect.gr4vy.com...
+      note over g: Get payment-method record
+      note over g: Redirect buyer to PayPal auth url
+      g->p: GET https://paypal.com...
+      note over p: Buyer logs in
+      note over p: Buyer confirms authorization
+      note over p: Redirect buyer back to Gr4vy
+      p->>g: GET https://api.gr4vy.com/???/payment-methods?token=123121212
+      note over g: Update payment method record
+      note over g: No redirect because redirect_url was null
+      note over g: Render page which sends framebus message
+      g-->>m: bus.emit("message", { type: 'payment-method', id: '...' })
+      note over m: Close popup
+      note over m: Fetch payment method status
+      m-->>g: POST /payment-methods/{id}
+      g-->>m: { payment_method_status: 'registered' }
+`}
+/>

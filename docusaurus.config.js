@@ -11,6 +11,7 @@ module.exports = {
   organizationName: 'gr4vy',
   projectName: 'gr4vy-developer-documentation',
   themeConfig: {
+    hideableSidebar: true,
     colorMode: {
       disableSwitch: true,
     },
