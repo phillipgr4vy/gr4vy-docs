@@ -3,7 +3,7 @@ import { RedocStandalone } from 'redoc';
 import openapiFilter from 'openapi-filter';
 import styles from './reference.module.scss';
 
-import spec from '../../static/openapi.v1.json'
+let spec = require('../../static/openapi.v1.json')
 
 const filterInternal = (spec, showInternal = false) => {
   if (showInternal) { return spec }
