@@ -30,7 +30,7 @@ which can be used to associate a card to a previously registered [buyer].
   <TabItem value="curl">
 
 ```bash {5-9}
-curl -i -X POST "https://***.api.gr4vy.com/payment-methods" \
+curl -i -X POST "https://api.***.gr4vy.com/payment-methods" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
@@ -48,7 +48,7 @@ curl -i -X POST "https://***.api.gr4vy.com/payment-methods" \
 ```js {10-14}
 const fetch = require("node-fetch");
 
-fetch("https://***.api.gr4vy.com/payment-methods", {
+fetch("https://api.***.gr4vy.com/payment-methods", {
   method: "POST",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",

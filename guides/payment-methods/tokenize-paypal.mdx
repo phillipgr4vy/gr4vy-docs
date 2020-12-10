@@ -6,13 +6,13 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 A PayPal account can be tokenized by calling the [`POST /payment-methods`][api]
-API. The call requires a `method` and an optional `redirect_url`. Additionally,
-the API call accepts a `buyer_id` or `buyer_external_identifier` which can be
-used to associate a card to a previously registered [buyer].
+API. The call requires a `method` and a `redirect_url`. Additionally, the API
+call accepts a `buyer_id` or `buyer_external_identifier` which can be used to
+associate a card to a previously registered [buyer].
 
 :::caution 2-step process
 
-Registering a PayPal account is a 2-step process that requires a user-redirect
+Registering a PayPal account is a 2-step process that requires a buyer-redirect
 to get explicit authorization.
 
 :::
@@ -22,11 +22,9 @@ to get explicit authorization.
 
 ## Step 1. Initialize a new PayPal payment method
 
-The first step is to initialize a new PayPal payment method. An optional
-`redirect_url` can be provided to redirect the user back to your application
-after they have approved the application. In most cases you will want to provide
-this URL because otherwise the user will not be redirected back to your
-application.
+The first step is to initialize a new PayPal payment method. A `redirect_url`
+needs to be provided to redirect the user back to your application after they
+have approved access to their PayPal account.
 
 <Tabs
   groupId="language"
@@ -39,7 +37,7 @@ application.
   <TabItem value="curl">
 
 ```bash {5-9}
-curl -i -X POST "https://***.api.gr4vy.com/payment-methods" \
+curl -i -X POST "https://api.***.gr4vy.com/payment-methods" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
@@ -55,7 +53,7 @@ curl -i -X POST "https://***.api.gr4vy.com/payment-methods" \
 ```js {10-14}
 const fetch = require("node-fetch");
 
-fetch("https://***.api.gr4vy.com/payment-methods", {
+fetch("https://api.***.gr4vy.com/payment-methods", {
   method: "POST",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",
@@ -83,7 +81,8 @@ The API returns a new `payment-method` resource for which the
   "status": "created",
   "payment_method_status": "buyer_authorization_required",
   "details": {
-    "authorization_url": "https://redirect.gr4vy.com/....."
+    "email_address": null,
+    "authorization_url": "https://redirect.***.gr4vy.com/....."
   },
   "created_at": "2013-07-16T19:23:00.000Z",
   "updated_at": "2013-07-16T19:23:00.000Z",
@@ -101,24 +100,26 @@ The API returns a new `payment-method` resource for which the
 
 ## Step 2. Redirect the user
 
-Next, redirect the user to the URL detailed in the `details.authorization_url`
-field.
+For the next step, you will need to redirect the buyer to the URL specified in
+the `details.authorization_url` field of the response.
 
-The user then logs in to their PayPal account and authorizes the PayPal account
-to be tokenized by Gr4vy. After this, the user is redirected back to the
-`redirect_url` you specified earlier. For example:
+The buyer then logs in to their PayPal account and authorizes it to be used by
+Gr4vy. After this, the buyer is redirected back to the `redirect_url` you
+specified earlier. For example:
 
 ```
-http://localhost:3000?complete?payment_method_id=77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5
+http://localhost:3000?complete?payment_method_id=77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5&payment_method_status=registered
 ```
 
 The `payment_method_id` query parameter represents the ID of the payment method
-that this PayPal account has been registered as.
+that this PayPal account has been registered as. The `payment_method_status`
+represents the status of the payment method, which in most cases should be
+`registered`.
 
-## Step 3. Confirm the authorization
+## (Optional) Step 3. Confirm the authorization
 
-Finally, make an API call to confirm the PayPal payment has been fully
-authorized.
+Finally, you could make an optional API call to confirm the payment method has
+been fully registered.
 
 <Tabs
   groupId="language"
@@ -131,7 +132,7 @@ authorized.
   <TabItem value="curl">
 
 ```bash
-curl -i -X GET "https://***.api.gr4vy.com/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5" \
+curl -i -X GET "https://api.***.gr4vy.com/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5" \
     -H "Authorization: Bearer [JWT_TOKEN]"
 ```
 
@@ -142,7 +143,7 @@ curl -i -X GET "https://***.api.gr4vy.com/payment-methods/77a76f7e-d2de-4bbc-ada
 const fetch = require("node-fetch");
 
 fetch(
-  "https://***.api.gr4vy.com/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
+  "https://api.***.gr4vy.com/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
   {
     method: "GET",
     headers: {
@@ -155,10 +156,9 @@ fetch(
   </TabItem>
 </Tabs>
 
-The API will return the same `payment-method` resource with an updated
-`payment_method_status` is set to `registered`.
+The API will return the same `payment-method` resource with its updated status.
 
-```json title="POST /payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5/authorize"
+```json title="GET /payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5/authorize"
 {
   "type": "payment-method",
   "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
@@ -166,6 +166,7 @@ The API will return the same `payment-method` resource with an updated
   "status": "created",
   "payment_method_status": "registered",
   "details": {
+    "email_address": "john@example.com",
     "authorization_url": null
   },
   "created_at": "2013-07-16T19:23:00.000Z",
