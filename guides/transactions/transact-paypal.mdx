@@ -84,13 +84,13 @@ is set to `buyer_authorization_required`.
   "transaction_status": "buyer_authorization_required",
   "amount": 1299,
   "currency": "USD",
-  "buyer": null,
   "payment_method": {
     "type": "payment-method",
     "id": null,
     "method": "paypal",
     "status": "buyer_authorization_required",
     "payment_method_status": null,
+    "buyer": null,
     "details": {
       "email_address": null,
       "authorization_url": "https://redirect.***.gr4vy.com/transactions/ffc88ec9-e1ee-45ba-993d-b5902c3b2a8c"
@@ -172,13 +172,13 @@ The API will return the same `transaction` resource with its updated status.
   "transaction_status": "authorized",
   "amount": 1299,
   "currency": "USD",
-  "buyer": null,
   "payment_method": {
     "type": "payment-method",
     "id": null,
     "method": "paypal",
     "status": "created",
     "payment_method_status": "stored",
+    "buyer": null,
     "details": {
       "email_address": "john@example.com",
       "authorization_url": null
