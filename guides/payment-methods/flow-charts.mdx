@@ -34,7 +34,7 @@ import Mermaid from "@theme/Mermaid";
       g->>m: GET ::redirect_url::
       note over m: Fetch payment method status
       m-->>g: GET /payment-methods/{id}
-      g-->>m: { payment_method_status: 'registered' }
+      g-->>m: { payment_method_status: 'stored' }
 `}
 />
 
@@ -68,7 +68,7 @@ import Mermaid from "@theme/Mermaid";
       g->>m: GET https://cdn.***.gr4vy.com/embed
       note over m: Fetch payment method status
       m-->>g: GET /payment-methods/{id}
-      g-->>m: { payment_method_status: 'registered', .... }
+      g-->>m: { payment_method_status: 'stored', .... }
       g-->>m: bus.emit("payment-method", ...)
       note over m: Close popup
 `}

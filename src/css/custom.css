@@ -12,13 +12,37 @@
   --ifm-color-primary-lightest: #46b193;
   --ifm-code-font-size: 95%;
 
-  --ifm-color-warning: #e8ba3d;
-  --ifm-color-warning-dark: #e5b123;
-  --ifm-color-warning-darker: #dfaa1a;
-  --ifm-color-warning-darkest: #b78c16;
-  --ifm-color-warning-light: #ebc357;
-  --ifm-color-warning-lighter: #edc864;
-  --ifm-color-warning-lightest: #f1d68c;
+  --ifm-color-success: #247e32;
+  --ifm-color-success-dark: #20712d;
+  --ifm-color-success-darker: #1f6b2a;
+  --ifm-color-success-darkest: #195823;
+  --ifm-color-success-light: #288b37;
+  --ifm-color-success-lighter: #299139;
+  --ifm-color-success-lightest: #2fa441;
+
+  --ifm-color-warning: #f68704;
+  --ifm-color-warning-dark: #dd7a04;
+  --ifm-color-warning-darker: #d17303;
+  --ifm-color-warning-darkest: #ac5f03;
+  --ifm-color-warning-light: #fb9318;
+  --ifm-color-warning-lighter: #fb9924;
+  --ifm-color-warning-lightest: #fcaa49;
+
+  --ifm-color-info: #3298cb;
+  --ifm-color-info-dark: #2d89b7;
+  --ifm-color-info-darker: #2a81ad;
+  --ifm-color-info-darkest: #236a8e;
+  --ifm-color-info-light: #45a3d1;
+  --ifm-color-info-lighter: #4fa8d4;
+  --ifm-color-info-lightest: #6eb7db;
+
+  --ifm-color-danger: #cb0000;
+  --ifm-color-danger-dark: #b70000;
+  --ifm-color-danger-darker: #ad0000;
+  --ifm-color-danger-darkest: #8e0000;
+  --ifm-color-danger-light: #df0000;
+  --ifm-color-danger-lighter: #e90000;
+  --ifm-color-danger-lightest: #ff0909;
 }
 
 .docusaurus-highlight-code-line {
@@ -39,4 +63,8 @@
   font-weight: 400;
   font-size: 1.2em;
   margin-left: 0.2em;
+}
+
+p code {
+  white-space: nowrap;
 }

@@ -6,7 +6,7 @@ sidebar_label: List methods for a buyer
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-To list all the registered (tokenized) payment methods for a buyer, call the
+To list all the stored (tokenized) payment methods for a buyer, call the
 [`GET /payment-methods`][api] API with either the `buyer_id` or
 `buyer_external_identifier` as a query parameter.
 
@@ -47,7 +47,7 @@ fetch(
   </TabItem>
 </Tabs>
 
-The response is a list of all the previously registered payment methods for that
+The response is a list of all the previously stored payment methods for that
 buyer.
 
 ```json title="GET /payment-methods?buyer_id=fe26475d-ec3e-4884-9553-f7356683f7f9"
@@ -58,7 +58,7 @@ buyer.
       "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
       "method": "card",
       "status": "created",
-      "payment_method_status": "registered",
+      "payment_method_status": "stored",
       "details": {
         "number": "XXXX XXXX XXXX 1111",
         "expiration_date": "11 / 21"
@@ -80,7 +80,7 @@ buyer.
       "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
       "method": "paypal",
       "status": "created",
-      "payment_method_status": "registered",
+      "payment_method_status": "stored",
       "details": {
         "authorization_url": null
       },

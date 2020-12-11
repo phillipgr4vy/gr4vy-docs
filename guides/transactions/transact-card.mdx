@@ -1,0 +1,110 @@
+---
+title: Create a card transaction
+sidebar_label: Card transaction
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+A transaction can be created for a card by calling the
+[`POST /transactions`][api] API. The call requires an `amount`, `currency`, and
+a `payment_method` for the card.
+
+:::note
+
+Check out our [guides] to learn more about payment methods and the ability to
+tie a payment method to a buyer.
+
+:::
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {5-12}
+curl -i -X POST "https://api.***.gr4vy.com/transactions" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "amount": 1299,
+          "currency": "USD",
+          "payment_method": {
+            "method": "card",
+            "number": "4111111111111111",
+            "expiration_date": "11/25",
+            "security_code": "123"
+          }
+        }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js {10-17}
+var fetch = require("node-fetch");
+
+fetch("https://api.***.gr4vy.com/transactions", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    amount: 1299,
+    currency: "USD",
+    payment_method: {
+      method: "card",
+      number: "4111111111111111",
+      expiration_date: "11/21",
+      security_code: "123",
+    },
+  }),
+});
+```
+
+</TabItem>
+</Tabs>
+
+This API will return the authorized transaction. This transaction record will
+have a status of `created`, signifying that the transaction is stored in Gr4vy.
+The `transaction_status` is set to `authorized` to signify that it authorized
+but not yet captured.
+
+```json
+{
+  "type": "transaction",
+  "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  "status": "created",
+  "transaction_status": "authorized",
+  "amount": 1299,
+  "currency": "USD",
+  "buyer": null,
+  "payment_method": {
+    "type": "payment-method",
+    "id": null,
+    "method": "card",
+    "status": "created",
+    "payment_method_status": null,
+    "details": {
+      "number": "XXXX XXXX XXXX 1111",
+      "expiration_date": "11 / 21"
+    },
+    "external_identifier": null,
+    "created_at": "2013-07-16T19:23:00.000Z",
+    "updated_at": "2013-07-16T19:23:00.000Z"
+  },
+  "payment_service_id": "stripe-card-169f5226-4644-4d1e-ac36-14999e73601f",
+  "external_identifier": null,
+  "created_at": "2013-07-16T19:23:00.000Z",
+  "updated_at": "2019-08-24T14:15:22Z"
+}
+```
+
+[api]: /reference#operation/authorize-new-transaction
+[guides]: /guides/payment-methods

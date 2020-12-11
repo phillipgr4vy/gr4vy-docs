@@ -1,0 +1,73 @@
+---
+title: Store payment method for a transaction
+sidebar_label: Tokenize a payment method
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+It is possible to store (tokenize) a card or any other payment method used in a
+transaction by setting the `store` field in the request body to `true`.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {7}
+curl -i -X POST "https://api.***.gr4vy.com/transactions" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "amount": 1299,
+          "currency": "USD",
+          "store": true
+          "payment_method": {
+            "method": "card",
+            "number": "4111111111111111",
+            "expiration_date": "11/25",
+            "security_code": "123"
+          }
+        }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js {12}
+var fetch = require("node-fetch");
+
+fetch("https://api.***.gr4vy.com/transactions", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    amount: 1299,
+    currency: "USD",
+    store: true,
+    payment_method: {
+      method: "card",
+      number: "4111111111111111",
+      expiration_date: "11/21",
+      security_code: "123",
+    },
+  }),
+});
+```
+
+</TabItem>
+</Tabs>
+
+:::note Payment method tokenization
+
+Learn more about [payment method tokenization](/guides/payment-methods) as well
+as linking payment methods to registered [buyers](/guides/buyers).
+
+:::

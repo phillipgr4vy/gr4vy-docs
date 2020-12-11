@@ -8,16 +8,16 @@ import TabItem from "@theme/TabItem";
 A PayPal account can be tokenized by calling the [`POST /payment-methods`][api]
 API. The call requires a `method` and a `redirect_url`. Additionally, the API
 call accepts a `buyer_id` or `buyer_external_identifier` which can be used to
-associate a card to a previously registered [buyer].
+associate a card to a previously created [buyer].
 
-:::caution 2-step process
+:::info 2-step process
 
-Registering a PayPal account is a 2-step process that requires a buyer-redirect
-to get explicit authorization.
+Storing a PayPal account is a 2-step process that requires a buyer-redirect to
+get explicit authorization.
 
 :::
 
-[api]: /reference#operation/register-payment-method
+[api]: /reference#operation/store-payment-method
 [buyer]: /guides/buyers/add
 
 ## Step 1. Initialize a new PayPal payment method
@@ -42,7 +42,7 @@ curl -i -X POST "https://api.***.gr4vy.com/payment-methods" \
     -H "Content-Type: application/json" \
     -d '{
         "method": "paypal",
-        "return_url": "http://localhost:3000/complete",
+        "return_url": "https://example.com/complete",
         "buyer_external_identifier": "user-789123"
       }'
 ```
@@ -61,7 +61,7 @@ fetch("https://api.***.gr4vy.com/payment-methods", {
   },
   body: JSON.stringify({
     method: "paypal",
-    return_url: "http://localhost:3000/complete",
+    return_url: "https://example.com/complete",
     buyer_external_identifier: "user-789123",
   }),
 });
@@ -82,7 +82,7 @@ The API returns a new `payment-method` resource for which the
   "payment_method_status": "buyer_authorization_required",
   "details": {
     "email_address": null,
-    "authorization_url": "https://redirect.***.gr4vy.com/....."
+    "authorization_url": "https://redirect.***.gr4vy.com/transactions/ffc88ec9-e1ee-45ba-993d-b5902c3b2a8c"
   },
   "created_at": "2013-07-16T19:23:00.000Z",
   "updated_at": "2013-07-16T19:23:00.000Z",
@@ -108,18 +108,18 @@ Gr4vy. After this, the buyer is redirected back to the `redirect_url` you
 specified earlier. For example:
 
 ```
-http://localhost:3000?complete?payment_method_id=77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5&payment_method_status=registered
+http://localhost:3000?complete?payment_method_id=77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5&payment_method_status=stored
 ```
 
 The `payment_method_id` query parameter represents the ID of the payment method
-that this PayPal account has been registered as. The `payment_method_status`
+that this PayPal account has been stored as. The `payment_method_status`
 represents the status of the payment method, which in most cases should be
-`registered`.
+`stored`.
 
 ## (Optional) Step 3. Confirm the authorization
 
 Finally, you could make an optional API call to confirm the payment method has
-been fully registered.
+been fully stored.
 
 <Tabs
   groupId="language"
@@ -164,7 +164,7 @@ The API will return the same `payment-method` resource with its updated status.
   "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
   "method": "paypal",
   "status": "created",
-  "payment_method_status": "registered",
+  "payment_method_status": "stored",
   "details": {
     "email_address": "john@example.com",
     "authorization_url": null
