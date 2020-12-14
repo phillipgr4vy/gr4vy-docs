@@ -37,7 +37,7 @@ have approved access to their PayPal account.
   <TabItem value="curl">
 
 ```bash {5-9}
-curl -i -X POST "https://api.***.gr4vy.com/payment-methods" \
+curl -i -X POST "https://api.{subdomain}.gr4vy.com/payment-methods" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
@@ -53,7 +53,7 @@ curl -i -X POST "https://api.***.gr4vy.com/payment-methods" \
 ```js {10-14}
 const fetch = require("node-fetch");
 
-fetch("https://api.***.gr4vy.com/payment-methods", {
+fetch("https://api.{subdomain}.gr4vy.com/payment-methods", {
   method: "POST",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",
@@ -132,7 +132,7 @@ been fully stored.
   <TabItem value="curl">
 
 ```bash
-curl -i -X GET "https://api.***.gr4vy.com/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5" \
+curl -i -X GET "https://api.{subdomain}.gr4vy.com/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5" \
     -H "Authorization: Bearer [JWT_TOKEN]"
 ```
 
@@ -143,7 +143,7 @@ curl -i -X GET "https://api.***.gr4vy.com/payment-methods/77a76f7e-d2de-4bbc-ada
 const fetch = require("node-fetch");
 
 fetch(
-  "https://api.***.gr4vy.com/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
+  "https://api.{subdomain}.gr4vy.com/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
   {
     method: "GET",
     headers: {

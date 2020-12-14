@@ -49,5 +49,18 @@ module.exports = {
         'transactions/list-transactions',
       ]
     }
+  ],
+  internal: [
+    {
+      type: 'category',
+      label: 'Internal',
+      collapsed: true,
+      items: [
+        'internal/index',
+        'internal/domains',
+        'internal/api-authentication'
+      ]
+    }
   ]
+
 };
