@@ -18,14 +18,13 @@ The merchant's `short_name` can be queried by calling the
 }
 ```
 
-With this `short_name` it is possible to determine a set of sub domains used by
-a merchant cluster.
+With this `short_name` of `acme` it is possible to determine a set of sub
+domains used by a merchant cluster as follows.
 
-|              | URL                                   | Description                                 |
-| ------------ | :------------------------------------ | :------------------------------------------ |
-| `short_name` | `acme`                                | The short name for a merchant               |
-| Base domain  | `https://acme.app.gr4vy.com`          | Redirects to the cluster admin panel        |
-| Admin        | `https://admin.acme.app.gr4vy.com`    | The cluster admin panel                     |
-| API          | `https://api.acme.app.gr4vy.com`      | The cluster API                             |
-| CDN          | `https://cdn.acme.app.gr4vy.com`      | The CDN for the cluster, used to host Embed |
-| Redirect     | `https://redirect.acme.app.gr4vy.com` | URL used for browser-based redirects        |
+| URL                                   | Description                                 |
+| :------------------------------------ | :------------------------------------------ |
+| `https://acme.app.gr4vy.com`          | Redirects to the cluster admin panel        |
+| `https://admin.acme.app.gr4vy.com`    | The cluster admin panel                     |
+| `https://api.acme.app.gr4vy.com`      | The cluster API                             |
+| `https://cdn.acme.app.gr4vy.com`      | The CDN for the cluster, used to host Embed |
+| `https://redirect.acme.app.gr4vy.com` | URL used for browser-based redirects        |
