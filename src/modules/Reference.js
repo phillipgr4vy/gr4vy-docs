@@ -1,24 +1,12 @@
 import React from 'react';
 import { RedocStandalone } from 'redoc';
-import openapiFilter from 'openapi-filter';
 import styles from './reference.module.scss';
 
-let spec = require('../../static/openapi.v1.json')
-
-const filterInternal = (spec, showInternal = false) => {
-  if (showInternal) { return spec }
-  spec = openapiFilter.filter(spec)
-  spec.tags = spec.tags.filter(tag => !tag['x-internal'])
-  return spec
-}
-
-const Reference = ({ showInternal = false }) => {
-  if (!showInternal) { spec = filterInternal(spec, showInternal) }
-
+const Reference = ({ specUrl }) => {
   return (
     <div className={styles.reference}>
       <RedocStandalone
-        spec={spec}
+        specUrl={specUrl}
         options={{
           disableSearch: true,
           hideDownloadButton: true,
