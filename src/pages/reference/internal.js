@@ -5,7 +5,7 @@ import Reference from '../../modules/Reference';
 const ReferencePage = () => {
   return (
     <Layout title="API Reference" >
-      <Reference specUrl={'https://raw.githubusercontent.com/gr4vy/gr4vy-openapi/docs/reference/openapi.yaml'} />
+      <Reference specUrl={'https://raw.githubusercontent.com/gr4vy/gr4vy-openapi/main/reference/openapi.yaml'} />
     </Layout>
   );
 }
