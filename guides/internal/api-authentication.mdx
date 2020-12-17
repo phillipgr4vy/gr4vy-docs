@@ -26,12 +26,12 @@ The Gr4vy API has support for 2 different kind of JWT tokens.
 
 - **Session tokens:** a session token is created server-side by the Gr4vy
   cluster by passing an email address and a password to the
-  [`POST /sessions`](/internal/reference#operation/login) API. These tokens
+  [`POST /sessions`](/reference/internal#operation/login) API. These tokens
   represent a Gr4vy Admin user and allow access to most APIs though some role
   permissions might be applied in the future.
 - **API tokens:** an API token is created server-side by the merchant using a
   private key that was created by calling the
-  [`POST /api-key-pairs`](/internal/reference#operation/create-api-key-pair)
+  [`POST /api-key-pairs`](/reference/internal#operation/create-api-key-pair)
   API. An API token represents the merchant and is used by the merchant to
   create tokens used by Gr4vy Embed or for direct server-to-server
   authentication. API tokens are not tied to a specific Gr4vy Admin user and
@@ -40,7 +40,7 @@ The Gr4vy API has support for 2 different kind of JWT tokens.
 ### Session tokens
 
 Session tokens are created by the Gr4vy Admin frontend by calling the
-[`POST /auth/sessions`](/internal/reference#operation/login) API with a username
+[`POST /auth/sessions`](/reference/internal#operation/login) API with a username
 and password.
 
 ```bash
@@ -66,7 +66,7 @@ these are an signed JWT.
 ```
 
 The refresh token is used once the access token has expired by calling the
-[`PUT /auth/sessions`](/internal/reference#operation/refresh-session) with the
+[`PUT /auth/sessions`](/reference/internal#operation/refresh-session) with the
 `refresh_token` as the bearer token.
 
 ```bash
@@ -151,7 +151,7 @@ key-pair.
 #### Generate an API key-pair
 
 An API key pair can be created via the Gr4vy admin. The admin UI uses the
-[`POST /api-key-pairs`](/internal/reference#operation/create-api-key-pair) API
+[`POST /api-key-pairs`](/reference/internal#operation/create-api-key-pair) API
 authenticated with a session token.
 
 ```bash

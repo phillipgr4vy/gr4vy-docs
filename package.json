@@ -3,11 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "download:openapi": "curl https://raw.githubusercontent.com/gr4vy/gr4vy-openapi/openapi-3.0/openapi.v1.json --output static/openapi.v1.json",
     "docusaurus": "docusaurus",
-    "prestart": "yarn download:openapi",
     "start": "docusaurus start",
-    "prebuild": "yarn download:openapi",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",

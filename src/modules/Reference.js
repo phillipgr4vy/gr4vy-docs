@@ -21,6 +21,7 @@ const Reference = ({ specUrl }) => {
           requiredPropsFirst: true,
           scrollYOffset: 60,
           sortPropsAlphabetically: true,
+          hideLoading: false,
           theme: {
             spacing: {
               sectionVertical: ({ spacing }) => spacing.unit * 3,

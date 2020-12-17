@@ -7,6 +7,6 @@ slug: /internal
 
 :::danger
 
-These are internal, unofficial guides and [API reference](/internal/reference).
+These are internal, unofficial guides and [API reference](/reference/internal).
 
 :::
