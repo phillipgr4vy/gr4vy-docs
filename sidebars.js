@@ -42,6 +42,7 @@ module.exports = {
         'transactions/index',
         'transactions/transact-card',
         'transactions/transact-paypal',
+        'transactions/transact-token',
         'buyers/associate-transaction',
         'transactions/tokenize-a-payment-method',
         'transactions/authorize-and-capture',

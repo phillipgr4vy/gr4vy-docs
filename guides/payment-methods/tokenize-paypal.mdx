@@ -80,6 +80,7 @@ The API returns a new `payment-method` resource for which the
   "method": "paypal",
   "status": "created",
   "payment_method_status": "buyer_authorization_required",
+  "token": null,
   "details": {
     "email_address": null,
     "authorization_url": "https://redirect.***.gr4vy.com/transactions/ffc88ec9-e1ee-45ba-993d-b5902c3b2a8c"
@@ -164,7 +165,8 @@ The API will return the same `payment-method` resource with its updated status.
   "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
   "method": "paypal",
   "status": "created",
-  "payment_method_status": "stored",
+  "payment_method_status": "tokenized",
+  "token": "0123456789123458",
   "details": {
     "email_address": "john@example.com",
     "authorization_url": null
