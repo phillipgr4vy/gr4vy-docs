@@ -1,15 +1,15 @@
 ---
 title: Create a transaction with a token
-sidebar_label: Tokenized transaction
+sidebar_label: Token transaction
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-A transaction can be created with a previously tokenized [payment
-method][guides]. The call requires an `amount`, `currency`, and a
-`payment_method` with a `token`. This token can represent a card, a PayPal
-account, or any other payment method.
+A transaction can be created with a previously stored [payment method][guides].
+The call requires an `amount`, `currency`, and a `payment_method` with a
+`token`. This token can represent a card, a PayPal account, or any other payment
+method.
 
 :::note
 
@@ -70,24 +70,21 @@ fetch("https://api.{subdomain}.gr4vy.com/transactions", {
 
 This API will return the authorized transaction. This transaction record will
 have a status of `created`, signifying that the transaction is stored in Gr4vy.
-The `transaction_status` is set to `authorized` to signify that it authorized
-but not yet captured. The payment method will represent the actually used
-payment method.
+The `status` is set to `authorized` to signify that it authorized but not yet
+captured. The payment method will represent the actually used payment method.
 
 ```json
 {
   "type": "transaction",
   "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  "status": "created",
-  "transaction_status": "authorized",
+  "status": "authorized",
   "amount": 1299,
   "currency": "USD",
   "payment_method": {
     "type": "payment-method",
     "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
     "method": "card",
-    "status": "created",
-    "payment_method_status": "tokenized",
+    "status": "stored",
     "token": "0123456789123458",
     "buyer": null,
     "details": {

@@ -5,7 +5,7 @@ title: Tokenize a PayPal account
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-A PayPal account can be tokenized by calling the [`POST /payment-methods`][api]
+A PayPal account can be stored by calling the [`POST /payment-methods`][api]
 API. The call requires a `method` and a `redirect_url`. Additionally, the API
 call accepts a `buyer_id` or `buyer_external_identifier` which can be used to
 associate a card to a previously created [buyer].
@@ -70,16 +70,15 @@ fetch("https://api.{subdomain}.gr4vy.com/payment-methods", {
   </TabItem>
 </Tabs>
 
-The API returns a new `payment-method` resource for which the
-`payment_method_status` is set to `buyer_authorization_required`.
+The API returns a new `payment-method` resource for which the `status` is set to
+`buyer_approval_pending`.
 
 ```json title="POST /payment-methods"
 {
   "type": "payment-method",
   "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
   "method": "paypal",
-  "status": "created",
-  "payment_method_status": "buyer_authorization_required",
+  "status": "buyer_approval_pending",
   "token": null,
   "details": {
     "email_address": null,
@@ -164,8 +163,7 @@ The API will return the same `payment-method` resource with its updated status.
   "type": "payment-method",
   "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
   "method": "paypal",
-  "status": "created",
-  "payment_method_status": "tokenized",
+  "status": "stored",
   "token": "0123456789123458",
   "details": {
     "email_address": "john@example.com",

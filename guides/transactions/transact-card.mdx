@@ -73,23 +73,21 @@ fetch("https://api.{subdomain}.gr4vy.com/transactions", {
 
 This API will return the authorized transaction. This transaction record will
 have a status of `created`, signifying that the transaction is stored in Gr4vy.
-The `transaction_status` is set to `authorized` to signify that it authorized
-but not yet captured.
+The `status` is set to `authorized` to signify that it authorized but not yet
+captured.
 
 ```json
 {
   "type": "transaction",
   "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  "status": "created",
-  "transaction_status": "authorized",
+  "status": "authorized",
   "amount": 1299,
   "currency": "USD",
   "payment_method": {
     "type": "payment-method",
     "id": null,
     "method": "card",
-    "status": "created",
-    "payment_method_status": null,
+    "status": null,
     "buyer": null,
     "details": {
       "number": "XXXX XXXX XXXX 1111",
