@@ -32,6 +32,7 @@ module.exports = {
         'buyers/associate-card',
         'buyers/associate-paypal',
         'payment-methods/list-for-buyer',
+        'payment-methods/statuses',
       ]
     },
     {
@@ -48,6 +49,7 @@ module.exports = {
         'transactions/authorize-and-capture',
         'transactions/refund-a-transaction',
         'transactions/list-transactions',
+        'transactions/statuses',
       ]
     }
   ],

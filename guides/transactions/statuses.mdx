@@ -1,0 +1,66 @@
+---
+title: Transaction statuses
+sidebar_label: Statuses
+---
+
+import Mermaid from "@theme/Mermaid";
+
+A transaction's `status` value can be one of the following depending on the
+state within Gr4vy and the status within the used payment service.
+
+| `status`                  | Description                                                                                                                                                                                                    |
+| :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `processing`              | The transaction record has been created in Gr4vy and is now being processed with your payment services.                                                                                                        |
+| `processing_failed`       | The transaction could not be processed with any payment service due to technical issues.                                                                                                                       |
+| `captured`                | The transaction has been successfully captured.                                                                                                                                                                |
+| `capture_pending`         | The transaction has successfully been submitted for capture with a payment service and is now pending with them.                                                                                               |
+| `capture_declined`        | The transaction was submitted for capture but has been declined by all payment services.                                                                                                                       |
+| `authorized`              | The transaction has been successfully authorized.                                                                                                                                                              |
+| `authorization_pending`   | The transaction has successfully been submitted for authorization with a payment service and is now pending with them.                                                                                         |
+| `authorization_declined`  | The transaction was submitted for authorization but has been declined by all payment services.                                                                                                                 |
+| `authorization_expired`   | The transaction was successfully authorized but has since expired. Most authorizations have an expiration length. Check your payment service for more details.                                                 |
+| `authorization_voided`    | The transaction was successfully authorized but has since been canceled before it was captured.                                                                                                                |
+| `refunded`                | The transaction was successfully captured but has since been refunded.                                                                                                                                         |
+| `buyer_approval_pending`  | The transaction was created but needs approval from the buyer. This is mainly used in alternative payment methods like PayPal where the user needs to be redirected to PayPal to complete the transaction.     |
+| `buyer_approval_declined` | The transaction was created and needed approval from the buyer, but the buyer declined the approval.                                                                                                           |
+| `buyer_approval_timedout` | The transaction was created and needed approval from the buyer, but the buyer failed to approve the transaction before it timed out. Most approvals time out after 1 hour but this might change in the future. |
+
+## State diagram
+
+The following state diagram serves as an overview of all the different `status`
+values and how they relate to each other.
+
+:::note
+
+The `processing_failed` status has been left out of this diagram as too many
+statuses can lead to this outcome.
+
+:::
+
+<Mermaid
+  chart={`
+stateDiagram-v2
+    [*] --> processing
+    processing --> authorized
+    processing --> authorization_pending
+    processing --> authorization_declined
+    processing --> captured
+    processing --> capture_pending
+    processing --> buyer_approval_pending
+    authorized --> captured
+    authorized --> authorization_voided
+    authorized --> authorization_expired
+    authorization_pending --> authorized
+    authorization_pending --> authorization_declined
+    captured --> capture_refunded
+    capture_pending --> capture_declined
+    capture_pending --> captured
+    buyer_approval_pending --> authorized
+    buyer_approval_pending --> authorization_pending
+    buyer_approval_pending --> captured
+    buyer_approval_pending --> capture_pending
+    buyer_approval_pending --> authorization_pending
+    buyer_approval_pending --> buyer_approval_declined
+    buyer_approval_pending --> buyer_approval_timedout
+`}
+/>
