@@ -14,27 +14,27 @@ import Mermaid from "@theme/Mermaid";
       participant p as PayPal Site
       note over m: Buyer clicks to use PayPal
       note over m: API call: Start PayPal tokenization
-      m-->>g: POST /payment-methods { redirect_url: "..." }
+      m-->>g: POST /payment-methods { return_url: "example.com/return" }
       note over g: Create payment-method record
-      g-->>m: { id: '...', authorization_url: "https://redirect.gr4vy.com..." }
+      g-->>m: { authorization_url: "redirect.*.gr4vy.com/payment-methods/123" }
       note over m: Redirect buyer to authorization URL
-      m-->>g: GET https://redirect.gr4vy.com...
+      m-->>g: GET redirect.*.gr4vy.com/payment-methods/123
       note over g: Get payment-method record
       note over g: API call: Create PayPal order
       g-->>p: POST /v2/checkout/orders
-      p-->>g: { id: "5O190127TN364715T" }
+      p-->>g: { authorization_url: "paypal.com/..." }
       note over g: Redirect buyer to PayPal auth url
-      g->p: GET https://paypal.com...
+      g->p: GET paypal.com/...
       note over p: Buyer logs in
       note over p: Buyer confirms authorization
       note over p: Redirect buyer back to Gr4vy
-      p->>g: GET https://api.gr4vy.com/???/payment-methods?token=123121212
+      p->>g: GET api.*.gr4vy.com/payment-methods/123/callback?token=617312682
       note over g: Update payment method record
       note over g: Redirect buyer back to merchant site
-      g->>m: GET ::redirect_url::
+      g->>m: GET example.com/return?payment_method_id=...&payment_method_status=...
       note over m: Fetch payment method status
-      m-->>g: GET /payment-methods/{id}
-      g-->>m: { payment_method_status: 'stored' }
+      m-->>g: GET /payment-methods/123
+      g-->>m: { status: 'stored' }
 `}
 />
 
@@ -43,33 +43,41 @@ import Mermaid from "@theme/Mermaid";
 <Mermaid
   chart={`
     sequenceDiagram
-      participant m as Gr4vy Embed
+      participant e as Embed
+      participant m as Embedded SPA
       participant g as Gr4vy API
-      participant p as PayPal Site
-      note over m: Buyer clicks to use PayPal
+      participant p as PayPal
+      note over e: Embed loads frame
+      e-->>m: GET cdn.*.gr4vy.com/embed
+      note over m: Buyer selects PayPal option
+      note over m: Buyer clicks PayPal button
       note over m: API call: Start PayPal tokenization
-      m-->>g: POST /payment-methods { redirect_url: "https://cdn.***.gr4vy.com/embed" }
+      m-->>g: POST /payment-methods { return_url: "cdn.*.gr4vy.com/embed" }
       note over g: Create payment-method record
-      g-->>m: { id: '...', authorization_url: "https://redirect.gr4vy.com..." }
-      note over m: Embed opens popup for authorization URL
-      m->>g: GET https://redirect.gr4vy.com...
-      note over g: Get payment-method record
+      g-->>m: { authorization_url: "redirect.*.gr4vy.com/payment-methods/123", ... }
+      note over m: Frame notifies parent page to open popup
+      m-->>e: framebus.emit('openPopup', { authorization_url })
+      note over e: Embed opens popup with authorization URL
+      e->>g: GET redirect.*.gr4vy.com/payment-methods/123
+      note over g: Fetch payment-method record
       note over g: API call: Create PayPal order
       g-->>p: POST /v2/checkout/orders
-      p-->>g: { id: "5O190127TN364715T" }
+      p-->>g: { authorization_url: "paypal.com/..." }
       note over g: Redirect buyer to PayPal auth url
-      g->p: GET https://paypal.com...
+      g->p: GET paypal.com/...
       note over p: Buyer logs in
       note over p: Buyer confirms authorization
       note over p: Redirect buyer back to Gr4vy
-      p->>g: GET https://api.gr4vy.com/???/payment-methods?token=123121212
+      p->>g: GET api.*.gr4vy.com/payment-methods/123/callback?token=617312682
       note over g: Update payment method record
-      note over g: Redirect buyer back to Gr4vy Embedded Compents site
-      g->>m: GET https://cdn.***.gr4vy.com/embed
-      note over m: Fetch payment method status
-      m-->>g: GET /payment-methods/{id}
-      g-->>m: { payment_method_status: 'stored', .... }
-      g-->>m: bus.emit("payment-method", ...)
-      note over m: Close popup
+      note over g: Redirect buyer back to Gr4vy Embed SPA
+      g->>m: GET cdn.***.gr4vy.com/embed?payment_method_id=...&payment_method_status=...
+      note over m: SPA in popup notifies of new payment method
+      m-->>e: framebus.emit('paymentMethod', { id, status })
+      note over e: Embed closes popup
+      m-->>m: framebus.emit('paymentMethod', { id, status })
+      note over m: Frame confirms payment method status
+      m-->>g: GET /payment-methods/123
+      g-->>m: { status: 'stored', .... }
 `}
 />

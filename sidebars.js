@@ -59,7 +59,8 @@ module.exports = {
       items: [
         'internal/index',
         'internal/domains',
-        'internal/api-authentication'
+        'internal/api-authentication',
+        'payment-methods/flow-charts'
       ]
     }
   ]
