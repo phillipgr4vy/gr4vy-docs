@@ -73,23 +73,21 @@ fetch("https://api.{subdomain}.gr4vy.com/transactions", {
 </TabItem>
 </Tabs>
 
-The API returns a new `transaction` resource for which the `transaction_status`
-is set to `buyer_authorization_required`.
+The API returns a new `transaction` resource for which the `status` is set to
+`buyer_approval_pending`.
 
 ```json title="POST /transactions"
 {
   "type": "transaction",
   "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  "status": "created",
-  "transaction_status": "buyer_authorization_required",
+  "status": "buyer_approval_pending",
   "amount": 1299,
   "currency": "USD",
   "payment_method": {
     "type": "payment-method",
     "id": null,
     "method": "paypal",
-    "status": "buyer_authorization_required",
-    "payment_method_status": null,
+    "status": "buyer_approval_pending",
     "buyer": null,
     "details": {
       "email_address": null,
@@ -168,16 +166,14 @@ The API will return the same `transaction` resource with its updated status.
 {
   "type": "transaction",
   "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  "status": "created",
-  "transaction_status": "authorized",
+  "status": "authorized",
   "amount": 1299,
   "currency": "USD",
   "payment_method": {
     "type": "payment-method",
     "id": null,
     "method": "paypal",
-    "status": "created",
-    "payment_method_status": "stored",
+    "status": "stored",
     "buyer": null,
     "details": {
       "email_address": "john@example.com",
