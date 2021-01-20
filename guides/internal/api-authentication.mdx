@@ -61,7 +61,7 @@ these are an signed JWT.
   "token_type": "bearer",
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI...",
   "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI...",
-  "expires_in": 3600
+  "expires_in": 600
 }
 ```
 
@@ -103,9 +103,8 @@ The access token follows the following format.
   "exp": 1607976314,
   // a unique ID for this JWT, used to add entropy
   "jti": "0fe1fb1b-2f7e-4c8d-b0eb-aae5d0ec98f7",
-  // no scopes need to be defined as this user is allowed access to all APIs
-  // minus any restrictions applied server-side.
-  "scopes": null
+  // this token defaults to a cluster_admin scope
+  "scope": ["cluster_admin"]
 }
 ```
 
@@ -136,7 +135,7 @@ the access token. It follows the following format.
   "exp": 1611577128,
   // the scope for this token is explicitly set to only allow for
   // token refresh
-  "scope": ["PUT /auth/sessions"]
+  "scope": ["sessions"]
 }
 ```
 
@@ -206,12 +205,7 @@ claims.
   // Defining scopes is optional and it restricts the API to only some API
   // calls. This is used when passing an API token to Gr4vy Embed to prevent the
   // API token from being used to access APIs it should not have access to.
-  "scope": [
-    "POST /transactions",
-    "POST /payment-methods",
-    "GET /payment-methods",
-    "GET /payment-options"
-  ],
+  "scope": ["embed"],
   // A list of key-value pairs of data that might be submitted as request
   // parameters either in the query or in the body. Setting these values here
   // pins them to these values in the request, preventing them from being
@@ -221,9 +215,13 @@ claims.
   // restricts the API to only fetch payment options for the given buyer, and
   // only create a transaction of 200 USD exactly.
   "data": {
-    "buyer_id": "d757c76a-cbd7-4b56-95a3-40125b51b29c",
-    "amount": "200",
-    "currency": "USD"
+    "transactions.write": {
+      "amount": "200",
+      "currency": "USD"
+    },
+    "buyers.read": {
+      "buyer_id": "d757c76a-cbd7-4b56-95a3-40125b51b29c"
+    }
   }
 }
 ```
@@ -246,12 +244,23 @@ The following is an overview of the supported claims.
 
 ### API tokens
 
-|         | Description                                                                                 | Required |
-| ------- | :------------------------------------------------------------------------------------------ | :------- |
-| `iss`   | The unique ID of the key-pair used to sign this token                                       | Yes      |
-| `sub`   | Not used by API tokens                                                                      | No       |
-| `nbf`   | The unix timestamp that this token was created at                                           | Yes      |
-| `exp`   | The unix timestamp that this token expires at                                               | Yes      |
-| `jti`   | A random unique ID used for entropy                                                         | Yes      |
-| `scope` | A list of endpoints that this token is restricted to                                        | No       |
-| `data`  | A dictionary of key-value pairs used to pin query and request parameters to specific values | No       |
+|         | Description                                                                                                     | Required |
+| ------- | :-------------------------------------------------------------------------------------------------------------- | :------- |
+| `iss`   | The unique ID of the key-pair used to sign this token                                                           | Yes      |
+| `sub`   | Not used by API tokens                                                                                          | No       |
+| `nbf`   | The unix timestamp that this token was created at                                                               | Yes      |
+| `exp`   | The unix timestamp that this token expires at                                                                   | Yes      |
+| `jti`   | A random unique ID used for entropy                                                                             | Yes      |
+| `scope` | A list of endpoints that this token is restricted to                                                            | No       |
+| `data`  | A dictionary of key-value pairs used to pin query and request parameters to specific values for certain scopes. | No       |
+
+### Scopes
+
+| Scope               | Description                                                                                                                                   |
+| :------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| `{resources}.read`  | Allows read-access to a type or resource. For example, `buyers.read` enabled read-access for buyers data.                                     |
+| `{resources}.write` | Allows write-access to a type or resource. For example, `buyers.write` enabled write-access for buyers data. This does not allow read access. |
+| `session_refresh`   | Used by the refresh token, allowing it to be used to refresh the access token.                                                                |
+| `embed`             | A scope that represents all the acces needed by Gr4vy Embed.                                                                                  |
+| `cluster_admin`     | A scope that represents all the acces needed by Gr4vy Embed.                                                                                  |
+| `server`            | A scope that represents all APIs that can be accessed server-to-server.                                                                       |
