@@ -14,7 +14,7 @@ The payment method API can be used to:
 * Determine the available payment methods in a cluster
 * Determine the available payment method for a buyer in a specific currency and country
 * Store (also known as tokenize) a payment method for a buyer
-* Fetch all previously tokenized payment methods for a buyer
+* Fetch all previously stored payment methods for a buyer
 
 :::note Use Gr4vy Embed
 
