@@ -5,7 +5,7 @@ import Reference from '../modules/Reference';
 const ReferencePage = () => {
   return (
     <Layout title="API Reference" >
-      <Reference specUrl={'/openapi/openapi.yaml'} />
+      <Reference specUrl={'/openapi/openapi.v1.json'} />
     </Layout>
   );
 }
