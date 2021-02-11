@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { RedocStandalone } from 'redoc';
 import styles from './reference.module.scss';
 
 const Reference = ({ specUrl }) => {
+  const ref = useRef()
+
+  const openTags = () => {
+    ref.current.querySelectorAll('[role=navigation] ul').forEach(element => {
+      element.style.display = 'block'
+    })
+  }
+
   return (
-    <div className={styles.reference}>
+    <div className={styles.reference} ref={ref}>
       <RedocStandalone
         specUrl={specUrl}
+        onLoaded={openTags}
         options={{
           disableSearch: true,
           hideDownloadButton: true,

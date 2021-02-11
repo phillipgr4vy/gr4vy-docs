@@ -58,11 +58,7 @@ module.exports = {
             {
               label: 'API Reference',
               to: '/reference',
-            },
-            {
-              label: 'Gr4vy Embed',
-              to: '/guides/embed',
-            },
+            }
           ],
         },
         {

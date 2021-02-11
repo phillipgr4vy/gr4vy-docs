@@ -15,9 +15,10 @@ state within Gr4vy and the status within the used payment service.
 | `buyer_approval_pending`  | The payment method was created but needs approval from the buyer. This is mainly used in alternative payment methods like PayPal where the user needs to be redirected to PayPal to complete the payment method.     |
 | `buyer_approval_declined` | The payment method was created and needed approval from the buyer, but the buyer declined the approval.                                                                                                              |
 | `buyer_approval_timedout` | The payment method was created and needed approval from the buyer, but the buyer failed to approve the payment method before it timed out. Most approvals time out after 1 hour but this might change in the future. |
-| `stored`                  | The payment method was successfully stored with all payment services and the `token` value can now be used to create new transactions.                                                                               |
+| `stored`                  | The payment method was successfully stored with all payment services and the `id` can now be used to create new transactions.                                                                                        |
+| `used`                    | The payment method was used in a one-off transaction and it was not vaulted with any payment service.                                                                                                                |
 
-## State diagram
+# State diagram
 
 The following state diagram serves as an overview of all the different `status`
 values and how they relate to each other.
@@ -35,9 +36,11 @@ stateDiagram-v2
     [*] --> processing
     processing --> buyer_approval_pending
     processing --> stored
+    processing --> used
     buyer_approval_pending --> buyer_approval_declined
     buyer_approval_pending --> buyer_approval_declined
     buyer_approval_pending --> buyer_approval_timedout
     buyer_approval_pending --> stored
+    buyer_approval_pending --> used
 `}
 />
