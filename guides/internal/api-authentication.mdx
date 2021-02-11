@@ -13,7 +13,7 @@ authentication. The value for this token needs to be in the format
 `bearer [token]`.
 
 ```bash {2}
-curl -i -X GET "https://api.{subdomain}.gr4vy.app/transactions" \
+curl -i -X GET "https://api.{merchant}.gr4vy.app/transactions" \
     -H "authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 ```
 
@@ -44,7 +44,7 @@ Session tokens are created by the Gr4vy Admin frontend by calling the
 and password.
 
 ```bash
-curl -i -X POST "https://api.{subdomain}.gr4vy.app/auth/sessions" \
+curl -i -X POST "https://api.{merchant}.gr4vy.app/auth/sessions" \
     -H "Content-Type: application/json" \
     -d '{
       "email_address": "john@example.com",
@@ -70,7 +70,7 @@ The refresh token is used once the access token has expired by calling the
 `refresh_token` as the bearer token.
 
 ```bash
-curl -i -X PUT "https://api.{subdomain}.gr4vy.app/auth/sessions" \
+curl -i -X PUT "https://api.{merchant}.gr4vy.app/auth/sessions" \
     -H "Authorization: Bearer [REFRESH_TOKEN]"
 ```
 
@@ -154,7 +154,7 @@ An API key pair can be created via the Gr4vy admin. The admin UI uses the
 authenticated with a session token.
 
 ```bash
-curl -i -X POST "https://api.{subdomain}.gr4vy.app/api-key-pairs" \
+curl -i -X POST "https://api.{merchant}.gr4vy.app/api-key-pairs" \
     -H "Authorization: Bearer [SESSION_TOKEN]"
 ```
 

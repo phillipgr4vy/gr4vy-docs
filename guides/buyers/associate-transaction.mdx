@@ -6,6 +6,7 @@ sidebar_label: Link transaction to buyer
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
+Once a buyer has been created it's possible to link transactions to that buyer.
 There are a few ways to associate a transaction to a buyer.
 
 ## Associate the payment method to a `buyer_id`
@@ -26,15 +27,15 @@ this transaction. If a buyer with that `id` could not be found it's ignored.
 >
   <TabItem value="curl">
 
-```bash {7}
-curl -i -X POST "https://api.{subdomain}.gr4vy.app/transactions" \
+```bash {12}
+curl -i -X POST "https://api.{merchant}.gr4vy.app/transactions" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
       "amount": 1299,
       "currency": "USD",
-      "payment_method_type": "card",
       "payment_method": {
+        "method": "card",
         "number": "4111111111111111",
         "expiration_date": "11/25",
         "security_code": "123",
@@ -46,10 +47,10 @@ curl -i -X POST "https://api.{subdomain}.gr4vy.app/transactions" \
   </TabItem>
   <TabItem value="node">
 
-```js {12}
+```js {17}
 const fetch = require("node-fetch");
 
-fetch("https://api.{subdomain}.gr4vy.app/transactions", {
+fetch("https://api.{merchant}.gr4vy.app/transactions", {
   method: "POST",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",
@@ -58,8 +59,8 @@ fetch("https://api.{subdomain}.gr4vy.app/transactions", {
   body: JSON.stringify({
     amount: 1299,
     currency: "USD",
-    payment_method_type: "card",
     payment_method: {
+      method: "card",
       number: "4111111111111111",
       expiration_date: "11/25",
       security_code: "123",
@@ -88,15 +89,15 @@ found it's ignored.
 >
   <TabItem value="curl">
 
-```bash {7}
-curl -i -X POST "https://api.{subdomain}.gr4vy.app/transactions" \
+```bash {12}
+curl -i -X POST "https://api.{merchant}.gr4vy.app/transactions" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
       "amount": 1299,
       "currency": "USD",
-      "payment_method_type": "card",
       "payment_method": {
+        "method": "card",
         "number": "4111111111111111",
         "expiration_date": "11/25",
         "security_code": "123",
@@ -111,7 +112,7 @@ curl -i -X POST "https://api.{subdomain}.gr4vy.app/transactions" \
 ```js {12}
 const fetch = require("node-fetch");
 
-fetch("https://api.{subdomain}.gr4vy.app/transactions", {
+fetch("https://api.{merchant}.gr4vy.app/transactions", {
   method: "POST",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",
@@ -120,8 +121,8 @@ fetch("https://api.{subdomain}.gr4vy.app/transactions", {
   body: JSON.stringify({
     amount: 1299,
     currency: "USD",
-    payment_method_type: "card",
     payment_method: {
+      method: "card",
       number: "4111111111111111",
       expiration_date: "11/25",
       security_code: "123",

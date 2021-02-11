@@ -11,7 +11,7 @@ const Home = () => {
     <Layout
       title={context.siteConfig.title}
       description="The payment orchestration platform">
-      <div className="container m-auto">
+      <div className="container m-auto mt-5">
         <div className="relative bg-white overflow-hidden">
           <div className="max-w-full mx-auto">
             <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-3xl lg:w-full lg:pb-28 xl:pb-32">

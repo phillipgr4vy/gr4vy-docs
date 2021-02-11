@@ -1,6 +1,6 @@
 ---
 id: index
-title: Guides
+title: Introduction
 sidebar_label: Introduction
 slug: /
 ---

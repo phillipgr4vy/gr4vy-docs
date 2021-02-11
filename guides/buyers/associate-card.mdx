@@ -6,7 +6,8 @@ sidebar_label: Link card to buyer
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-There are a few ways to associate a card to a buyer.
+It is possible to bind a tokenized card to a buyer when it is being created.
+There are a few ways to do so.
 
 ## Associate by `buyer_id`
 
@@ -27,7 +28,7 @@ with that `id` could not be found it's ignored.
   <TabItem value="curl">
 
 ```bash {9}
-curl -i -X POST "https://api.{subdomain}.gr4vy.app/payment-methods" \
+curl -i -X POST "https://api.{merchant}.gr4vy.app/payment-methods" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
@@ -45,7 +46,7 @@ curl -i -X POST "https://api.{subdomain}.gr4vy.app/payment-methods" \
 ```js {14}
 const fetch = require("node-fetch");
 
-fetch("https://api.{subdomain}.gr4vy.app/payment-methods", {
+fetch("https://api.{merchant}.gr4vy.app/payment-methods", {
   method: "POST",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",
@@ -81,7 +82,7 @@ found it's ignored.
   <TabItem value="curl">
 
 ```bash {9}
-curl -i -X POST "https://api.{subdomain}.gr4vy.app/payment-methods" \
+curl -i -X POST "https://api.{merchant}.gr4vy.app/payment-methods" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
@@ -99,7 +100,7 @@ curl -i -X POST "https://api.{subdomain}.gr4vy.app/payment-methods" \
 ```js {14}
 const fetch = require("node-fetch");
 
-fetch("https://api.{subdomain}.gr4vy.app/payment-methods", {
+fetch("https://api.{merchant}.gr4vy.app/payment-methods", {
   method: "POST",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",

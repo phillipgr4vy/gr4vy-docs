@@ -4,15 +4,17 @@ sidebar_label: Introduction
 slug: /buyers
 ---
 
-In Gr4vy, a buyer represents a merchant's customer, the shopper who's performing
+In Gr4vy, a **buyer** represents your customer. This is the shopper who's performing
 a checkout and making a purchase.
 
 ## Features
 
-A buyer can be used by a merchant to:
+A buyer can be used to perform the following tasks.
 
-* Display a human readable name (`display_name`) for a buyer in the Gr4vy admin panel
-* Associate multiple stored payment methods with a single user
-* Initialize **Gr4vy Embed** with the buyer ID, automatically displaying the
-  buyer's previously stored payment methods, allowing for faster checkout.
+* Display a human readable name (`display_name`) for a buyer in the Gr4vy admin
+  panel when browing transactions.
+* Associate multiple stored payment methods (cards, PayPal, etc) with a single
+  customer.
+* Initialize [Gr4vy Embed](/guides/embed) with the buyer ID to automatically
+  displaying the buyer's previously stored payment methods, allowing for faster checkout.
 

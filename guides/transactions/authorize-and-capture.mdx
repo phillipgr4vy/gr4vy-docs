@@ -27,7 +27,7 @@ setting the `capture` field in the request body to `true`.
   <TabItem value="curl">
 
 ```bash {7}
-curl -i -X POST "https://api.{subdomain}.gr4vy.app/transactions" \
+curl -i -X POST "https://api.{merchant}.gr4vy.app/transactions" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
@@ -49,7 +49,7 @@ curl -i -X POST "https://api.{subdomain}.gr4vy.app/transactions" \
 ```js
 var fetch = require("node-fetch");
 
-fetch("https://api.{subdomain}.gr4vy.app/transactions", {
+fetch("https://api.{merchant}.gr4vy.app/transactions", {
   method: "POST",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",
@@ -90,7 +90,7 @@ API
   <TabItem value="curl">
 
 ```bash {7}
-curl -i -X POST "https://api.{subdomain}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9/capture \
+curl -i -X POST "https://api.{merchant}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9/capture \
     -H "Authorization: Bearer [JWT_TOKEN]"
 ```
 
@@ -101,7 +101,7 @@ curl -i -X POST "https://api.{subdomain}.gr4vy.app/transactions/fe26475d-ec3e-48
 var fetch = require("node-fetch");
 
 fetch(
-  "https://api.{subdomain}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9/capture",
+  "https://api.{merchant}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9/capture",
   {
     method: "POST",
     headers: {

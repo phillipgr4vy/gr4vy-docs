@@ -6,9 +6,9 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 The [`GET /buyers`][api] API makes it possible to find a buyer by its
-`external_identifier` value.
+`display_name` or `external_identifier` value.
 
-[api]: /reference#operation/get-buyers
+[api]: /reference#operation/list-buyers
 
 <Tabs
   groupId="language"
@@ -21,7 +21,7 @@ The [`GET /buyers`][api] API makes it possible to find a buyer by its
   <TabItem value="curl">
 
 ```bash
-curl -i -X GET "https://api.{subdomain}.gr4vy.app/buyers?external_identifier=fe26475d-ec3e-4884-9553-f7356683f7f9" \
+curl -i -X GET "https://api.{merchant}.gr4vy.app/buyers?search=fe26475d-ec3e-4884-9553-f7356683f7f9" \
     -H "Authorization: Bearer [JWT_TOKEN]"
 ```
 
@@ -32,7 +32,7 @@ curl -i -X GET "https://api.{subdomain}.gr4vy.app/buyers?external_identifier=fe2
 const fetch = require("node-fetch");
 
 fetch(
-  "https://api.{subdomain}.gr4vy.app/buyers?external_identifier=fe26475d-ec3e-4884-9553-f7356683f7f9",
+  "https://api.{merchant}.gr4vy.app/buyers?search=fe26475d-ec3e-4884-9553-f7356683f7f9",
   {
     headers: {
       Authorization: "Bearer [JWT_TOKEN]",
@@ -44,9 +44,9 @@ fetch(
   </TabItem>
 </Tabs>
 
-The API returns the one (and only) buyer for which the `external_identifier` has
-been set to the associated value. If no buyers could be found the returned items
-will be empty.
+The API returns any buyers for which either the `display_name` or
+`external_identifier` partially match. If no buyers could be found the returned
+items will be an empty list.
 
 ```json title="GET /buyers?external_identifier=fe26475d-ec3e-4884-9553-f7356683f7f9"
 {

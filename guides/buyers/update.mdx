@@ -5,8 +5,8 @@ title: Update a buyer
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-A buyer can be added with a call to the [`PUT /buyers/{buyers_id}`][api] API.
-The call accepts an optional update to the `external_identifier` (e.g. the
+You can update a buyer by calling the [`PUT /buyers/{buyers_id}`][api] API. The
+call accepts an optional update to the `external_identifier` (for example the
 user's email, username, or a database ID) and an optional update to the
 `display_name` which will be shown in the admin panel.
 
@@ -23,7 +23,7 @@ user's email, username, or a database ID) and an optional update to the
   <TabItem value="curl">
 
 ```bash {5-6}
-curl -i -X PUT "https://api.{subdomain}.gr4vy.app/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9" \
+curl -i -X PUT "https://api.{merchant}.gr4vy.app/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
@@ -38,7 +38,7 @@ curl -i -X PUT "https://api.{subdomain}.gr4vy.app/buyers/fe26475d-ec3e-4884-9553
 const fetch = require("node-fetch");
 
 fetch(
-  "https://api.{subdomain}.gr4vy.app/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9",
+  "https://api.{merchant}.gr4vy.app/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9",
   {
     method: "PUT",
     headers: {

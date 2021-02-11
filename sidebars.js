@@ -2,7 +2,7 @@ module.exports = {
   sidebar: [
     {
       type: 'category',
-      label: 'Gr4vy',
+      label: 'Welcome',
       collapsed: false,
       items: [
         'index',
@@ -21,7 +21,7 @@ module.exports = {
         'buyers/update',
         'buyers/associate-transaction',
         'buyers/associate-card',
-        'buyers/associate-paypal'
+        // 'buyers/associate-paypal'
       ]
     },
     {

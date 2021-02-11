@@ -19,16 +19,20 @@
 }
 
 .navbar {
-  @apply h-28;
+  @apply h-20 bg-white;
   box-shadow: none;
 }
 
 .navbar__inner {
-  @apply container mx-auto h-28;
+  @apply container mx-auto h-10 bg-white py-5;
 }
 
 .navbar__item {
-  @apply text-green-700 hover:underline hover:text-green-800;
+  @apply text-green-700 hover:text-green-800 hover:no-underline ml-2;
+}
+
+.navbar__link--active {
+  @apply border-b-2;
 }
 
 .navbar__item__button {
@@ -45,7 +49,7 @@
 }
 
 .footer {
-  @apply bg-green-50 bg-opacity-50;
+  @apply bg-white border-t-2 border-gray-50 mt-20 mb-5;
 }
 
 .footer__col {
@@ -72,6 +76,22 @@ main {
   @apply lg:mx-5;
 }
 
+.markdown ul {
+  @apply list-outside list-disc ml-5;
+}
+
+.markdown h2 {
+  @apply text-2xl font-bold;
+}
+
+.markdown h3 {
+  @apply text-xl font-semibold;
+}
+
+.markdown a {
+  @apply text-green-900 underline;
+}
+
 .alert--info {
   @apply bg-blue-50 text-gray-900 border-0 relative;
 }
@@ -86,7 +106,7 @@ main {
 }
 
 .alert--secondary {
-  @apply bg-gray-50 text-gray-900 border-0 relative;
+  @apply bg-gray-100 text-gray-900 border-0 relative;
 }
 
 .alert--secondary a {

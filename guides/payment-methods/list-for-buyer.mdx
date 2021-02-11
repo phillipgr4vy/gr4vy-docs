@@ -23,7 +23,7 @@ To list all the stored (tokenized) payment methods for a buyer, call the
   <TabItem value="curl">
 
 ```bash
-curl -i -X GET "https://api.{subdomain}.gr4vy.app/payment-methods?buyer_id=fe26475d-ec3e-4884-9553-f7356683f7f9" \
+curl -i -X GET "https://api.{merchant}.gr4vy.app/payment-methods?buyer_id=fe26475d-ec3e-4884-9553-f7356683f7f9" \
     -H "Authorization: Bearer [JWT_TOKEN]"
 ```
 
@@ -34,7 +34,7 @@ curl -i -X GET "https://api.{subdomain}.gr4vy.app/payment-methods?buyer_id=fe264
 const fetch = require("node-fetch");
 
 fetch(
-  "https://api.{subdomain}.gr4vy.app/payment-methods?buyer_id=fe26475d-ec3e-4884-9553-f7356683f7f9",
+  "https://api.{merchant}.gr4vy.app/payment-methods?buyer_id=fe26475d-ec3e-4884-9553-f7356683f7f9",
   {
     method: "GET",
     headers: {

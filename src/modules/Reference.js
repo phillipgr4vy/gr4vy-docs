@@ -19,7 +19,7 @@ const Reference = ({ specUrl }) => {
           onlyRequiredInSamples: true,
           pathInMiddlePanel: true,
           requiredPropsFirst: true,
-          scrollYOffset: 120,
+          scrollYOffset: 60,
           sortPropsAlphabetically: true,
           theme: {
             spacing: {
