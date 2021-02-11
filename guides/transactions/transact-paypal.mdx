@@ -34,7 +34,7 @@ approved access to their PayPal account.
   <TabItem value="curl">
 
 ```bash {5-12}
-curl -i -X POST "https://api.{subdomain}.gr4vy.com/transactions" \
+curl -i -X POST "https://api.{subdomain}.gr4vy.app/transactions" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
@@ -53,7 +53,7 @@ curl -i -X POST "https://api.{subdomain}.gr4vy.com/transactions" \
 ```js {10-17}
 var fetch = require("node-fetch");
 
-fetch("https://api.{subdomain}.gr4vy.com/transactions", {
+fetch("https://api.{subdomain}.gr4vy.app/transactions", {
   method: "POST",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",
@@ -91,7 +91,7 @@ The API returns a new `transaction` resource for which the `status` is set to
     "buyer": null,
     "details": {
       "email_address": null,
-      "authorization_url": "https://redirect.***.gr4vy.com/transactions/ffc88ec9-e1ee-45ba-993d-b5902c3b2a8c"
+      "authorization_url": "https://api.***.gr4vy.app/transactions/ffc88ec9-e1ee-45ba-993d-b5902c3b2a8c"
     },
     "external_identifier": null,
     "created_at": "2013-07-16T19:23:00.000Z",
@@ -136,7 +136,7 @@ successfully authorized or captured.
   <TabItem value="curl">
 
 ```bash
-curl -i -X GET "https://api.{subdomain}.gr4vy.com/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9" \
+curl -i -X GET "https://api.{subdomain}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9" \
     -H "Authorization: Bearer [JWT_TOKEN]"
 ```
 
@@ -147,7 +147,7 @@ curl -i -X GET "https://api.{subdomain}.gr4vy.com/transactions/fe26475d-ec3e-488
 const fetch = require("node-fetch");
 
 fetch(
-  "https://api.{subdomain}.gr4vy.com/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9",
+  "https://api.{subdomain}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9",
   {
     method: "GET",
     headers: {

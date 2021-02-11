@@ -19,7 +19,7 @@ const Reference = ({ specUrl }) => {
           onlyRequiredInSamples: true,
           pathInMiddlePanel: true,
           requiredPropsFirst: true,
-          scrollYOffset: 60,
+          scrollYOffset: 120,
           sortPropsAlphabetically: true,
           theme: {
             spacing: {
@@ -36,7 +36,10 @@ const Reference = ({ specUrl }) => {
             },
             sidebar: {
               width: '300px',
-            }
+            },
+            rightPanel: {
+              backgroundColor: '#03271d'
+            },
           }
         }}
       />

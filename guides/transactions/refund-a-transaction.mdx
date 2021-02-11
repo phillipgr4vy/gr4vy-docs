@@ -26,7 +26,7 @@ authorization will instead be voided instead.
   <TabItem value="curl">
 
 ```bash {7}
-curl -i -X POST "https://api.{subdomain}.gr4vy.com/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9/refund" \
+curl -i -X POST "https://api.{subdomain}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9/refund" \
     -H "Authorization: Bearer [JWT_TOKEN]"
 ```
 
@@ -37,7 +37,7 @@ curl -i -X POST "https://api.{subdomain}.gr4vy.com/transactions/fe26475d-ec3e-48
 var fetch = require("node-fetch");
 
 fetch(
-  "https://api.{subdomain}.gr4vy.com/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9/refund",
+  "https://api.{subdomain}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9/refund",
   {
     method: "POST",
     headers: {

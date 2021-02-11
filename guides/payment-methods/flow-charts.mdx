@@ -15,18 +15,18 @@ import Mermaid from "@theme/Mermaid";
       participant g as Gr4vy API
       participant p as PayPal
       note over e: Embed loads frame
-      e-->>m: GET cdn.*.gr4vy.com/embed
+      e-->>m: GET cdn.*.gr4vy.app/embed
       note over m: Buyer selects PayPal option
       note over m: Buyer clicks PayPal button
       note over m: API call: Start PayPal tokenization
-      m-->>g: POST /transactions { return_url: "cdn.*.gr4vy.com/embed" }
+      m-->>g: POST /transactions { return_url: "cdn.*.gr4vy.app/embed" }
       note over g: Create transaction record
       note over g: Create payment-method record
-      g-->>m: { authorization_url: "api.*.gr4vy.com/transaction-approvals/MTNmOD...", ... }
+      g-->>m: { authorization_url: "api.*.gr4vy.app/transaction-approvals/MTNmOD...", ... }
       note over m: Frame notifies parent page to open popup
       m-->>e: framebus.emit('openPopup', { authorization_url })
       note over e: Embed opens popup with authorization URL
-      e->>g: GET api.*.gr4vy.com/transaction-approvals/MTNmOD...
+      e->>g: GET api.*.gr4vy.app/transaction-approvals/MTNmOD...
       note over g: Fetch transaction & payment method records
       note over g: API call: Create PayPal order
       g-->>p: POST /v2/checkout/orders
@@ -36,10 +36,10 @@ import Mermaid from "@theme/Mermaid";
       note over p: Buyer logs in
       note over p: Buyer confirms authorization
       note over p: Redirect buyer back to Gr4vy
-      p->>g: GET api.*.gr4vy.com/transactions/123/approve?token=617312682
+      p->>g: GET api.*.gr4vy.app/transactions/123/approve?token=617312682
       note over g: Update transaction & payment method records
       note over g: Redirect buyer back to Gr4vy Embed SPA
-      g->>m: GET cdn.*.gr4vy.com/embed?transaction_id=...&transaction_status=...
+      g->>m: GET cdn.*.gr4vy.app/embed?transaction_id=...&transaction_status=...
       note over m: SPA in popup notifies of approved transaction
       m-->>e: framebus.emit('approvedTransaction', { id, status })
       note over e: Embed closes popup

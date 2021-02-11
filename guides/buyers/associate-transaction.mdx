@@ -27,7 +27,7 @@ this transaction. If a buyer with that `id` could not be found it's ignored.
   <TabItem value="curl">
 
 ```bash {7}
-curl -i -X POST "https://api.{subdomain}.gr4vy.com/transactions" \
+curl -i -X POST "https://api.{subdomain}.gr4vy.app/transactions" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
@@ -49,7 +49,7 @@ curl -i -X POST "https://api.{subdomain}.gr4vy.com/transactions" \
 ```js {12}
 const fetch = require("node-fetch");
 
-fetch("https://api.{subdomain}.gr4vy.com/transactions", {
+fetch("https://api.{subdomain}.gr4vy.app/transactions", {
   method: "POST",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",
@@ -89,7 +89,7 @@ found it's ignored.
   <TabItem value="curl">
 
 ```bash {7}
-curl -i -X POST "https://api.{subdomain}.gr4vy.com/transactions" \
+curl -i -X POST "https://api.{subdomain}.gr4vy.app/transactions" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
@@ -111,7 +111,7 @@ curl -i -X POST "https://api.{subdomain}.gr4vy.com/transactions" \
 ```js {12}
 const fetch = require("node-fetch");
 
-fetch("https://api.{subdomain}.gr4vy.com/transactions", {
+fetch("https://api.{subdomain}.gr4vy.app/transactions", {
   method: "POST",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",

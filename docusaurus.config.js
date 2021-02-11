@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  title: 'Gr4vy Developer Documentation',
+  title: 'Gr4vy Documentation',
   tagline: 'Get started with the cloud payment orchestration platform',
   url: 'https://developer.gr4vy.com',
   baseUrl: '/',
@@ -11,7 +11,7 @@ module.exports = {
   organizationName: 'gr4vy',
   projectName: 'gr4vy-developer-documentation',
   themeConfig: {
-    hideableSidebar: true,
+    hideableSidebar: false,
     colorMode: {
       disableSwitch: true,
     },
@@ -26,12 +26,18 @@ module.exports = {
           to: 'guides/',
           activeBasePath: 'guides',
           label: 'Guides',
-          position: 'left',
+          position: 'right',
         },
         {
           to: 'reference',
           label: 'API Reference',
-          position: 'left'
+          position: 'right'
+        },
+        {
+          to: 'https://gr4vy.com',
+          label: 'About us',
+          position: 'right',
+          className: 'navbar__item__button'
         },
       ],
     },
@@ -39,11 +45,23 @@ module.exports = {
       style: 'light',
       links: [
         {
-          title: 'Guides',
+          title: 'Documentation',
           items: [
             {
-              label: 'Buyers',
-              to: '/guides/buyers',
+              label: 'Get Started',
+              to: '/guides/get-started',
+            },
+            {
+              label: 'Guides',
+              to: '/guides',
+            },
+            {
+              label: 'API Reference',
+              to: '/reference',
+            },
+            {
+              label: 'Gr4vy Embed',
+              to: '/guides/embed',
             },
           ],
         },
@@ -51,22 +69,34 @@ module.exports = {
           title: 'Code',
           items: [
             {
-              label: 'NPM',
-              href: 'https://twitter.com/gr4vy',
+              label: 'Gr4vy Embed',
+              href: 'https://www.npmjs.com/package/@gr4vy/embed',
             },
             {
-              label: 'GitHub',
-              href: 'https://github.com/gr4vy',
+              label: 'Gr4vy Embed for React',
+              href: 'https://www.npmjs.com/package/@gr4vy/embed-react',
+            },
+            {
+              label: 'OpenAPI 3.0',
+              href: 'https://github.com/gr4vy/gr4vy-openapi',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'Elsewhere',
           items: [
+            {
+              label: 'GitHub',
+              href: 'https://github.com/gr4vy',
+            },
             {
               label: 'Twitter',
               href: 'https://twitter.com/gr4vypop',
-            }
+            },
+            {
+              label: 'NPM',
+              href: 'https://www.npmjs.com/org/gr4vy',
+            },
           ],
         },
       ],
@@ -104,6 +134,7 @@ module.exports = {
   ],
   plugins: [
     'docusaurus-plugin-sass',
-    path.resolve(__dirname, 'plugins', 'webpack-buffer-polyfill')
+    'webpack-buffer-polyfill',
+    'tailwindcss-loader'
   ],
 };
