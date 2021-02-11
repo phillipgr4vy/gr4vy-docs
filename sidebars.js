@@ -26,7 +26,8 @@ module.exports = {
             'buyers/update',
             'buyers/associate-transaction',
             'buyers/associate-card',
-            // 'buyers/associate-paypal'
+            // 'buyers/associate-paypal',
+            'buyers/remove',
           ]
         },
         {

@@ -6,12 +6,12 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 A previously vaulted payment method van be removed from Gr4vy by calling the
-[`DELETE /payment-methods/:id`][api] API.
+[`DELETE /payment-methods/{payment_method_id}`][api] API.
 
 :::info
 
 This API does not actually remove the stored payment method from any of the
-underlying payment services. It simply removes the record in Gr4vy.
+underlying payment services. It only removes the record in Gr4vy.
 
 :::
 

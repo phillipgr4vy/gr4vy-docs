@@ -12,7 +12,7 @@ a checkout and making a purchase.
 A buyer can be used to perform the following tasks.
 
 * Display a human readable name (`display_name`) for a buyer in the Gr4vy admin
-  panel when browing transactions.
+  panel when browsing transactions.
 * Associate multiple stored payment methods (cards, PayPal, etc) with a single
   customer.
 * Initialize [Gr4vy Embed](/guides/embed) with the buyer ID to automatically

@@ -23,7 +23,7 @@ The payment method API can be used to:
 
 :::note Gr4vy Embed
 
-There is no need to use these APIs directly if you are using our Javascript SDK.
+There is no need to use these APIs directly if you are using our JavaScript SDK.
 [Gr4vy Embed](/guides/embed) automatically stores eligible payment
 methods against these APIs and can even bind them to a [buyer](/guides/buyers)
 you've previously created.
