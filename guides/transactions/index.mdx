@@ -4,23 +4,26 @@ sidebar_label: Introduction
 slug: /transactions
 ---
 
-In Gr4vy, a transaction represents a payment in any state, either before it is
-authorized, once it is captured, or after it has been refunded.
+In Gr4vy a transaction represents a payment made using a
+[payment method](/guides/payment-methods) using any kind of payment instrument
+like a card or PayPal.
 
 ## Features
 
 The transactions API can be used to:
 
-- Authorize, capture, and store cards
-- Authorize, capture, and store alternative payment methods like PayPal
-- Refund, void, and otherwise cancel existing transactions
+- Create a transaction using a card
+- Create a transaction using a PayPal
+- Store a card used in a transaction so that it can be used again later
+- Associate a transaction to a buyer
+- Further authorize, capture, or refund a previously created transaction
 
-:::note Use Gr4vy Embed
+:::note Using Gr4vy Embed
 
-There is no need to use these APIs directly if you are using [Gr4vy Embed]
+There is little need to use these APIs directly if you are using [Gr4vy Embed]
 instead. [Gr4vy Embed] automatically creates transactions against these APIs and
-binds them to a `buyer_id` of your configuration.
+can even bind them to a previously created buyer.
 
 :::
 
-[gr4vy embed]: https://www.npmjs.com/package/@gr4vy/embed
+[gr4vy embed]: /guides/get-started/embed

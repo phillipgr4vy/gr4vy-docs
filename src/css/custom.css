@@ -102,7 +102,12 @@ main {
 
 .alert--info svg,
 .alert--secondary svg {
-  @apply fill-current opacity-60 h-5 absolute right-4 top-3;
+  @apply fill-current opacity-60 h-5 relative bottom-1 mr-1;
+}
+
+.alert--info h5,
+.alert--secondary h5 {
+  @apply relative right-1;
 }
 
 .alert--secondary {

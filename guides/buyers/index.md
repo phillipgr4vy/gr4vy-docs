@@ -15,6 +15,6 @@ A buyer can be used to perform the following tasks.
   panel when browsing transactions.
 * Associate multiple stored payment methods (cards, PayPal, etc) with a single
   customer.
-* Initialize [Gr4vy Embed](/guides/embed) with the buyer ID to automatically
+* Initialize [Gr4vy Embed](/guides/get-started/embed) with the buyer ID to automatically
   displaying the buyer's previously stored payment methods, allowing for faster checkout.
 

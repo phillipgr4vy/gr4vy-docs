@@ -7,12 +7,23 @@ module.exports = {
       items: [
         'index',
         'get-started/index',
-        'embed/index'
+        'get-started/sdks',
+        'get-started/embed'
       ],
     },
     {
       type: 'category',
-      label: 'Documentation',
+      label: 'Basics',
+      collapsed: false,
+      items: [
+        'authentication/index',
+        'pagination/index',
+        'errors/index'
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Resources',
       collapsed: false,
       items: [
         {
@@ -52,10 +63,9 @@ module.exports = {
             'transactions/index',
             'transactions/transact-card',
             'transactions/transact-paypal',
-            'transactions/transact-token',
+            'transactions/transact-vault',
             'transactions/vault-a-payment-method',
-            'transactions/authorize-and-capture',
-            'transactions/refund-a-transaction',
+            // 'transactions/refund-a-transaction',
             'transactions/list-transactions',
             'transactions/statuses',
           ]

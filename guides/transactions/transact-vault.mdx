@@ -1,0 +1,82 @@
+---
+title: Create a transaction with a vaulted payment method
+sidebar_label: Transactions using vault
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+A transaction can be created with a previously stored [payment method][guides].
+The call requires an `amount`, `currency`, and a `payment_method` with a `id`.
+This token can represent a card, or any other payment method that supports
+tokenization.
+
+:::note
+
+Check out our [guides] to learn more about payment methods and the ability to
+tie a payment method to a buyer.
+
+:::
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {5-10}
+curl -i -X POST "https://api.{merchant}.gr4vy.app/transactions" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "amount": 1299,
+          "currency": "USD",
+          "payment_method": {
+            "method": "id",
+            "id": "421a4e92-f0c4-4fdc-8233-921bce75133e"
+          }
+        }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js {10-15}
+var fetch = require("node-fetch");
+
+fetch("https://api.{merchant}.gr4vy.app/transactions", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    amount: 1299,
+    currency: "USD",
+    payment_method: {
+      method: "id",
+      id: "421a4e92-f0c4-4fdc-8233-921bce75133e",
+    },
+  }),
+});
+```
+
+</TabItem>
+</Tabs>
+
+This API will return the [authorized transaction][authorize]. The status of this
+transaction can vary for a few reasons including the status provided by the
+payment service, as well as the requested `intent`.
+
+:::info Statuses
+
+See our guide on [transaction statuses](/guides/transactions/statuses) for more
+details.
+
+:::
+
+[guides]: /guides/payment-methods

@@ -10,7 +10,15 @@ A transaction can be created for a PayPal account by calling the
 [`POST /transactions`][api] API. The call requires an `amount`, `currency`, and
 a `payment_method` with a `redirect_url`.
 
-:::info 2-step process
+:::info Using Gr4vy Embed
+
+There is little need to use these APIs directly if you are using [Gr4vy Embed]
+instead. [Gr4vy Embed] automatically creates transactions against these APIs and
+can even bind them to a previously created buyer.
+
+:::
+
+:::note 2-step process
 
 Transacting with a PayPal account is a 2-step process that requires a
 buyer-redirect to get explicit authorization.
@@ -33,13 +41,14 @@ approved access to their PayPal account.
 >
   <TabItem value="curl">
 
-```bash {5-12}
+```bash {5-11}
 curl -i -X POST "https://api.{merchant}.gr4vy.app/transactions" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
           "amount": 1299,
           "currency": "USD",
+          "intent": "capture",
           "payment_method": {
             "method": "paypal",
             "redirect_url": "https://example.com/complete"
@@ -50,7 +59,7 @@ curl -i -X POST "https://api.{merchant}.gr4vy.app/transactions" \
   </TabItem>
   <TabItem value="node">
 
-```js {10-17}
+```js {10-15}
 var fetch = require("node-fetch");
 
 fetch("https://api.{merchant}.gr4vy.app/transactions", {
@@ -62,6 +71,7 @@ fetch("https://api.{merchant}.gr4vy.app/transactions", {
   body: JSON.stringify({
     amount: 1299,
     currency: "USD",
+    intent: "capture",
     payment_method: {
       method: "paypal",
       redirect_url: "https://example.com/callback",
@@ -91,23 +101,25 @@ The API returns a new `transaction` resource for which the `status` is set to
     "buyer": null,
     "details": {
       "email_address": null,
-      "authorization_url": "https://api.***.gr4vy.app/transactions/ffc88ec9-e1ee-45ba-993d-b5902c3b2a8c"
+      "authorization_url": "https://api.*.gr4vy.app/transactions/approvals/NDY5NzNlOWQtODhhNy00NGE2LWFiZmUtYmU0ZmYwMTM0ZmY0"
     },
-    "external_identifier": null,
-    "created_at": "2013-07-16T19:23:00.000Z",
-    "updated_at": "2013-07-16T19:23:00.000Z"
+    ...
   },
-  "payment_service_id": "paypal-169f5226-4644-4d1e-ac36-14999e73601f",
-  "external_identifier": null,
-  "created_at": "2013-07-16T19:23:00.000Z",
-  "updated_at": "2019-08-24T14:15:22Z"
+  ...
 }
 ```
+
+:::info Statuses
+
+See our guide on [transaction statuses](/guides/transactions/statuses) for more
+details.
+
+:::
 
 ## Step 2. Redirect the user
 
 For the next step, you will need to redirect the buyer to the URL specified in
-the `payment_method.details.authorization_url` field of the response.
+the `details.approval_url` field of the response.
 
 The buyer then logs in to their PayPal account and authorizes it to be used by
 Gr4vy. After this, the buyer is redirected back to the `redirect_url` you
@@ -118,9 +130,9 @@ https://example.com/complete?transaction_id=fe26475d-ec3e-4884-9553-f7356683f7f9
 ```
 
 The `transaction_id` query parameter represents the ID of the transaction and
-the `status` represents the new status of the transaction.
+the `transaction_status` represents the new status of the transaction.
 
-## (Optional) Step 3. Confirm the authorization
+## (Optional) Step 3. Confirm the transaction
 
 Finally, you could make an optional API call to confirm the transaction has been
 successfully authorized or captured.
@@ -162,31 +174,26 @@ fetch(
 
 The API will return the same `transaction` resource with its updated status.
 
-```json title="GET /transactions/fe26475d-ec3e-4884-9553-f7356683f7f9"
+```json title="GET /transactions/fe26475d-ec3e-4884-9553-f7356683f7f9" {4}
 {
   "type": "transaction",
   "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  "status": "authorized",
+  "status": "captured",
   "amount": 1299,
   "currency": "USD",
   "payment_method": {
     "type": "payment-method",
-    "id": null,
+    "id": "421a4e92-f0c4-4fdc-8233-921bce75133e",
     "method": "paypal",
-    "status": "stored",
+    "status": "used",
     "buyer": null,
     "details": {
       "email_address": "john@example.com",
       "authorization_url": null
     },
-    "external_identifier": null,
-    "created_at": "2013-07-16T19:23:00.000Z",
-    "updated_at": "2013-07-16T19:23:00.000Z"
+    ...
   },
-  "payment_service_id": "paypal-169f5226-4644-4d1e-ac36-14999e73601f",
-  "external_identifier": null,
-  "created_at": "2013-07-16T19:23:00.000Z",
-  "updated_at": "2019-08-24T14:15:22Z"
+  ...
 }
 ```
 
