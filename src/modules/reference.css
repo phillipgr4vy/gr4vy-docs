@@ -1,0 +1,116 @@
+.gr4vy__reference .api-info h1,
+.gr4vy__reference .api-info span {
+  @apply hidden;
+}
+
+.gr4vy__reference .redoc-json code {
+  @apply text-white bg-gray-700;
+}
+
+.gr4vy__reference table tr,
+.gr4vy__reference table th,
+.gr4vy__reference table td {
+  @apply border-t-0 border-b-0 border-r-0 bg-white;
+}
+
+.gr4vy__reference table td:last-child {
+  @apply border-0;
+}
+
+.gr4vy__reference .redoc-markdown p {
+  @apply mb-4;
+}
+
+.gr4vy__reference .redoc-markdown ul {
+  @apply list-outside list-disc;
+}
+
+.gr4vy__reference .menu-content {
+  @apply pt-4 bg-white font-sans border-r border-gray-200;
+}
+
+.gr4vy__reference .menu-content ul {
+  @apply mb-8 mr-1;
+}
+
+.gr4vy__reference .menu-content label {
+  @apply font-bold mb-1 mt-0 mx-0 px-4 py-1 rounded text-green-900 hover:bg-green-50;
+}
+
+.gr4vy__reference .menu-content label.active {
+  @apply bg-green-50 font-bold;
+}
+
+.gr4vy__reference .menu-content svg {
+  @apply hidden;
+}
+
+.gr4vy__reference .menu-content ul ul label {
+  @apply font-normal text-gray-600 my-0 py-1;
+}
+
+.gr4vy__reference [type="get"],
+.gr4vy__reference [type="post"],
+.gr4vy__reference [type="put"],
+.gr4vy__reference [type="patch"],
+.gr4vy__reference [type="delete"],
+.gr4vy__reference [type="options"] {
+  @apply h-5 leading-5 mr-4;
+}
+
+.gr4vy__reference span[type="get"] {
+  @apply text-green-900 bg-green-100;
+}
+
+.gr4vy__reference span[type="post"] {
+  @apply text-blue-900 bg-blue-100;
+}
+
+.gr4vy__reference span[type="put"],
+.gr4vy__reference span[type="patch"] {
+  @apply text-pink-900 bg-pink-100;
+}
+
+.gr4vy__reference span[type="delete"] {
+  @apply text-red-900 bg-red-100;
+}
+
+.gr4vy__reference [data-section-id] span[type="get"],
+.gr4vy__reference [data-section-id] span[type="post"],
+.gr4vy__reference [data-section-id] span[type="put"],
+.gr4vy__reference [data-section-id] span[type="patch"],
+.gr4vy__reference [data-section-id] span[type="delete"],
+.gr4vy__reference [data-section-id] span[type="options"] {
+  @apply text-sm h-7;
+}
+
+.gr4vy__reference .redoc-wrap > div:last-child {
+  @apply bg-gray-50;
+}
+
+.gr4vy__reference
+  [data-section-id]
+  > div:last-child
+  > div:last-child:not(.redoc-markdown) {
+  @apply bg-gray-50;
+}
+
+.gr4vy__reference [data-section-id] > div > div:last-child h3 {
+  @apply text-gray-700 mb-4 font-bold text-lg;
+}
+
+.gr4vy__reference div.react-tabs__tab-panel {
+  @apply rounded bg-gray-700 mt-2 mb-8;
+}
+
+.gr4vy__reference .react-tabs__tab-list li {
+  @apply bg-gray-700 border-none;
+}
+
+.gr4vy__reference .react-tabs__tab-list li.tab-error {
+  @apply text-red-200;
+}
+
+.gr4vy__reference .react-tabs__tab-list li.tab-error.react-tabs__tab--selected {
+  @apply text-red-800;
+}

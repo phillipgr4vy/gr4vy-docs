@@ -1,18 +1,18 @@
-import React, { useRef } from 'react';
-import { RedocStandalone } from 'redoc';
-import styles from './reference.module.scss';
+import React, { useRef } from "react"
+import { RedocStandalone } from "redoc"
+import "./reference.css"
 
 const Reference = ({ specUrl }) => {
   const ref = useRef()
 
   const openTags = () => {
-    ref.current.querySelectorAll('[role=navigation] ul').forEach(element => {
-      element.style.display = 'block'
+    ref.current.querySelectorAll("[role=navigation] ul").forEach(element => {
+      element.style.display = "block"
     })
   }
 
   return (
-    <div className={styles.reference} ref={ref}>
+    <div className='gr4vy__reference' ref={ref}>
       <RedocStandalone
         specUrl={specUrl}
         onLoaded={openTags}
@@ -40,20 +40,20 @@ const Reference = ({ specUrl }) => {
               }
             },
             typography: {
-              fontSize: '16px',
-              fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans- serif, system- ui, "Segoe UI", Helvetica, Arial, sans- serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+              fontSize: "16px",
+              fontFamily: "system-ui, -apple-system, \"Segoe UI\", Roboto, Ubuntu, Cantarell, \"Noto Sans\", sans- serif, system- ui, \"Segoe UI\", Helvetica, Arial, sans- serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
             },
             sidebar: {
-              width: '300px',
+              width: "300px",
             },
             rightPanel: {
-              backgroundColor: '#03271d'
+              backgroundColor: "#03271d"
             },
           }
         }}
       />
     </div>
-  );
+  )
 }
 
-export default Reference;
+export default Reference

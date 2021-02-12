@@ -1,16 +1,16 @@
-const webpack = require('webpack');
+const webpack = require("webpack")
 
 module.exports = function () {
   return {
-    name: 'webpack-buffer-polyfill',
+    name: "webpack-buffer-polyfill",
     configureWebpack() {
       return {
         plugins: [
           new webpack.ProvidePlugin({
-            Buffer: ['buffer', 'Buffer'],
+            Buffer: ["buffer", "Buffer"],
           }),
         ]
       }
     },
-  };
+  }
 }

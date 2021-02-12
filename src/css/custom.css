@@ -8,7 +8,7 @@
   --ifm-color-primary-light: #3b967c;
   --ifm-color-primary-lighter: #3e9c82;
   --ifm-color-primary-lightest: #46b193;
-  --ifm-code-font-size: 95%;
+  --ifm-code-font-size: 0.95em;
 }
 
 .docusaurus-highlight-code-line {
@@ -44,7 +44,7 @@
 }
 
 .navbar__brand strong {
-  font-family: "Text Me One", "sans-serif";
+  font-family: "Text Me One", sans-serif;
   @apply uppercase font-light text-2xl text-green-900;
 }
 

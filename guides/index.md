@@ -1,15 +1,9 @@
 ---
 id: index
-title: Introduction
-sidebar_label: Introduction
+title: Welcome
+sidebar_label: Welcome
 slug: /
+hideSidebar: true
 ---
 
-Welcome to the Gr4vy developer documentation.
-
-:::note
-
-This is a work in progress and
-changes can be made at any time.
-
-:::
+Welcome to the developer documentation for Gr4vy.

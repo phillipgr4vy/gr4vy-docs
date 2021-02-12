@@ -1,7 +1,7 @@
-module.exports = function (context, options) {
+module.exports = function () {
   return {
-    name: 'postcss-tailwindcss-loader',
-    configureWebpack(config, isServer, utils) {
+    name: "postcss-tailwindcss-loader",
+    configureWebpack() {
       return {
         module: {
           rules: [
@@ -9,15 +9,15 @@ module.exports = function (context, options) {
               test: /\.css$/,
               use: [
                 {
-                  loader: require.resolve('postcss-loader'),
+                  loader: require.resolve("postcss-loader"),
                   options: {
-                    ident: 'postcss',
+                    ident: "postcss",
                     plugins: () => [
-                      require('postcss-import'),
-                      require('tailwindcss'),
-                      require('postcss-preset-env')({
+                      require("postcss-import"),
+                      require("tailwindcss"),
+                      require("postcss-preset-env")({
                         autoprefixer: {
-                          flexbox: 'no-2009',
+                          flexbox: "no-2009",
                         },
                         stage: 4,
                       }),

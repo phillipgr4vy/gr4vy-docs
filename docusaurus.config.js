@@ -1,97 +1,95 @@
-const path = require('path')
-
 module.exports = {
-  title: 'Gr4vy Documentation',
-  tagline: 'Get started with the cloud payment orchestration platform',
-  url: 'https://developer.gr4vy.com',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'favicon.ico',
-  organizationName: 'gr4vy',
-  projectName: 'gr4vy-developer-documentation',
+  title: "Gr4vy Documentation",
+  tagline: "Get started with the cloud payment orchestration platform",
+  url: "https://developer.gr4vy.com",
+  baseUrl: "/",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "favicon.ico",
+  organizationName: "gr4vy",
+  projectName: "gr4vy-developer-documentation",
   themeConfig: {
     hideableSidebar: false,
     colorMode: {
       disableSwitch: true,
     },
     navbar: {
-      title: 'Gr4vy',
+      title: "Gr4vy",
       logo: {
-        alt: 'Gr4vy Logo',
-        src: 'img/logo.png',
+        alt: "Gr4vy Logo",
+        src: "img/logo.png",
       },
       items: [
         {
-          to: 'guides/',
-          activeBasePath: 'guides',
-          label: 'Guides',
-          position: 'right',
+          to: "guides/",
+          activeBasePath: "guides",
+          label: "Guides",
+          position: "right",
         },
         {
-          to: 'reference',
-          label: 'API Reference',
-          position: 'right'
+          to: "reference",
+          label: "API Reference",
+          position: "right"
         },
         {
-          to: 'https://gr4vy.com',
-          label: 'About us',
-          position: 'right',
-          className: 'navbar__item__button'
+          to: "https://gr4vy.com",
+          label: "Get Gr4vy",
+          position: "right",
+          className: "navbar__item__button"
         },
       ],
     },
     footer: {
-      style: 'light',
+      style: "light",
       links: [
         {
-          title: 'Documentation',
+          title: "Documentation",
           items: [
             {
-              label: 'Get Started',
-              to: '/guides/get-started',
+              label: "Get Started",
+              to: "/guides/get-started",
             },
             {
-              label: 'Guides',
-              to: '/guides',
+              label: "Guides",
+              to: "/guides",
             },
             {
-              label: 'API Reference',
-              to: '/reference',
+              label: "API Reference",
+              to: "/reference",
             }
           ],
         },
         {
-          title: 'Code',
+          title: "Code",
           items: [
             {
-              label: 'Gr4vy Embed',
-              href: 'https://www.npmjs.com/package/@gr4vy/embed',
+              label: "Gr4vy Embed",
+              href: "https://www.npmjs.com/package/@gr4vy/embed",
             },
             {
-              label: 'Gr4vy Embed for React',
-              href: 'https://www.npmjs.com/package/@gr4vy/embed-react',
+              label: "Gr4vy Embed for React",
+              href: "https://www.npmjs.com/package/@gr4vy/embed-react",
             },
             {
-              label: 'OpenAPI 3.0',
-              href: 'https://github.com/gr4vy/gr4vy-openapi',
+              label: "OpenAPI 3.0",
+              href: "https://github.com/gr4vy/gr4vy-openapi",
             },
           ],
         },
         {
-          title: 'Elsewhere',
+          title: "Elsewhere",
           items: [
             {
-              label: 'GitHub',
-              href: 'https://github.com/gr4vy',
+              label: "GitHub",
+              href: "https://github.com/gr4vy",
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/gr4vypop',
+              label: "Twitter",
+              href: "https://twitter.com/gr4vypop",
             },
             {
-              label: 'NPM',
-              href: 'https://www.npmjs.com/org/gr4vy',
+              label: "NPM",
+              href: "https://www.npmjs.com/org/gr4vy",
             },
           ],
         },
@@ -101,25 +99,25 @@ module.exports = {
   },
   presets: [
     [
-      '@docusaurus/preset-classic',
+      "@docusaurus/preset-classic",
       {
         docs: {
-          path: 'guides',
-          routeBasePath: 'guides',
-          sidebarPath: require.resolve('./sidebars.js'),
+          path: "guides",
+          routeBasePath: "guides",
+          sidebarPath: require.resolve("./sidebars.js"),
           editUrl:
-            'https://github.com/gr4vy/gr4vy-developer-documentation/edit/main',
+            "https://github.com/gr4vy/gr4vy-developer-documentation/edit/main",
         },
         // blog: {
         //   showReadingTime: true,
         //   editUrl:
-        //     'https://github.com/gr4vy/gr4vy-developer-documentation/edit/main/',
+        //     "https://github.com/gr4vy/gr4vy-developer-documentation/edit/main/",
         // },
         theme: {
           colorMode: {
             disableSwitch: true,
           },
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
         stylesheets: [
           "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700",
@@ -129,8 +127,8 @@ module.exports = {
     ],
   ],
   plugins: [
-    'docusaurus-plugin-sass',
-    'webpack-buffer-polyfill',
-    'tailwindcss-loader'
+    "docusaurus-plugin-sass",
+    "webpack-buffer-polyfill",
+    "tailwindcss-loader"
   ],
-};
+}
