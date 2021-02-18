@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Text+Me+One&display=swap");
 
 :root {
-  --ifm-color-primary: #368871;
-  --ifm-color-primary-dark: #317a66;
-  --ifm-color-primary-darker: #2e7460;
-  --ifm-color-primary-darkest: #265f4f;
-  --ifm-color-primary-light: #3b967c;
-  --ifm-color-primary-lighter: #3e9c82;
-  --ifm-color-primary-lightest: #46b193;
+  --ifm-color-primary: #697ad8;
+  --ifm-color-primary-dark: #5063d1;
+  --ifm-color-primary-darker: #4358ce;
+  --ifm-color-primary-darkest: #2e43b2;
+  --ifm-color-primary-light: #8291df;
+  --ifm-color-primary-lighter: #8f9ce2;
+  --ifm-color-primary-lightest: #b5beec;
   --ifm-code-font-size: 0.95em;
 }
 
@@ -28,24 +28,19 @@
 }
 
 .navbar__item {
-  @apply text-green-700 hover:text-green-800 hover:no-underline ml-2;
+  @apply text-primary-600 hover:no-underline ml-2;
 }
 
 .navbar__link--active {
-  @apply lg:border-b-2 lg:border-green-600;
+  @apply lg:border-b-2 lg:border-primary-600;
 }
 
 .navbar__item__button {
-  @apply rounded lg:bg-green-600 lg:text-white lg:ml-6 lg:mr-4 lg:hover:no-underline lg:hover:text-white lg:hover:bg-green-700;
+  @apply rounded lg:bg-white lg:border lg:border-primary-600 text-primary-600 lg:ml-6 lg:mr-4 lg:hover:no-underline lg:hover:text-white lg:hover:bg-primary-800;
 }
 
 .navbar__brand img {
-  @apply rounded-2xl ml-4 mr-6;
-}
-
-.navbar__brand strong {
-  font-family: "Text Me One", sans-serif;
-  @apply uppercase font-light text-2xl text-green-900;
+  @apply ml-4 mr-6;
 }
 
 .footer {
@@ -57,7 +52,7 @@
 }
 
 .footer__title {
-  @apply text-green-800 font-bold text-lg mb-5;
+  @apply text-primary-700 font-bold text-lg mb-5;
 }
 
 .footer__bottom {
@@ -74,6 +69,10 @@ p code {
 
 main {
   @apply lg:mx-5;
+}
+
+.markdown {
+  @apply max-w-4xl;
 }
 
 .markdown ul {
@@ -118,10 +117,24 @@ main {
   @apply text-gray-900;
 }
 
+a[href^="https://github.com/gr4vy/gr4vy-developer-documentation/edit"]
+{
+  @apply border rounded px-3 py-2 border-gray-100 border-dashed bg-gray-50 text-xs hover:no-underline hover:bg-gray-100 hover:text-gray-900 float-right;
+}
+
+a[href^="https://github.com/gr4vy/gr4vy-developer-documentation/edit"] svg
+{
+  @apply inline;
+}
+
 *[data-section-id] {
   @apply mb-10;
 }
 
 *[data-section-id]:after {
-  border: none !important;
+  @apply border-0 !important;
+}
+
+a.pagination-nav__link {
+  @apply rounded border-gray-200;
 }

@@ -14,10 +14,10 @@ module.exports = {
       disableSwitch: true,
     },
     navbar: {
-      title: "Gr4vy",
+      // title: "Gr4vy",
       logo: {
         alt: "Gr4vy Logo",
-        src: "img/logo.png",
+        src: "img/logo.svg",
       },
       items: [
         {

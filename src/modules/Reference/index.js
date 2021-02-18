@@ -36,7 +36,7 @@ const Reference = ({ specUrl }) => {
             },
             colors: {
               primary: {
-                main: "#368871"
+                main: "#1A4788"
               }
             },
             typography: {
@@ -45,10 +45,7 @@ const Reference = ({ specUrl }) => {
             },
             sidebar: {
               width: "300px",
-            },
-            rightPanel: {
-              backgroundColor: "#03271d"
-            },
+            }
           }
         }}
       />

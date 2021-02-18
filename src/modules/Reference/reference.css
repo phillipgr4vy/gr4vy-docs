@@ -34,11 +34,11 @@
 }
 
 .gr4vy__reference .menu-content label {
-  @apply font-bold mb-1 mt-0 mx-0 px-4 py-1 rounded text-green-900 hover:bg-green-50;
+  @apply font-bold mb-1 mt-0 mx-0 px-4 py-1 rounded text-gray-500 hover:bg-primary-50;
 }
 
 .gr4vy__reference .menu-content label.active {
-  @apply bg-green-50 font-bold;
+  @apply bg-primary-50 font-bold;
 }
 
 .gr4vy__reference .menu-content svg {
@@ -59,11 +59,11 @@
 }
 
 .gr4vy__reference span[type="get"] {
-  @apply text-green-900 bg-green-100;
+  @apply text-shamrock-900 bg-shamrock-100;
 }
 
 .gr4vy__reference span[type="post"] {
-  @apply text-blue-900 bg-blue-100;
+  @apply text-primary-900 bg-primary-100;
 }
 
 .gr4vy__reference span[type="put"],

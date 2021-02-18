@@ -1,4 +1,4 @@
 ---
-title: Get Started
+title: Setup
 slug: /get-started
 ---
