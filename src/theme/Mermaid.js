@@ -14,8 +14,7 @@ const Mermaid = ({ chart }) => {
     setLoaded(true)
   }, [])
 
-  return <div className="mermaid" style={{
-    textAlign: "center",
+  return <div className="text-center mermaid" style={{
     visibility: loaded ? "unset" : "hidden"
   }}>{chart}</div>
 }

@@ -24,7 +24,7 @@
 }
 
 .navbar__inner {
-  @apply container mx-auto h-10 bg-white py-5;
+  @apply container mx-auto h-10 bg-white py-4;
 }
 
 .navbar__item {
@@ -40,7 +40,7 @@
 }
 
 .navbar__brand img {
-  @apply ml-4 mr-6;
+  @apply ml-6 mr-6;
 }
 
 .footer {
@@ -76,7 +76,11 @@ main {
 }
 
 .markdown ul {
-  @apply list-outside list-disc ml-5;
+  @apply list-outside list-disc ml-5 mb-8;
+}
+
+.markdown ol {
+  @apply list-outside list-decimal ml-5 max-w-xl mb-8;
 }
 
 .markdown h2 {
@@ -137,4 +141,8 @@ a[href^="https://github.com/gr4vy/gr4vy-developer-documentation/edit"] svg
 
 a.pagination-nav__link {
   @apply rounded border-gray-200;
+}
+
+.card a {
+  @apply text-primary-700;
 }

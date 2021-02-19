@@ -2,27 +2,35 @@
 id: index
 title: Welcome
 sidebar_label: Welcome
+hide_title: true
 slug: /
 ---
 
-## What is Gr4vy?
+import { Card, Cards } from "../src/modules/Card";
+import embed from "./assets/embed.jpg";
+import reference from "./assets/reference.jpg";
 
-Gr4vy is a cloud payments platform that’s built for your business allowing you
-to integrate with any PSP through one unified integration. Using [Gr4vy
-Embed][embed] component it has never been easier to accept card transactions
-without the need for PCI compliance.
+<Cards>
 
-## Get Started
+<Card title='Integrate a web app' img={embed} to='/guides/web-quick-start'>
 
-Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod
-semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas
-faucibus mollis interdum.
+Learn how to setup **Gr4vy** as your checkout experience in a few simple steps.
 
-Donec id elit non mi porta gravida at eget metus. Cras justo odio, dapibus ac
-facilisis in, egestas eget quam. Cras mattis consectetur purus sit amet
-fermentum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-Vestibulum id ligula porta felis euismod semper.
+- Create the API keys needed to authenticate your integration
+- Install a server side **Gr4vy** SDK to help you communicate to the API.
+- Add [Gr4vy Embed](/guides/embed) and start accepting payments.
 
-## API Reference
+</Card>
 
-[embed]: /guides/embed
+<Card title='API Reference' img={reference} to='/reference'>
+
+The API reference is the best place to learn how to use the full suite of API
+endpoints available for your **Gr4vy** instance.
+
+- Explore the API endpoints that let you create transactions, manage payment
+  methods, and even update the workflow of your application.
+- Look up code samples for any of the requests and inspect the response bodies.
+
+</Card>
+
+</Cards>

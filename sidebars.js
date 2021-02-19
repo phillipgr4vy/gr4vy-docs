@@ -1,24 +1,36 @@
 module.exports = {
   sidebar: [
+    "index",
     {
       type: "category",
-      label: "Get Started",
+      label: "Quick Start (Web)",
       collapsed: false,
       items: [
-        "index",
-        "get-started/index",
-        "get-started/sdks",
-        "get-started/embed"
+        "web-quick-start/index",
+        "web-quick-start/generate-key",
+        "web-quick-start/sdks",
+        "web-quick-start/embed"
       ],
     },
     {
       type: "category",
-      label: "Basics",
+      label: "Services",
       collapsed: false,
       items: [
-        "authentication/index",
-        "pagination/index",
-        "errors/index"
+        "services/stripe-card",
+        "services/braintree-card",
+        "services/paypal-paypal"
+      ],
+    },
+    {
+      type: "category",
+      label: "General",
+      collapsed: false,
+      items: [
+        "authentication",
+        "environments",
+        "errors",
+        "pagination",
       ],
     },
     {
@@ -72,6 +84,7 @@ module.exports = {
         }
       ],
     },
+
   ],
   internal: [
     {

@@ -1,6 +1,6 @@
 module.exports = {
   title: "Gr4vy Documentation",
-  tagline: "Get started with the cloud payment orchestration platform",
+  tagline: "Integrate Gr4vy, the cloud payment orchestration platform",
   url: "https://developer.gr4vy.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -33,7 +33,7 @@ module.exports = {
         },
         {
           to: "https://gr4vy.com",
-          label: "Get Gr4vy",
+          label: "Gr4vy.com",
           position: "right",
           className: "navbar__item__button"
         },
@@ -46,8 +46,8 @@ module.exports = {
           title: "Documentation",
           items: [
             {
-              label: "Get Started",
-              to: "/guides/get-started",
+              label: "Quick Start (Web)",
+              to: "/guides/web-quick-start",
             },
             {
               label: "Guides",
