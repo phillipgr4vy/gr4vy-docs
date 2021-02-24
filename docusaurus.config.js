@@ -127,7 +127,6 @@ module.exports = {
     ],
   ],
   plugins: [
-    "@docusaurus/plugin-ideal-image",
     "docusaurus-plugin-sass",
     "webpack-buffer-polyfill",
     "tailwindcss-loader",
