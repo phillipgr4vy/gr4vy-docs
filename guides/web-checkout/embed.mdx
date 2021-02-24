@@ -5,6 +5,8 @@ sidebar_label: 3. Embed checkout
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import Image from "../../src/modules/Image";
+import embed from "./assets/embed.jpg";
 
 The final step to is to add [Gr4vy Embed][embed] to your checkout experience.
 **Gr4vy Embed** handles the discovery of the available payment methods,
@@ -170,15 +172,7 @@ element using any [`querySelector`][queryselector]-compatible query.
 You should now see Gr4vy Embed loaded in the page. The available payment methods
 will heavily depend on the enabled payment services in your account.
 
-<div className='mb-8 text-center inline-block'>
-
-![Gr4vyEmbed](../assets/embed.jpg)
-
-<small className="text-center block mt-2">
-  The Gr4vy Embed checkout experience
-</small>
-
-</div>
+<Image src={embed} title="The Gr4vy Embed checkout experience" />
 
 ## Catch transaction ID
 

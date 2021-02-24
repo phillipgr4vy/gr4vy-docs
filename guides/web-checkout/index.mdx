@@ -4,18 +4,13 @@ sidebar_label: Introduction
 slug: /web-checkout
 ---
 
+import Image from "../../src/modules/Image";
+import embed from "./assets/embed.jpg";
+
 Welcome to Gr4vy. In this guide we will run you through all the steps needed to
 get set up with Gr4vy as your web checkout experience.
 
-<div className='mb-8 text-center inline-block'>
-
-![Gr4vyEmbed](../assets/embed.jpg)
-
-<small className="text-center block mt-2">
-  The Gr4vy Embed checkout experience
-</small>
-
-</div>
+<Image src={embed} title="The Gr4vy Embed checkout experience" />
 
 1. [We will create an API key][1] needed to authenticate to the Gr4vy API.
 2. [We will set up a server-side SDKs][2] that will help simplify communication
