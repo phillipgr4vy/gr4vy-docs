@@ -84,14 +84,16 @@ The access token follows the following format.
 ```json title="Header"
 {
   "typ": "JWT",
-  "alg": "ES256" // only current supported algorithm
+  "alg": "ES512",
+  // the ID of the key used to sign (JWT key thumbprint)
+  "kid": "SopiN5XU0IWy8Xe9mwx1ICQbKh4-ydCDPx3LIyArkVI"
 }
 ```
 
 ```json title="Claims"
 {
-  // the unique ID of the private key used to create this claim
-  "iss": "gg9ILy",
+  // an internal ID representing the issuer of the token
+  "iss": "Gr4vy Dashboard",
   // a random session ID that ties the claim to a session
   // and subsequently to a user
   "sub": "ad88f558-7174-42fe-b29c-0442546ab73e",
@@ -104,7 +106,7 @@ The access token follows the following format.
   // a unique ID for this JWT, used to add entropy
   "jti": "0fe1fb1b-2f7e-4c8d-b0eb-aae5d0ec98f7",
   // this token defaults to a cluster_admin scope
-  "scope": ["auth"]
+  "scope": ["dashboard"]
 }
 ```
 
@@ -119,14 +121,15 @@ the access token. It follows the following format.
 ```json title="Header"
 {
   "typ": "JWT",
-  "alg": "ES256"
+  "alg": "ES512",
+  "kid": "SopiN5XU0IWy8Xe9mwx1ICQbKh4-ydCDPx3LIyArkVI"
 }
 ```
 
 ```json title="Claims"
 {
   // all of these values are the same as an access token
-  "iss": "gg9ILy",
+  "iss": "Gr4vy Dashboard",
   "sub": "ad88f558-7174-42fe-b29c-0442546ab73e",
   "nbf": 1607976645,
   "jti": "0fe1fb1b-2f7e-4c8d-b0eb-aae5d0ec98f7",
@@ -165,9 +168,8 @@ and can not be re-requested.
 ```json
 {
   "type": "api-key-pair",
-  "id": "gg9ILy",
+  "id": "SopiN5XU0IWy8Xe9mwx1ICQbKh4-ydCDPx3LIyArkVI",
   "private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\n...\n-----END ENCRYPTED PRIVATE KEY-----",
-  "passphrase": "af2675c9aba7de1f3bccb30757d7afd8",
   "created_at": "2012-12-12T10:53:43-08:00",
   "updated_at": "2012-12-12T10:53:43-08:00"
 }
@@ -181,17 +183,15 @@ claims.
 ```json title="Header"
 {
   "typ": "JWT",
-  "alg": "ES256"
+  "alg": "ES512",
+  "kid": "SopiN5XU0IWy8Xe9mwx1ICQbKh4-ydCDPx3LIyArkVI"
 }
 ```
 
 ```json title="Claims"
 {
-  // the unique ID of the private key used to create this claim.
-  "iss": "gg9ILy",
-  // as this is a server-to-server call it does not represent a user
-  // and therefore the subject can be null or missing
-  "sub": null,
+  // An arbitrary ID that represents the app or SDK used to generate the JWT.
+  "iss": "My app v1.0",
   // unix time the token was issued at. the token should be rejected if this
   // date is set before the current server time
   "nbf": 1607976645,
@@ -206,22 +206,12 @@ claims.
   // calls. This is used when passing an API token to Gr4vy Embed to prevent the
   // API token from being used to access APIs it should not have access to.
   "scope": ["embed"],
-  // A list of key-value pairs of data that might be submitted as request
-  // parameters either in the query or in the body. Setting these values here
-  // pins them to these values in the request, preventing them from being
-  // changed server-side. This is used when passing an API token to Gr4vy Embed
-  // to prevent the API token from being used to perform a different API call
-  // than intended. For example, setting the `buyer_id`, `amount` and `currency`
-  // restricts the API to only fetch payment options for the given buyer, and
-  // only create a transaction of 200 USD exactly.
-  "data": {
-    "POST /transactions": {
-      "amount": "200",
-      "currency": "USD"
-    },
-    "GET /buyers/:buyer_id/payment-methods": {
-      "buyer_id": "d757c76a-cbd7-4b56-95a3-40125b51b29c"
-    }
+  // A list of key-value pairs of data that might be passed along to pin the params
+  // for Gr4vy Embed
+  "embed": {
+    "amount": "200",
+    "currency": "USD",
+    "buyer_id": "d757c76a-cbd7-4b56-95a3-40125b51b29c"
   }
 }
 ```
@@ -240,26 +230,26 @@ The following is an overview of the supported claims.
 | `exp`   | The unix timestamp that this token expires at         | Yes           |
 | `jti`   | A random unique ID used for entropy                   | Yes           |
 | `scope` | A list of endpoints that this token is restricted to  | Refresh token |
-| `data`  | Not used by API tokens                                | No            |
+| `embed` | Not used by API tokens                                | No            |
 
 ### API tokens
 
-|         | Description                                                                                                     | Required |
-| ------- | :-------------------------------------------------------------------------------------------------------------- | :------- |
-| `iss`   | The unique ID of the key-pair used to sign this token                                                           | Yes      |
-| `sub`   | Not used by API tokens                                                                                          | No       |
-| `nbf`   | The unix timestamp that this token was created at                                                               | Yes      |
-| `exp`   | The unix timestamp that this token expires at                                                                   | Yes      |
-| `jti`   | A random unique ID used for entropy                                                                             | Yes      |
-| `scope` | A list of endpoints that this token is restricted to                                                            | No       |
-| `data`  | A dictionary of key-value pairs used to pin query and request parameters to specific values for certain scopes. | No       |
+|         | Description                                                                                          | Required |
+| ------- | :--------------------------------------------------------------------------------------------------- | :------- |
+| `iss`   | The unique ID of the key-pair used to sign this token                                                | Yes      |
+| `sub`   | Not used by API tokens                                                                               | No       |
+| `nbf`   | The unix timestamp that this token was created at                                                    | Yes      |
+| `exp`   | The unix timestamp that this token expires at                                                        | Yes      |
+| `jti`   | A random unique ID used for entropy                                                                  | Yes      |
+| `scope` | A list of endpoints that this token is restricted to                                                 | No       |
+| `embed` | A dictionary of key-value pairs used to pin some of the fields used in API calls used by Gr4vy Embed | No       |
 
 ### Scopes
 
-| Scope               | Description                                                                                                                                               |
-| :------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `{resources}.read`  | Allows read-access to a type or resource. For example, `buyers.read` enabled read-access for buyers data.                                                 |
-| `{resources}.write` | Allows write-access to a type or resource. For example, `buyers.write` enabled write-access for buyers data. This does not also allow read access.        |
-| `sessions.write`    | Used by the refresh token, allowing it to be used to refresh the access token.                                                                            |
-| `embed`             | A scope that represents all the access needed by Gr4vy Embed.                                                                                             |
-| `auth`              | A scope that represents all the access needed by Gr4vy the admin interface. This scope should only work for session-tokens generated by Gr4vy for a user. |
+| Scope               | Description                                                                                                                                         |
+| :------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `{resources}.read`  | Allows read-access to a type or resource. For example, `buyers.read` enabled read-access for buyers data.                                           |
+| `{resources}.write` | Allows write-access to a type or resource. For example, `buyers.write` enabled write-access for buyers data. This does not also allow read access.  |
+| `sessions.write`    | Used by the refresh token, allowing it to be used to refresh the access token.                                                                      |
+| `embed`             | A scope that represents all the access needed by Gr4vy Embed.                                                                                       |
+| `dashboard`         | A scope that represents all the access needed by the Gr4vy Dashboard. This scope should only work for session-tokens generated by Gr4vy for a user. |
