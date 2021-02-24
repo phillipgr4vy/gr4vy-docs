@@ -20,7 +20,7 @@ To list all the vaulted payment methods stored in Gr4vy, call the
   <TabItem value="curl">
 
 ```bash
-curl -i -X GET "https://api.{merchant}.gr4vy.app/payment-methods" \
+curl -i -X GET "https://api.{gid}.gr4vy.app/payment-methods" \
     -H "Authorization: Bearer [JWT_TOKEN]"
 ```
 
@@ -30,7 +30,7 @@ curl -i -X GET "https://api.{merchant}.gr4vy.app/payment-methods" \
 ```js
 const fetch = require("node-fetch");
 
-fetch("https://api.{merchant}.gr4vy.app/payment-methods", {
+fetch("https://api.{gid}.gr4vy.app/payment-methods", {
   method: "GET",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",

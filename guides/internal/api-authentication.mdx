@@ -13,7 +13,7 @@ authentication. The value for this token needs to be in the format
 `bearer [token]`.
 
 ```bash {2}
-curl -i -X GET "https://api.{merchant}.gr4vy.app/transactions" \
+curl -i -X GET "https://api.{gid}.gr4vy.app/transactions" \
     -H "authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 ```
 
@@ -27,14 +27,14 @@ The Gr4vy API has support for 2 different kind of JWT tokens.
 - **User session tokens:** a user session token is created server-side by the
   Gr4vy instance by passing an email address and a password to the
   [`POST /sessions`](/reference/internal#operation/login) API. These tokens
-  represent a Gr4vy Admin user and allow access to most APIs though some role
-  permissions might be applied in the future.
+  represent a Gr4vy Dashboard user and allow access to most APIs though some
+  role permissions might be applied in the future.
 - **API tokens:** an API token is created server-side by the merchant using a
   private key that was created by calling the
   [`POST /api-key-pairs`](/reference/internal#operation/create-api-key-pair)
   API. An API token represents the merchant and is used by the merchant to
   create tokens used by Gr4vy Embed or for direct server-to-server
-  authentication. API tokens are not tied to a specific Gr4vy Admin user and
+  authentication. API tokens are not tied to a specific Gr4vy Dashboard user and
   therefore do not allow access to the user-APIs.
 
 ### Session tokens
@@ -44,7 +44,7 @@ Session tokens are created by the Gr4vy Admin frontend by calling the
 and password.
 
 ```bash
-curl -i -X POST "https://api.{merchant}.gr4vy.app/auth/sessions" \
+curl -i -X POST "https://api.{gid}.gr4vy.app/auth/sessions" \
     -H "Content-Type: application/json" \
     -d '{
       "email_address": "john@example.com",
@@ -70,7 +70,7 @@ The refresh token is used once the access token has expired by calling the
 `refresh_token` as the bearer token.
 
 ```bash
-curl -i -X PUT "https://api.{merchant}.gr4vy.app/auth/sessions" \
+curl -i -X PUT "https://api.{gid}.gr4vy.app/auth/sessions" \
     -H "Authorization: Bearer [REFRESH_TOKEN]"
 ```
 
@@ -157,7 +157,7 @@ An API key pair can be created via the Gr4vy admin. The admin UI uses the
 authenticated with a session token.
 
 ```bash
-curl -i -X POST "https://api.{merchant}.gr4vy.app/api-key-pairs" \
+curl -i -X POST "https://api.{gid}.gr4vy.app/api-key-pairs" \
     -H "Authorization: Bearer [SESSION_TOKEN]"
 ```
 
@@ -248,6 +248,8 @@ The following is an overview of the supported claims.
 
 | Scope               | Description                                                                                                                                         |
 | :------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `*.read`            | Allows read-access to any resource. This is used by default in the SDKs                                                                             |
+| `*.write`           | Allows write-access to any resource. This is used by default in the SDKs. This does not also allow read access.                                     |
 | `{resources}.read`  | Allows read-access to a type or resource. For example, `buyers.read` enabled read-access for buyers data.                                           |
 | `{resources}.write` | Allows write-access to a type or resource. For example, `buyers.write` enabled write-access for buyers data. This does not also allow read access.  |
 | `sessions.write`    | Used by the refresh token, allowing it to be used to refresh the access token.                                                                      |

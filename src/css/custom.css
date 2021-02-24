@@ -95,6 +95,14 @@ main {
   @apply text-green-900 underline;
 }
 
+.alert {
+  @apply rounded-none;
+}
+
+.alert h5 {
+  @apply normal-case font-bold;
+}
+
 .alert--info {
   @apply bg-blue-50 text-gray-900 border-0 relative;
 }
@@ -103,9 +111,8 @@ main {
   @apply text-blue-900;
 }
 
-.alert--info svg,
-.alert--secondary svg {
-  @apply fill-current opacity-60 h-5 relative bottom-1 mr-1;
+.alert svg {
+  @apply fill-current h-5 relative bottom-1 mr-1;
 }
 
 .alert--info h5,

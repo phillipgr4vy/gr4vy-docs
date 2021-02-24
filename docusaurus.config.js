@@ -47,7 +47,7 @@ module.exports = {
           items: [
             {
               label: "Quick Start (Web)",
-              to: "/guides/web-quick-start",
+              to: "/guides/web-checkout",
             },
             {
               label: "Guides",
@@ -127,8 +127,9 @@ module.exports = {
     ],
   ],
   plugins: [
+    "@docusaurus/plugin-ideal-image",
     "docusaurus-plugin-sass",
     "webpack-buffer-polyfill",
-    "tailwindcss-loader"
+    "tailwindcss-loader",
   ],
 }

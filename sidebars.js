@@ -3,13 +3,14 @@ module.exports = {
     "index",
     {
       type: "category",
-      label: "Quick Start (Web)",
+      label: "Web Checkout",
       collapsed: false,
       items: [
-        "web-quick-start/index",
-        "web-quick-start/generate-key",
-        "web-quick-start/sdks",
-        "web-quick-start/embed"
+        "web-checkout/index",
+        "web-checkout/key",
+        "web-checkout/sdks",
+        "web-checkout/embed",
+        "web-checkout/inspect"
       ],
     },
     {

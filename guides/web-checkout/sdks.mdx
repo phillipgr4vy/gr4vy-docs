@@ -1,0 +1,102 @@
+---
+title: "Step 2: Install a serv-side SDK"
+sidebar_label: 2. Install server SDK
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+Before you can embed Gr4vy in your web checkout we will need to create a client
+token that can be used by Gr4vy Embed to authenticate the transaction.
+
+## Install an SDK
+
+Use the package manager in your preferred programming language to install our
+SDK.
+
+<Tabs
+  groupId="language"
+  defaultValue="node"
+  values={[
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="node">
+
+```bash
+npm install @gr4vy/node --save
+# or: yarn install @gr4vy/node
+```
+
+  </TabItem>
+</Tabs>
+
+## Initialize a client
+
+Next, initialize the SDK with the ID of your instance and the private key.
+
+<Tabs
+  groupId="language"
+  defaultValue="node"
+  values={[
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="node">
+
+```js
+const fs = require("fs");
+const { Client } = require("@gr4vy/node");
+// or: import { Client } from "@gr4vy/node";
+
+const key = String(fs.readFileSync("./private.key"));
+
+const client = new Client({
+  gId: "acme",
+  privateKey: key,
+});
+```
+
+:::info Parameters
+
+This assumes the key you created in step 1 is kept in a file called
+`private.key` that is kept in the same folder next to the code. You could store
+this key on disk, in an environment variable, or in a secure vault.
+
+The `gId` represents the unique ID of your Gr4vy instance. Refer to the
+integrations panel of your dashboard for more details.
+
+:::
+
+  </TabItem>
+</Tabs>
+
+## Generate a token
+
+The final step is to create a new token for use by **Gr4vy Embed**. The SDK
+comes with a helper function for exactly that purpose. It requires an amount and
+currency for the transaction to create, and additionally accepts either the ID
+of a buyer or your own external identifier for a buyer to link the transaction
+to.
+
+<Tabs
+  groupId="language"
+  defaultValue="node"
+  values={[
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="node">
+
+```js
+const token = client.getEmbedToken({
+  amount: 1299,
+  currency: "USD",
+  buyerExternalIdentifier: "user-12345",
+});
+```
+
+  </TabItem>
+</Tabs>
+
+This token can now be shared with the HTML of your checkout page.

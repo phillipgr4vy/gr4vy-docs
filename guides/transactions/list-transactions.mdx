@@ -19,7 +19,7 @@ All transactions can be listed by calling the [`GET /transactions`][api] API.
   <TabItem value="curl">
 
 ```bash
-curl -i -X GET "https://api.{merchant}.gr4vy.app/transactions" \
+curl -i -X GET "https://api.{gid}.gr4vy.app/transactions" \
     -H "Authorization: Bearer [JWT_TOKEN]"
 ```
 
@@ -29,7 +29,7 @@ curl -i -X GET "https://api.{merchant}.gr4vy.app/transactions" \
 ```js
 var fetch = require("node-fetch");
 
-fetch("https://api.{merchant}.gr4vy.app/transactions", {
+fetch("https://api.{gid}.gr4vy.app/transactions", {
   method: "GET",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",
@@ -60,7 +60,7 @@ results by either the transaction `id` or `external_identifier`.
   <TabItem value="curl">
 
 ```bash
-curl -i -X GET "https://api.{merchant}.gr4vy.app/transactions?search=fe26475d-ec3e-4884-9553-f7356683f7f9" \
+curl -i -X GET "https://api.{gid}.gr4vy.app/transactions?search=fe26475d-ec3e-4884-9553-f7356683f7f9" \
     -H "Authorization: Bearer [JWT_TOKEN]"
 ```
 
@@ -71,7 +71,7 @@ curl -i -X GET "https://api.{merchant}.gr4vy.app/transactions?search=fe26475d-ec
 var fetch = require("node-fetch");
 
 fetch(
-  "https://api.{merchant}.gr4vy.app/transactions?search=fe26475d-ec3e-4884-9553-f7356683f7f9",
+  "https://api.{gid}.gr4vy.app/transactions?search=fe26475d-ec3e-4884-9553-f7356683f7f9",
   {
     method: "GET",
     headers: {

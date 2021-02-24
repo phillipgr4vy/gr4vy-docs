@@ -26,7 +26,7 @@ underlying payment services. It only removes the record in Gr4vy.
   <TabItem value="curl">
 
 ```bash
-curl -i -X DELETE "https://api.{merchant}.gr4vy.app/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5" \
+curl -i -X DELETE "https://api.{gid}.gr4vy.app/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5" \
     -H "Authorization: Bearer [JWT_TOKEN]"
 ```
 
@@ -37,7 +37,7 @@ curl -i -X DELETE "https://api.{merchant}.gr4vy.app/payment-methods/77a76f7e-d2d
 const fetch = require("node-fetch");
 
 fetch(
-  "https://api.{merchant}.gr4vy.app/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
+  "https://api.{gid}.gr4vy.app/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
   {
     method: "DELETE",
     headers: {

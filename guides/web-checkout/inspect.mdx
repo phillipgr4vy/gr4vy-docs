@@ -1,0 +1,121 @@
+---
+title: "Step 4: Inspect a transaction"
+sidebar_label: 4. Inspect transaction
+slug: /web-checkout/inspect
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+After the transaction has been created your application can pick up the
+transaction ID posted by either the form on your page or by your own code.
+
+## Get transaction details
+
+This transaction ID can be used with the SDK to fetch additional details about
+the transaction.
+
+<Tabs
+  groupId="language"
+  defaultValue="node"
+  values={[
+    { label: 'Node', value: 'node', },
+    { label: 'cURL', value: 'curl', },
+  ]}
+>
+  <TabItem value="node">
+
+```js
+const response = await client.getTransaction(transaction_id);
+console.log(response.data);
+```
+
+  </TabItem>
+  <TabItem value="curl">
+
+```js
+curl -i -X GET "https://api.{gid}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9" \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+  </TabItem>
+</Tabs>
+
+The transaction includes details about the payment method used, and the status
+of the transaction.
+
+```json
+{
+  "type": "transaction",
+  "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  "status": "authorized",
+  "amount": 1299,
+  "currency": "USD",
+  "payment_method": {
+    "type": "payment-method",
+    "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
+    "method": "card",
+    "status": "stored",
+    "token": "0123456789123458",
+    "details": {
+      "number": "XXXX XXXX XXXX 1111",
+      "expiration_date": "11 / 21",
+      "scheme": "visa"
+    },
+    ...
+  },
+  ...
+}
+```
+
+:::info API Reference
+
+Visit the [API reference documentation](/reference) for full details about the
+transaction resource, and any other API.
+
+:::
+
+## Capture transaction
+
+Although Gr4vy Embed allows for setting the `intent` to `capture`, in some cases
+it might be desirable to capture the transaction after it has been authorized.
+
+<Tabs
+  groupId="language"
+  defaultValue="node"
+  values={[
+    { label: 'Node', value: 'node', },
+    { label: 'cURL', value: 'curl', },
+  ]}
+>
+  <TabItem value="node">
+
+```js
+const { Client, TransactionCaptureRequest } = require("@gr4vy/node");
+
+const request = new TransactionCaptureRequest();
+request.amount = "1000";
+const transaction = await client.captureTransaction(id, request);
+```
+
+ </TabItem>
+ <TabItem value="curl">
+
+```
+bash curl -i -X POST https://api.{gid}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9 \
+ -H "Authorization: Bearer [JWT_TOKEN]" \
+ -H "Content-Type: application/json" \
+ -d '{ "amount": 10000, }'
+
+```
+
+ </TabItem>
+</Tabs>
+
+:::info Partial capture
+
+Some payment processors allow for partial processing. To capture a part of the
+authorized amount only, set the amount on the capture request to an amount lower
+than the originally authorized amount.
+
+:::

@@ -42,7 +42,7 @@ used to associate a card to a previously created [buyer].
   <TabItem value="curl">
 
 ```bash {5-8}
-curl -i -X POST "https://api.{merchant}.gr4vy.app/payment-methods" \
+curl -i -X POST "https://api.{gid}.gr4vy.app/payment-methods" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
@@ -59,7 +59,7 @@ curl -i -X POST "https://api.{merchant}.gr4vy.app/payment-methods" \
 ```js {10-13}
 const fetch = require("node-fetch");
 
-fetch("https://api.{merchant}.gr4vy.app/payment-methods", {
+fetch("https://api.{gid}.gr4vy.app/payment-methods", {
   method: "POST",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",
@@ -81,4 +81,4 @@ The API returns [the details for the newly vaulted card][api].
 
 [api]: /reference#operation/store-payment-method
 [buyer]: /guides/buyers/associate-card
-[embed]: /guides/web-quick-start/embed
+[embed]: /guides/web-checkout/embed

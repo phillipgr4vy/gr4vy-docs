@@ -32,7 +32,7 @@ Every Gr4vy APIs that requires authentication expect `authorization` HTTP-header
 with a signed JWT token as it's value (prefixed with `bearer`).
 
 ```bash {2}
-curl -i -X GET "https://api.{merchant}.gr4vy.app/transactions" \
+curl -i -X GET "https://api.{gid}.gr4vy.app/transactions" \
     -H "authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 ```
 
