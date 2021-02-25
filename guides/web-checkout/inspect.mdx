@@ -34,7 +34,7 @@ console.log(response.data);
   <TabItem value="curl">
 
 ```js
-curl -i -X GET "https://api.{gid}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9" \
+curl -i -X GET "https://api.{gr4vyId}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9" \
     -H "Authorization: Bearer [JWT_TOKEN]"
 ```
 
@@ -102,7 +102,7 @@ const transaction = await client.captureTransaction(id, request);
  <TabItem value="curl">
 
 ```
-bash curl -i -X POST https://api.{gid}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9 \
+bash curl -i -X POST https://api.{gr4vyId}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9 \
  -H "Authorization: Bearer [JWT_TOKEN]" \
  -H "Content-Type: application/json" \
  -d '{ "amount": 10000, }'

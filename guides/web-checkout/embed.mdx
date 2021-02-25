@@ -47,7 +47,7 @@ npm install @gr4vy/embed --save
    <TabItem value="cdn">
 
 ```html
-<script src="https://cdn.{gid}.gr4vy.app/embed.latest.js"></script>
+<script src="https://cdn.{gr4vyId}.gr4vy.app/embed.latest.js"></script>
 ```
 
 :::info Using the CDN
@@ -73,9 +73,9 @@ integrated into your UI.
 ## Initialize the UI
 
 With Gr4vy Embed installed it's now possible to initialize the Gr4vy UI. Gr4vy
-expect the ID of your Gr4vy instance (`gid`), the amount and currency of the
-transaction, the country to process this transaction in, and the client token
-you generated in the previous step.
+expect the ID of your Gr4vy instance (`gr4vyId `), the amount and currency of
+the transaction, the country to process this transaction in, and the client
+token you generated in the previous step.
 
 <Tabs
   groupId="language"
@@ -93,7 +93,7 @@ const Gr4vyEmbed = require(`@gr4vy/embed-react`)
 // or: import Gr4vyEmbed from (`@gr4vy/embed-react)
 
 <Gr4vyEmbed
-  gid='acme'
+  gr4vyId='acme'
   amount={1299}
   country='US'
   currency='USD'
@@ -115,7 +115,7 @@ const Gr4vyEmbed = require(`@gr4vy/embed-react`)
   // or: import { setup } from (`@gr4vy/embed`)
 
   setup({
-    gid: "acme",
+    gr4vyId: "acme",
     element: ".container",
     amount: 1299,
     country='US'
@@ -147,7 +147,7 @@ element using any [`querySelector`][queryselector]-compatible query.
   // or: import { setup } from (`@gr4vy/embed`)
 
   setup({
-    gid: "acme",
+    gr4vyId: "acme",
     element: ".container",
     amount: 1299,
     country='US'
@@ -199,7 +199,7 @@ const Gr4vyEmbed = require(`@gr4vy/embed-react`)
 <form action='/' id='checkout' />
 
 <Gr4vyEmbed
-  gid='acme'
+  gr4vyId='acme'
   form='#checkout'
   amount={1299}
   country='US'
@@ -229,7 +229,7 @@ const Gr4vyEmbed = require(`@gr4vy/embed-react`)
   // or: import { setup } from (`@gr4vy/embed`)
 
   setup({
-    gid: "acme",
+    gr4vyId: "acme",
     element: ".container",
     amount: 1299,
     country='US'
@@ -260,7 +260,7 @@ const Gr4vyEmbed = require(`@gr4vy/embed-react`)
   // or: import { setup } from (`@gr4vy/embed`)
 
   setup({
-    gid: "acme",
+    gr4vyId: "acme",
     element: ".container",
     amount: 1299,
     country="US"

@@ -21,7 +21,7 @@ The [`GET /buyers`][api] API makes it possible to find a buyer by its
   <TabItem value="curl">
 
 ```bash
-curl -i -X GET "https://api.{gid}.gr4vy.app/buyers?search=fe26475d-ec3e-4884-9553-f7356683f7f9" \
+curl -i -X GET "https://api.{gr4vyId}.gr4vy.app/buyers?search=fe26475d-ec3e-4884-9553-f7356683f7f9" \
     -H "Authorization: Bearer [JWT_TOKEN]"
 ```
 
@@ -32,7 +32,7 @@ curl -i -X GET "https://api.{gid}.gr4vy.app/buyers?search=fe26475d-ec3e-4884-955
 const fetch = require("node-fetch");
 
 fetch(
-  "https://api.{gid}.gr4vy.app/buyers?search=fe26475d-ec3e-4884-9553-f7356683f7f9",
+  "https://api.{gr4vyId}.gr4vy.app/buyers?search=fe26475d-ec3e-4884-9553-f7356683f7f9",
   {
     headers: {
       Authorization: "Bearer [JWT_TOKEN]",

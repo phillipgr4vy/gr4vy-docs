@@ -23,7 +23,7 @@ user's email, username, or a database ID) and an optional update to the
   <TabItem value="curl">
 
 ```bash {5-6}
-curl -i -X PUT "https://api.{gid}.gr4vy.app/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9" \
+curl -i -X PUT "https://api.{gr4vyId}.gr4vy.app/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
@@ -38,7 +38,7 @@ curl -i -X PUT "https://api.{gid}.gr4vy.app/buyers/fe26475d-ec3e-4884-9553-f7356
 const fetch = require("node-fetch");
 
 fetch(
-  "https://api.{gid}.gr4vy.app/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9",
+  "https://api.{gr4vyId}.gr4vy.app/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9",
   {
     method: "PUT",
     headers: {

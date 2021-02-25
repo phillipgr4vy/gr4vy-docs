@@ -29,7 +29,7 @@ tie a payment method to a buyer.
   <TabItem value="curl">
 
 ```bash {5-10}
-curl -i -X POST "https://api.{gid}.gr4vy.app/transactions" \
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/transactions" \
     -H "Authorization: Bearer [JWT_TOKEN]" \
     -H "Content-Type: application/json" \
     -d '{
@@ -48,7 +48,7 @@ curl -i -X POST "https://api.{gid}.gr4vy.app/transactions" \
 ```js {10-15}
 var fetch = require("node-fetch");
 
-fetch("https://api.{gid}.gr4vy.app/transactions", {
+fetch("https://api.{gr4vyId}.gr4vy.app/transactions", {
   method: "POST",
   headers: {
     Authorization: "Bearer [JWT_TOKEN]",
