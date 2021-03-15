@@ -43,20 +43,13 @@ curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/buyers" \
   </TabItem>
   <TabItem value="node">
 
-```js {10-11}
-const fetch = require("node-fetch");
+```js {2-3}
+const buyerRequest = new BuyerRequest();
+buyerRequest.displayName = "John L.";
+buyerRequest.externalIdentifier = "412231123";
 
-fetch("https://api.{gr4vyId}.gr4vy.app/buyers", {
-  method: "POST",
-  headers: {
-    Authorization: "Bearer [JWT_TOKEN]",
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    display_name: "John L.",
-    external_identifier: "412231123",
-  }),
-});
+const buyer = await client.addBuyer(buyerRequest);
+console.log(buyer.body.display_name);
 ```
 
   </TabItem>
