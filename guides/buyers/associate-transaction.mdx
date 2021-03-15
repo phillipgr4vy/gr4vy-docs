@@ -47,27 +47,19 @@ curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/transactions" \
   </TabItem>
   <TabItem value="node">
 
-```js {17}
-const fetch = require("node-fetch");
+```js {10}
+const request = new TransactionRequest();
+request.amount = 1299;
+request.currency = "USD";
 
-fetch("https://api.{gr4vyId}.gr4vy.app/transactions", {
-  method: "POST",
-  headers: {
-    Authorization: "Bearer [JWT_TOKEN]",
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    amount: 1299,
-    currency: "USD",
-    payment_method: {
-      method: "card",
-      number: "4111111111111111",
-      expiration_date: "11/25",
-      security_code: "123",
-      buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-    },
-  }),
-});
+request.paymentMethod = new TransactionPaymentMethodRequest();
+request.paymentMethod.method = "card";
+request.paymentMethod.number = "4111111111111111";
+request.paymentMethod.expirationDate = "11/25";
+request.paymentMethod.securityCode = "123";
+request.paymentMethod.buyerId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
+
+const transaction = client.authorizeNewTransaction(request);
 ```
 
   </TabItem>
@@ -109,27 +101,19 @@ curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/transactions" \
   </TabItem>
   <TabItem value="node">
 
-```js {12}
-const fetch = require("node-fetch");
+```js {10}
+const request = new TransactionRequest();
+request.amount = 1299;
+request.currency = "USD";
 
-fetch("https://api.{gr4vyId}.gr4vy.app/transactions", {
-  method: "POST",
-  headers: {
-    Authorization: "Bearer [JWT_TOKEN]",
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    amount: 1299,
-    currency: "USD",
-    payment_method: {
-      method: "card",
-      number: "4111111111111111",
-      expiration_date: "11/25",
-      security_code: "123",
-      buyer_external_identifier: "412231123",
-    },
-  }),
-});
+request.paymentMethod = new TransactionPaymentMethodRequest();
+request.paymentMethod.method = "card";
+request.paymentMethod.number = "4111111111111111";
+request.paymentMethod.expirationDate = "11/25";
+request.paymentMethod.securityCode = "123";
+request.paymentMethod.buyerExternalIdentifier = "412231123";
+
+const transaction = client.authorizeNewTransaction(request);
 ```
 
   </TabItem>

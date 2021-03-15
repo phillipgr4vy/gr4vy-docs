@@ -34,18 +34,8 @@ curl -i -X DELETE "https://api.{gr4vyId}.gr4vy.app/buyers/77a76f7e-d2de-4bbc-ada
   </TabItem>
   <TabItem value="node">
 
-```js {10-13}
-const fetch = require("node-fetch");
-
-fetch(
-  "https://api.{gr4vyId}.gr4vy.app/buyers/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
-  {
-    method: "DELETE",
-    headers: {
-      Authorization: "Bearer [JWT_TOKEN]",
-    },
-  }
-);
+```js
+client.deleteBuyer("77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5");
 ```
 
   </TabItem>

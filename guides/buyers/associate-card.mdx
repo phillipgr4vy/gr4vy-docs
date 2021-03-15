@@ -43,23 +43,15 @@ curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/payment-methods" \
   </TabItem>
   <TabItem value="node">
 
-```js {14}
-const fetch = require("node-fetch");
+```js {6}
+const request = new CardRequest();
+request.method = "card";
+request.number = "4111111111111111";
+request.expirationDate = "11/25";
+request.securityCode = "123";
+request.buyerId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
 
-fetch("https://api.{gr4vyId}.gr4vy.app/payment-methods", {
-  method: "POST",
-  headers: {
-    Authorization: "Bearer [JWT_TOKEN]",
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    method: "card",
-    number: "4111111111111111",
-    expiration_date: "11 / 22",
-    security_code: "123",
-    buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9",
-  }),
-});
+const paymentMethod = client.storePaymentMethod(request);
 ```
 
   </TabItem>
@@ -97,23 +89,15 @@ curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/payment-methods" \
   </TabItem>
   <TabItem value="node">
 
-```js {14}
-const fetch = require("node-fetch");
+```js {6}
+const request = new CardRequest();
+request.method = "card";
+request.number = "4111111111111111";
+request.expirationDate = "11/25";
+request.securityCode = "123";
+request.buyerExternalIdentifier = "412231123";
 
-fetch("https://api.{gr4vyId}.gr4vy.app/payment-methods", {
-  method: "POST",
-  headers: {
-    Authorization: "Bearer [JWT_TOKEN]",
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    method: "card",
-    number: "4111111111111111",
-    expiration_date: "11 / 22",
-    security_code: "123",
-    buyer_external_identifier: "412231123",
-  }),
-});
+const paymentMethod = client.storePaymentMethod(request);
 ```
 
   </TabItem>

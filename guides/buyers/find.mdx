@@ -29,16 +29,7 @@ curl -i -X GET "https://api.{gr4vyId}.gr4vy.app/buyers?search=fe26475d-ec3e-4884
   <TabItem value="node">
 
 ```js
-const fetch = require("node-fetch");
-
-fetch(
-  "https://api.{gr4vyId}.gr4vy.app/buyers?search=fe26475d-ec3e-4884-9553-f7356683f7f9",
-  {
-    headers: {
-      Authorization: "Bearer [JWT_TOKEN]",
-    },
-  }
-);
+client.listBuyers("fe26475d-ec3e-4884-9553-f7356683f7f9");
 ```
 
   </TabItem>

@@ -34,22 +34,13 @@ curl -i -X PUT "https://api.{gr4vyId}.gr4vy.app/buyers/fe26475d-ec3e-4884-9553-f
   </TabItem>
   <TabItem value="node">
 
-```js {10}
-const fetch = require("node-fetch");
+```js {3}
+const buyerId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
+const buyerRequest = new BuyerUpdateRequest();
+buyerRequest.displayName = "John D.";
 
-fetch(
-  "https://api.{gr4vyId}.gr4vy.app/buyers/fe26475d-ec3e-4884-9553-f7356683f7f9",
-  {
-    method: "PUT",
-    headers: {
-      Authorization: "Bearer [JWT_TOKEN]",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      display_name: "John D.",
-    }),
-  }
-);
+const updatedBuyer = await client.updateBuyer(buyerId, buyerRequest);
+console.log(updatedBuyer.body.display_name);
 ```
 
   </TabItem>
