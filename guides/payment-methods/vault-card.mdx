@@ -24,13 +24,6 @@ A card can be stored in Gr4vy by calling the [`POST /payment-methods`][api] API.
 The call requires a `method`, the card `number`, its `security_code`, and its
 `expiration_date`.
 
-:::info Link to buyer
-
-The API also accepts a `buyer_id` or `buyer_external_identifier` which can be
-used to associate a card to a previously created [buyer].
-
-:::
-
 <Tabs
   groupId="language"
   defaultValue="curl"
@@ -56,28 +49,27 @@ curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/payment-methods" \
   </TabItem>
   <TabItem value="node">
 
-```js {10-13}
-const fetch = require("node-fetch");
+```js
+const request = new CardRequest();
+request.method = "card";
+request.number = "4111111111111111";
+request.expirationDate = "11/22";
+request.securityCode = "123";
 
-fetch("https://api.{gr4vyId}.gr4vy.app/payment-methods", {
-  method: "POST",
-  headers: {
-    Authorization: "Bearer [JWT_TOKEN]",
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    method: "card",
-    number: "4111111111111111",
-    expiration_date: "11 / 22",
-    security_code: "123",
-  }),
-});
+const paymentMethod = await client.storePaymentMethod(request);
 ```
 
   </TabItem>
 </Tabs>
 
 The API returns [the details for the newly vaulted card][api].
+
+:::info Link to buyer
+
+The API also accepts a `buyer_id` or `buyer_external_identifier` which can be
+used to associate a card to a previously created [buyer].
+
+:::
 
 [api]: /reference#operation/store-payment-method
 [buyer]: /guides/buyers/associate-card

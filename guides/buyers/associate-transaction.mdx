@@ -59,7 +59,7 @@ request.paymentMethod.expirationDate = "11/25";
 request.paymentMethod.securityCode = "123";
 request.paymentMethod.buyerId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
 
-const transaction = client.authorizeNewTransaction(request);
+const transaction = await client.authorizeNewTransaction(request);
 ```
 
   </TabItem>
@@ -113,7 +113,7 @@ request.paymentMethod.expirationDate = "11/25";
 request.paymentMethod.securityCode = "123";
 request.paymentMethod.buyerExternalIdentifier = "412231123";
 
-const transaction = client.authorizeNewTransaction(request);
+const transaction = await client.authorizeNewTransaction(request);
 ```
 
   </TabItem>

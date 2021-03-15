@@ -33,18 +33,8 @@ curl -i -X DELETE "https://api.{gr4vyId}.gr4vy.app/payment-methods/77a76f7e-d2de
   </TabItem>
   <TabItem value="node">
 
-```js {10-13}
-const fetch = require("node-fetch");
-
-fetch(
-  "https://api.{gr4vyId}.gr4vy.app/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
-  {
-    method: "DELETE",
-    headers: {
-      Authorization: "Bearer [JWT_TOKEN]",
-    },
-  }
-);
+```js
+await client.deletePaymentMethod("77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5");
 ```
 
   </TabItem>
