@@ -13,24 +13,24 @@ module.exports = {
         "web-checkout/inspect"
       ],
     },
+    // {
+    //   type: "category",
+    //   label: "Services",
+    //   collapsed: false,
+    //   items: [
+    //     "services/stripe-card",
+    //     "services/braintree-card",
+    //     "services/paypal-paypal"
+    //   ],
+    // },
     {
       type: "category",
-      label: "Services",
-      collapsed: false,
-      items: [
-        "services/stripe-card",
-        "services/braintree-card",
-        "services/paypal-paypal"
-      ],
-    },
-    {
-      type: "category",
-      label: "General",
+      label: "APIs",
       collapsed: false,
       items: [
         "authentication",
         "environments",
-        "errors",
+        // "errors",
         "pagination",
       ],
     },

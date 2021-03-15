@@ -97,7 +97,7 @@ const Gr4vyEmbed = require(`@gr4vy/embed-react`)
   amount={1299}
   country='US'
   currency='USD'
-  bearerToken={token}
+  token={token}
 />
 ```
 
@@ -120,7 +120,7 @@ const Gr4vyEmbed = require(`@gr4vy/embed-react`)
     amount: 1299,
     country='US'
     currency: "USD",
-    bearerToken: token,
+    token: token,
   });
 </script>
 ```
@@ -152,7 +152,7 @@ element using any [`querySelector`][queryselector]-compatible query.
     amount: 1299,
     country='US'
     currency: "USD",
-    bearerToken: token,
+    token: token,
   });
 </script>
 ```
@@ -204,7 +204,7 @@ const Gr4vyEmbed = require(`@gr4vy/embed-react`)
   amount={1299}
   country='US'
   currency='USD'
-  bearerToken={token}
+  token={token}
   onEvent={
     (eventName, data) => {
       if (eventName === 'transactionCreated') {
@@ -234,7 +234,7 @@ const Gr4vyEmbed = require(`@gr4vy/embed-react`)
     amount: 1299,
     country='US'
     currency: "USD",
-    bearerToken: token,
+    token: token,
     onEvent={
       (eventName, data) => {
         if (eventName === 'transactionCreated') {
@@ -265,7 +265,7 @@ const Gr4vyEmbed = require(`@gr4vy/embed-react`)
     amount: 1299,
     country="US"
     currency: "USD",
-    bearerToken: token,
+    token: token,
     onEvent={
       (eventName, data) => {
         if (eventName === 'transactionCreated') {
