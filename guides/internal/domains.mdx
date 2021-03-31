@@ -3,22 +3,9 @@ title: Merchant domains
 ---
 
 By default, every instance will be available under a Gr4vy subdomain based on
-the merchant's `short_name`.
+the merchant's `gr4vy_id`.
 
-The merchant's `short_name` can be queried by calling the
-[`GET /merchants/main`][main_merchant_api] API.
-
-[main_merchant_api]: /reference/internal#operation/get-current-merchant
-
-```json title="GET /merchants/main" {3}
-{
-  "type": "merchant",
-  "short_name": "acme",
-  "display_name": "The Acme Corporation"
-}
-```
-
-With this `short_name` of `acme` it is possible to determine a set of sub
+With a `gr4vy_id` of `acme` it is possible to determine a set of sub
 domains used by a merchant cluster as follows.
 
 | URL                               | Description                                 |
