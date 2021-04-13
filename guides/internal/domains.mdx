@@ -1,0 +1,15 @@
+---
+title: Merchant domains
+---
+
+By default, every instance will be available under a Gr4vy subdomain based on
+the merchant's `gr4vy_id`.
+
+With a `gr4vy_id` of `acme` it is possible to determine a set of sub
+domains used by a merchant cluster as follows.
+
+| URL                               | Description                                 |
+| :-------------------------------- | :------------------------------------------ |
+| `https://acme.gr4vy.app`          | The dashboard                               |
+| `https://api.acme.gr4vy.app`      | The cluster API                             |
+| `https://cdn.acme.gr4vy.app`      | The CDN for the cluster, used to host Embed |
