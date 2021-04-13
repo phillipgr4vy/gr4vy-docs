@@ -1,6 +1,6 @@
 module.exports = {
-  title: "Gr4vy Documentation",
-  tagline: "Integrate Gr4vy, the cloud payment orchestration platform",
+  title: "Gr4vy",
+  tagline: "Your payment stack made frictionless",
   url: "https://gr4vy.com/",
   baseUrl: "/docs/",
   onBrokenLinks: "throw",
