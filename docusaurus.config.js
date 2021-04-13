@@ -46,7 +46,7 @@ module.exports = {
           items: [
             {
               label: "Quick Start (Web)",
-              to: "/guides/web-checkout",
+              to: "/web-checkout",
             },
             {
               label: "Guides",
