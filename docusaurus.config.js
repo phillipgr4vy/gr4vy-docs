@@ -14,20 +14,19 @@ module.exports = {
       disableSwitch: true,
     },
     navbar: {
-      // title: "Gr4vy",
       logo: {
         alt: "Gr4vy Logo",
         src: "img/logo.svg",
       },
       items: [
         {
-          to: "guides/",
+          to: "/",
           activeBasePath: "guides",
           label: "Guides",
           position: "right",
         },
         {
-          to: "reference",
+          to: "/reference",
           label: "API Reference",
           position: "right"
         },
@@ -51,7 +50,7 @@ module.exports = {
             },
             {
               label: "Guides",
-              to: "/guides",
+              to: "/",
             },
             {
               label: "API Reference",
@@ -103,7 +102,7 @@ module.exports = {
       {
         docs: {
           path: "guides",
-          routeBasePath: "guides",
+          routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl:
             "https://github.com/gr4vy/gr4vy-developer-documentation/edit/main",
