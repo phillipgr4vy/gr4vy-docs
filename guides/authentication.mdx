@@ -145,7 +145,7 @@ key used to generate the signature.
 
 The `typ` and `alg` are fixed and do not allow for other values. The `kid` is
 the ID of your private key, which you can find in the **Integrations** panel of
-your cluster dashboard. The `kid` is also the so-called _thumbprint_ of your JWT
+your dashboard. The `kid` is also the so-called _thumbprint_ of your JWT
 key. Some libraries can automatically calculate this thumbprint based off the
 private key.
 
@@ -191,8 +191,8 @@ The API supports the following values for the `scopes` claims.
 | :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `*.read`            | Allows read-access to any resource. This is used by default in the SDKs                                                                            |
 | `*.write`           | Allows write-access to any resource. This is used by default in the SDKs. This does not also allow read access.                                    |
-| `{resources}.read`  | Allows read-access to a type or resource. For example, `buyers.read` enabled read-access for buyers data.                                          |
-| `{resources}.write` | Allows write-access to a type or resource. For example, `buyers.write` enabled write-access for buyers data. This does not also allow read access. |
+| `{resource_name}.read`  | Allows read-access to a type or resource. For example, `payment-services.read` enabled read-access for buyers data.                                          |
+| `{resource_name}.write` | Allows write-access to a type or resource. For example, `payment-services.write` enabled write-access for buyers data. This does not also allow read access. |
 | `embed`             | A scope that represents all the access needed by Gr4vy Embed.                                                                                      |
 
 ### Signature & assembly
