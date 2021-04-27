@@ -1,0 +1,13 @@
+[build]
+
+  publish = "build/"
+
+  command = "echo 'default context'"
+
+[context.production]
+  publish = "build/"
+  command = "yarn build"
+
+[context.deploy-preview]
+  publish = "build/"
+  command = "yarn build-preview"
