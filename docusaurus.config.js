@@ -1,8 +1,10 @@
+const BASE_URL = process.env.BASE_URL || "/"
+
 module.exports = {
   title: "Gr4vy",
   tagline: "Your payment stack made frictionless",
   url: "https://gr4vy.com/",
-  baseUrl: "/docs/",
+  baseUrl: BASE_URL,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "favicon.ico",
