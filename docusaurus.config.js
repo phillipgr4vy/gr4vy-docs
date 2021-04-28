@@ -10,6 +10,9 @@ module.exports = {
   favicon: "favicon.ico",
   organizationName: "gr4vy",
   projectName: "gr4vy-developer-documentation",
+  scripts: [
+    "/docs/js/analytics.js"
+  ],
   themeConfig: {
     hideableSidebar: false,
     colorMode: {
