@@ -1,2 +1,2 @@
-[context.deploy-preview.environment]
-  BASE_URL = "/"
+[context.production.environment]
+  BASE_URL = "/docs/"

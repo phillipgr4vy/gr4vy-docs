@@ -1,4 +1,4 @@
-const BASE_URL = process.env.BASE_URL || "/docs/"
+const BASE_URL = process.env.BASE_URL || "/"
 
 module.exports = {
   title: "Gr4vy",

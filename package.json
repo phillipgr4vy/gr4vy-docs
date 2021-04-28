@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "prestart": "yarn openapi:pull",
-    "start": "BASE_URL='/' docusaurus start",
+    "start": "docusaurus start",
     "prebuild": "yarn openapi:pull",
     "openapi:pull": "rm -rf static/openapi; git clone --depth=1 --branch=docs https://github.com/gr4vy/gr4vy-openapi.git static/openapi; rm -rf ./static/openapi/.git",
     "build": "docusaurus build",
