@@ -10,7 +10,6 @@
     "prebuild": "yarn openapi:pull",
     "openapi:pull": "rm -rf static/openapi; git clone --depth=1 --branch=docs https://github.com/gr4vy/gr4vy-openapi.git static/openapi; rm -rf ./static/openapi/.git",
     "build": "docusaurus build",
-    "build-preview": "mv docusaurus.config.js docusaurus.config.js.save; mv docusaurus.config-preview.js docusaurus.config.js; docusaurus build; mv docusaurus.config.js docusaurus.config-preview.js; mv docusaurus.config.js.save docusaurus.config.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
