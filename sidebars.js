@@ -82,10 +82,17 @@ module.exports = {
             "transactions/list-transactions",
             "transactions/statuses",
           ]
-        }
+        },
       ],
     },
-
+    {
+      type: "category",
+      label: "Embed",
+      collapsed: true,
+      items: [
+        "embed/theming",
+      ]
+    }
   ],
   internal: [
     {
