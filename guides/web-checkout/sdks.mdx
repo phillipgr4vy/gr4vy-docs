@@ -19,6 +19,8 @@ SDK.
   defaultValue="node"
   values={[
     { label: 'Node', value: 'node', },
+    { label: 'Go', value: 'go', },
+    { label: 'PHP', value: 'php', },
   ]}
 >
   <TabItem value="node">
@@ -27,6 +29,36 @@ SDK.
 npm install @gr4vy/node --save
 # or: yarn install @gr4vy/node
 ```
+
+  </TabItem>
+  <TabItem value="go">
+
+```bash
+go get github.com/gr4vy/gr4vy-go
+```
+
+  </TabItem>
+  <TabItem value="php">
+
+```bash
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/gr4vy/gr4vy-php.git"
+    }
+  ],
+  "require": {
+    "gr4vy/gr4vy-php": "*@dev"
+  }
+}
+```
+
+:::info Composer
+
+Add the above to your composer.json and then run `composer install`.
+
+:::
 
   </TabItem>
 </Tabs>
@@ -40,6 +72,8 @@ Next, initialize the SDK with the ID of your instance and the private key.
   defaultValue="node"
   values={[
     { label: 'Node', value: 'node', },
+    { label: 'Go', value: 'go', },
+    { label: 'PHP', value: 'php', },
   ]}
 >
   <TabItem value="node">
@@ -69,6 +103,51 @@ integrations panel of your dashboard for more details.
 :::
 
   </TabItem>
+  <TabItem value="go">
+
+```go
+key, err := gr4vy.GetKeyFromFile("private.key")
+if err != nil {
+  fmt.Println(err)
+  return
+}
+client := gr4vy.NewGr4vyClient("acme", key)
+```
+
+:::info Parameters
+
+This assumes the key you created in step 1 is kept in a file called
+`private.key` that is kept in the same folder next to the code. You could store
+this key on disk, in an environment variable, or in a secure vault.
+
+The first argument of the `NewGr4vyClient` represents the unique ID of your Gr4vy instance. 
+Refer to the integrations panel of your dashboard for more details.
+
+:::
+
+  </TabItem>
+  <TabItem value="php">
+
+```php
+require __DIR__ . '/../vendor/autoload.php';
+
+$privateKeyLocation = __DIR__ . "/private_key.pem";
+
+$config = new Gr4vy\Gr4vyConfig("acme", $privateKeyLocation);
+```
+
+:::info Parameters
+
+This assumes the key you created in step 1 is kept in a file called
+`private_key.pem` that is kept in the same folder next to the code. You could store
+this key on disk, in an environment variable, or in a secure vault.
+
+The first argument of the `Gr4vyConfig` represents the unique ID of your Gr4vy instance. 
+Refer to the integrations panel of your dashboard for more details.
+
+:::
+
+  </TabItem>
 </Tabs>
 
 ## Generate a token
@@ -84,6 +163,8 @@ to.
   defaultValue="node"
   values={[
     { label: 'Node', value: 'node', },
+    { label: 'Go', value: 'go', },
+    { label: 'PHP', value: 'php', },
   ]}
 >
   <TabItem value="node">
@@ -94,6 +175,27 @@ const token = client.getEmbedToken({
   currency: "USD",
   buyerExternalIdentifier: "user-12345",
 });
+```
+
+  </TabItem>
+  <TabItem value="go">
+
+```go
+embed := map[string]string{"amount": "200", "currency": "USD", "buyer_id": "d757c76a-cbd7-4b56-95a3-40125b51b29c"}
+token, err = client.GetEmbedToken(embed)
+```
+
+  </TabItem>
+  <TabItem value="php">
+
+```php
+$token = $config->getEmbedToken(
+  array(
+    "amount"=> 200, 
+    "currency" => "USD", 
+    "buyer_id"=> "d757c76a-cbd7-4b56-95a3-40125b51b29c"
+  )
+);
 ```
 
   </TabItem>
