@@ -1,6 +1,6 @@
 ---
-title: "Step 2: Install a serv-side SDK"
-sidebar_label: 2. Install server SDK
+title: "Step 2: Generate a client token"
+sidebar_label: 2. Generate a token
 ---
 
 import Tabs from "@theme/Tabs";
@@ -201,4 +201,19 @@ $token = $config->getEmbedToken(
   </TabItem>
 </Tabs>
 
-This token can now be shared with the HTML of your checkout page.
+This token can now be served in your checkout page, where it will be used by Gr4vy Embed.
+
+:::info Manual Token Generation
+
+If you would prefer to generate the client token without using a Gr4vy server-side SDK, 
+please read our guide [here](/authentication#manual-jwt).
+
+:::
+
+## Summary
+
+In this step you:
+
+- Created a signed JWT token using a server-side SDK.
+- Served the JWT token to your front-end application, where it will be used by Gr4vy Embed.
+
