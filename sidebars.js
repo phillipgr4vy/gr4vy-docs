@@ -90,7 +90,8 @@ module.exports = {
       label: "Embed",
       collapsed: true,
       items: [
-        "embed/theming",
+        "embed/locale",
+        "embed/theming"
       ]
     }
   ],
