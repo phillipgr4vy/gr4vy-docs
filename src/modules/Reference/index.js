@@ -1,14 +1,21 @@
 import React, { useRef } from "react"
 import { RedocStandalone } from "redoc"
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
+
 import "./reference.css"
 
 const Reference = ({ specUrl }) => {
   const ref = useRef()
+  const { siteConfig } = useDocusaurusContext()
 
   const openTags = () => {
     ref.current.querySelectorAll("[role=navigation] ul").forEach(element => {
       element.style.display = "block"
     })
+  }
+
+  if (specUrl.startsWith("/") && siteConfig.baseUrl != "/") {
+    specUrl = `${siteConfig.baseUrl}/${specUrl}`
   }
 
   return (
