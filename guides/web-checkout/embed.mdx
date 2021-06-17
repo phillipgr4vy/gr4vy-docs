@@ -191,7 +191,7 @@ will heavily depend on the enabled payment services in your account.
 | currency    | **Required.** The currency for the transaction. | string |
 | country     | **Required.** The country of the buyer. | string |
 | token       | **Required.** The JWT client token generated in the previous step. | string |
-| intent      | **Optional.** The intent of the transaction. Defaults to `capture`. | `authorize`, `capture` or `approve` |
+| intent      | **Optional.** The intent of the transaction. Defaults to `authorize`. | `authorize`, `capture` or `approve` |
 | store       | **Optional.** Whether to store the payment details (where possible) for future use. Defaults to `ask`. | `ask` or boolean |
 | debug       | **Optional.** Whether to output debug messages. Defaults to `false`. | boolean |
 | buyerId     | **Optional.** The identifier of the Buyer to associate payment methods to. | string |
