@@ -1,0 +1,34 @@
+---
+title: Parameters
+slug: /embed/parameters
+---
+
+### Setup parameters
+
+| Parameter               | Description                                                                                                                              | Type                                                 |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| gr4vyId                 | **Required.** The identifier for your Gr4vy Instance.                                                                                    | string                                               |
+| element                 | **Required.** The HTML element to attach Gr4vy Embed.                                                                                    | string, HTMLElement or Element                       |
+| form                    | **Optional.** The HTML from to attach Gr4vy Embed. When this form is submitted, the Gr4vy Embed will initialize the payment transaction. | string, HTMLElement or Element                       |
+| amount                  | **Required.** The amount for the transaction.                                                                                            | number                                               |
+| currency                | **Required.** The currency for the transaction.                                                                                          | string                                               |
+| country                 | **Required.** The country of the buyer.                                                                                                  | string                                               |
+| token                   | **Required.** The JWT client token generated in the previous step.                                                                       | string                                               |
+| intent                  | **Optional.** The intent of the transaction. Defaults to `authorize`. NOTE: `tokenize_only` requires `store` to be 'true' or 'ask'       | `authorize`, `capture`, `approve` or `tokenize_only` |
+| store                   | **Optional.** Whether to store the payment details (where possible) for future use. Defaults to `ask`.                                   | `ask` or boolean                                     |
+| show_stored             | **Optional.** Whether to show a buyer's stored payment methods in the embed form (requires buyerId to be set). Defaults to `true`.       | boolean                                              |
+| debug                   | **Optional.** Whether to output debug messages. Defaults to `false`.                                                                     | boolean                                              |
+| buyerId                 | **Optional.** The identifier of the Buyer to associate payment methods to.                                                               | string                                               |
+| buyerExternalIdentifier | **Optional.** Your identifier of the Buyer to associate payment methods to.                                                              | string                                               |
+| externalIdentifier      | **Optional.** An external identifier for the transaction.                                                                                | string                                               |
+| environment             | **Optional.** The environment for the transaction. Defaults to `production`.                                                             | `development`, `staging` or `production`             |
+| theme                   | **Optional.** Used to change the styling of Gr4vy Embed.                                                                                 | ThemeOptions See [Theming](../embed/theme)           |
+| onEvent                 | **Optional.** A callback function that's used to subscribe to events.                                                                    | (eventName: string, data: any) => void               |
+
+### Embed Events
+
+| EventName          | Description                                             |
+| ------------------ | ------------------------------------------------------- |
+| formUpdate         | Event emitted when the form has been populated.         |
+| transactionCreated | Event emitted when the transaction has been created.    |
+| apiError           | Event emitted when an error occurred in an api request. |

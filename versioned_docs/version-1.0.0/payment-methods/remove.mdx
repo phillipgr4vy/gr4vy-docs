@@ -1,0 +1,45 @@
+---
+title: Remove a payment method
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+A previously vaulted payment method can be removed from Gr4vy by calling the
+[`DELETE /payment-methods/{payment_method_id}`][api] API.
+
+:::info
+
+This API does not actually remove the stored payment method from any of the
+underlying payment services. It only removes the record in Gr4vy.
+
+:::
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash
+curl -i -X DELETE "https://api.{gr4vyId}.gr4vy.app/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5" \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+await client.deletePaymentMethod("77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5");
+```
+
+  </TabItem>
+</Tabs>
+
+The API returns an empty response once the payment method was removed.
+
+[api]: /reference#operation/delete-payment-method

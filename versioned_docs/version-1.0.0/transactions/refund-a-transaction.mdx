@@ -1,0 +1,51 @@
+---
+title: Refund or void transaction
+sidebar_label: Refund or void a transaction
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+A transaction can be canceled at any point by calling the
+[`POST /transactions/{transaction_id}/refund`](/reference#operation/refund-transaction)
+API.
+
+Gr4vy will automatically perform the required action on the transaction to
+release the funds back to the buyer. If this transaction was already captured it
+will issue a refund, but if the transaction was not yet captured the
+authorization will instead be voided instead.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {7}
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9/refund" \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+var fetch = require("node-fetch");
+
+fetch(
+  "https://api.{gr4vyId}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9/refund",
+  {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer [JWT_TOKEN]",
+    },
+  }
+);
+```
+
+</TabItem>
+</Tabs>

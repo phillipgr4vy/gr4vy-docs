@@ -1,0 +1,70 @@
+---
+title: Events
+slug: /embed/events
+---
+
+Gr4vy Embed accepts an `onEvent` parameter that can be used to listen to certain
+events emitted from the form.
+
+```js
+setup({
+  element: '.container',
+  ...,
+  onEvent: (name, data) => {
+    ...
+  }
+})
+```
+
+Currently, we Gr4vy Embed emits the following events.
+
+#### `agumentError`
+
+Returned when the initial input (`element`, `options`) are incorrectly formatted
+or missing.
+
+```json
+{
+  "code": "argumentError",
+  "option": "currency",
+  "message": "must be a valid number"
+}
+```
+
+#### `formUpdate`
+
+Returned when the form updates. Currently this only informs the developer if the
+form is valid.
+
+```json
+{
+  "valid": false
+}
+```
+
+#### `transactionCreated`
+
+Returns a full transaction object when the transaction was successfully created.
+
+```json
+{
+  "type": "transaction",
+  "id": "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+  "status": "pending",
+  ...
+}
+```
+
+#### `apiError`
+
+Returned when the form encounters an API error.
+
+```json
+{
+  "type": "error",
+  "code": "unauthorized",
+  "status": 401,
+  "message": "No valid API authentication found",
+  "details": []
+}
+```

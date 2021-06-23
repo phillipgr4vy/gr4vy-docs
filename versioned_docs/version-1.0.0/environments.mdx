@@ -1,0 +1,87 @@
+---
+title: Environments
+sidebar_label: Environments
+---
+
+import Image from "@site/src/modules/Image";
+import image from "./assets/payment-service-environments.png";
+
+Gr4vy ships with 3 built-in environments:
+
+- `production` - The default environment intended for use within your live
+  application.
+- `staging` - An additional environment intended for use within your test or
+  quality assurance systems.
+- `development` - The final environment intended for use by developers testing
+  their transactions.
+
+You can use these environments to test payment services, card rules, and other
+settings in 1 environment, before migrating them to another.
+
+## Why environments?
+
+Environments are an essential part of any development process. Your developer
+might run your application on their development machine, and to try and test the
+Gr4vy integration they will want to try and create some payments. To stop your
+Gr4vy dashboard from being populated with lots of dummy data it would be best
+for the developer to create their test transactions against the `development`
+environment instead.
+
+Similarly, as part of your process you might deploy your application to a QA or
+testing environment where you run either automated or manual tests against the
+API. To stop this from interfering with your development or live environments
+you could set these tests to run against the `staging` environment.
+
+:::info Environments vs Credential Mode
+
+A Gr4vy environment **does not determine** if a transaction is run against the
+payment processor's sandbox environment or not. All the Gr4vy environment does
+is determine the environment within Gr4vy in which a resource is created or
+retrieved. The actual mode (sandbox vs live) that is used to connect to the
+payment service is called the **credentials mode**.
+
+:::
+
+## Default production environment
+
+The default environment for any API call is the `production` environment. This
+means that if you make an API call to get the list of buyers or payment methods
+the API will return the list of buyers and payment methods that were created in
+the `production` environment. Similarly, if you were to create a transaction it
+will be processed by the payment services in the production environment.
+
+## Payment services and environments
+
+When a payment service is configured it's normally only available in the
+production environment. It can be set to be available in the other environments
+as well.
+
+<Image src={image} title="Payment service environment configuration" />
+
+## Switching environment
+
+To allow changing of the environment, some of the API endpoints support passing
+in an `environment` parameter to either retrieve or create items in a certain
+environment. For example, the
+[`POST /transactions`](/#operation/authorize-new-transaction) endpoint allows a
+transaction to be created with payment services configured in any environment.
+
+```bash {8}
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/transactions" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "amount": 1299,
+          "currency": "USD",
+          "intent": "capture",
+          "environment": "development",
+          "payment_method": {
+            "method": "card",
+            "number": "4111111111111111",
+            "expiration_date": "11/25",
+            "security_code": "123"
+          }
+        }'
+```
+
+Check the [API reference](/reference) for more details.

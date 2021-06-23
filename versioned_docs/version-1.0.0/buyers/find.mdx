@@ -1,0 +1,58 @@
+---
+title: Find a buyer
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+The [`GET /buyers`][api] API makes it possible to find a buyer by its
+`display_name` or `external_identifier` value.
+
+[api]: /reference#operation/list-buyers
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash
+curl -i -X GET "https://api.{gr4vyId}.gr4vy.app/buyers?search=fe26475d-ec3e-4884-9553-f7356683f7f9" \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+const buyers = await client.listBuyers("fe26475d-ec3e-4884-9553-f7356683f7f9");
+```
+
+  </TabItem>
+</Tabs>
+
+The API returns any buyers for which either the `display_name` or
+`external_identifier` partially match. If no buyers could be found the returned
+items will be an empty list.
+
+```json title="GET /buyers?external_identifier=fe26475d-ec3e-4884-9553-f7356683f7f9"
+{
+  "items": [
+    {
+      "type": "buyer",
+      "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+      "external_identifier": "412231123",
+      "display_name": "John L.",
+      "created_at": "2013-07-16T19:23:00.000Z",
+      "updated_at": "2013-07-16T19:23:00.000Z"
+    }
+  ],
+  "limit": 100,
+  "next_page": null,
+  "previous_page": null
+}
+```

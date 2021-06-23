@@ -12,6 +12,7 @@
   --ifm-color-primary-lighter: #8f9ce2;
   --ifm-color-primary-lightest: #b5beec;
   --ifm-code-font-size: 0.95em;
+  --ifm-color-warning: rgb(238, 157, 5);
 }
 
 .docusaurus-highlight-code-line {
@@ -76,6 +77,54 @@ main {
 
 .markdown {
   @apply max-w-4xl;
+}
+
+.reference main .container {
+  padding: 0;
+  margin: 0;
+}
+
+.reference .markdown {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+@media (min-width: 640px) {
+  .reference .markdown {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .reference .markdown {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .reference .markdown {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .reference .markdown {
+    max-width: 1240px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .reference .markdown {
+    max-width: 1490px;
+  }
+}
+
+.reference .container header h1 {
+  display: none;
+}
+
+.container .badge {
+  margin-bottom: 1em;
 }
 
 .markdown ul {
@@ -155,4 +204,8 @@ a.pagination-nav__link {
 
 .card a {
   @apply text-primary-700;
+}
+
+.badge.badge--secondary {
+  margin-bottom: 1em !important;
 }

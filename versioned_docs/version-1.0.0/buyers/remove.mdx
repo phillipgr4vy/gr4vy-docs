@@ -1,0 +1,46 @@
+---
+title: Remove a buyer
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+A buyer can be removed from Gr4vy by calling the
+[`DELETE /buyers/{buyer_id}`][api] API.
+
+:::info Associated resources
+
+Although this API removes the buyer resource, it does not delete any associated
+payment methods and transactions. Instead, it only disassociates these from the
+buyer resource.
+
+:::
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash
+curl -i -X DELETE "https://api.{gr4vyId}.gr4vy.app/buyers/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5" \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+await client.deleteBuyer("77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5");
+```
+
+  </TabItem>
+</Tabs>
+
+The API returns an empty response once the buyer was removed.
+
+[api]: /reference#operation/delete-buyer

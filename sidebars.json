@@ -1,0 +1,210 @@
+{
+  "sidebar": [
+    {
+      "type": "doc",
+      "id": "index"
+    },
+    {
+      "collapsed": false,
+      "type": "category",
+      "label": "Web Checkout",
+      "items": [
+        {
+          "type": "doc",
+          "id": "web-checkout/index"
+        },
+        {
+          "type": "doc",
+          "id": "web-checkout/key"
+        },
+        {
+          "type": "doc",
+          "id": "web-checkout/sdks"
+        },
+        {
+          "type": "doc",
+          "id": "web-checkout/embed"
+        },
+        {
+          "type": "doc",
+          "id": "web-checkout/inspect"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "type": "category",
+      "label": "APIs",
+      "items": [
+        {
+          "type": "doc",
+          "id": "authentication"
+        },
+        {
+          "type": "doc",
+          "id": "environments"
+        },
+        {
+          "type": "doc",
+          "id": "pagination"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "type": "category",
+      "label": "Resources",
+      "items": [
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Buyers",
+          "items": [
+            {
+              "type": "doc",
+              "id": "buyers/index"
+            },
+            {
+              "type": "doc",
+              "id": "buyers/add"
+            },
+            {
+              "type": "doc",
+              "id": "buyers/find"
+            },
+            {
+              "type": "doc",
+              "id": "buyers/update"
+            },
+            {
+              "type": "doc",
+              "id": "buyers/associate-transaction"
+            },
+            {
+              "type": "doc",
+              "id": "buyers/associate-card"
+            },
+            {
+              "type": "doc",
+              "id": "buyers/remove"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Payment methods",
+          "items": [
+            {
+              "type": "doc",
+              "id": "payment-methods/index"
+            },
+            {
+              "type": "doc",
+              "id": "payment-methods/vault-card"
+            },
+            {
+              "type": "doc",
+              "id": "payment-methods/list-for-buyer"
+            },
+            {
+              "type": "doc",
+              "id": "payment-methods/list"
+            },
+            {
+              "type": "doc",
+              "id": "payment-methods/remove"
+            },
+            {
+              "type": "doc",
+              "id": "payment-methods/statuses"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Transactions",
+          "items": [
+            {
+              "type": "doc",
+              "id": "transactions/index"
+            },
+            {
+              "type": "doc",
+              "id": "transactions/transact-card"
+            },
+            {
+              "type": "doc",
+              "id": "transactions/transact-paypal"
+            },
+            {
+              "type": "doc",
+              "id": "transactions/transact-vault"
+            },
+            {
+              "type": "doc",
+              "id": "transactions/vault-a-payment-method"
+            },
+            {
+              "type": "doc",
+              "id": "transactions/list-transactions"
+            },
+            {
+              "type": "doc",
+              "id": "transactions/statuses"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Embed",
+      "items": [
+        {
+          "type": "doc",
+          "id": "embed/locale"
+        },
+        {
+          "type": "doc",
+          "id": "embed/theming"
+        },
+        {
+          "type": "doc",
+          "id": "embed/options"
+        },
+        {
+          "type": "doc",
+          "id": "embed/events"
+        }
+      ]
+    }
+  ],
+  "internal": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Internal",
+      "items": [
+        {
+          "type": "doc",
+          "id": "internal/index"
+        },
+        {
+          "type": "doc",
+          "id": "internal/domains"
+        },
+        {
+          "type": "doc",
+          "id": "internal/api-authentication"
+        },
+        {
+          "type": "doc",
+          "id": "payment-methods/flow-charts"
+        }
+      ]
+    }
+  ]
+}

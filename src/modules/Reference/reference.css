@@ -1,4 +1,3 @@
-.gr4vy__reference .api-info h1,
 .gr4vy__reference .api-info span {
   @apply hidden;
 }
@@ -30,7 +29,7 @@
 }
 
 .gr4vy__reference .menu-content ul {
-  @apply mb-8 mr-1;
+  @apply mb-8 mr-1 ml-0;
 }
 
 .gr4vy__reference .menu-content label {

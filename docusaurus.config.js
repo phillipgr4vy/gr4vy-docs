@@ -5,7 +5,7 @@ module.exports = {
   tagline: "Your payment stack made frictionless",
   url: "https://gr4vy.com/",
   baseUrl: BASE_URL,
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "favicon.ico",
   organizationName: "gr4vy",
@@ -24,6 +24,11 @@ module.exports = {
         src: "img/logo.svg",
       },
       items: [
+        {
+          type: "docsVersionDropdown",
+          position: "right",
+          dropdownActiveClassDisabled: true
+        },
         {
           to: "/",
           activeBasePath: "guides",
@@ -106,11 +111,15 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          path: "guides",
           routeBasePath: "/",
-          sidebarPath: require.resolve("./sidebars.js"),
+          sidebarPath: require.resolve("./sidebars.json"),
           editUrl:
             "https://github.com/gr4vy/gr4vy-developer-documentation/edit/main",
+          versions: {
+            current: {
+              label: "1.1.0-beta",
+            },
+          },
         },
         // blog: {
         //   showReadingTime: true,

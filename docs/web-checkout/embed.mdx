@@ -1,0 +1,306 @@
+---
+title: "Step 3: Add Gr4vy Embed"
+sidebar_label: 3. Embed checkout
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/modules/Image";
+import embed from "./assets/embed.jpg";
+
+The final step to is to add [Gr4vy Embed][embed] to your checkout experience.
+**Gr4vy Embed** handles the discovery of available payment methods, processing
+of the payment, and creating a transaction.
+
+## Install Gr4vy Embed
+
+There are a few ways to install Gr4vy Embed, either as a React component, Node
+library, or straight off your Gr4vy instance's CDN.
+
+<Tabs
+  groupId="language"
+  defaultValue="react"
+  values={[
+    { label: 'React', value: 'react', },
+    { label: 'Node', value: 'node', },
+    { label: 'CDN', value: 'cdn', },
+  ]}
+>
+  <TabItem value="react">
+
+```bash
+npm install @gr4vy/embed-react --save
+# or: yarn install @gr4vy/embed-react
+```
+
+  </TabItem>
+
+  <TabItem value="node">
+
+```bash
+npm install @gr4vy/embed --save
+# or: yarn install @gr4vy/embed
+```
+
+  </TabItem>
+
+   <TabItem value="cdn">
+
+```html
+<script src="https://cdn.{gr4vyId}.gr4vy.app/embed.latest.js"></script>
+```
+
+:::info Using the CDN
+
+When using the CDN the latest version of the library is always pulled straight
+from the Gr4vy server for every request. Although this may be easier to
+implement, the load load times of the Gr4vy UI might be negatively impacted.
+
+:::
+
+  </TabItem>
+
+</Tabs>
+
+:::info Gr4vy Embed
+
+Head over to [GitHub to learn more](https://github.com/gr4vy/embed) about Gr4vy
+Embed, it's parameters, events, and all the different ways in which it can be
+integrated into your UI.
+
+:::
+
+## Initialize the UI
+
+With Gr4vy Embed installed it's now possible to initialize the Gr4vy UI. Gr4vy
+expect the ID of your Gr4vy instance (`gr4vyId `), the amount and currency of
+the transaction, the country to process this transaction in, and the client
+token you generated in the previous step.
+
+<Tabs
+  groupId="language"
+  defaultValue="react"
+  values={[
+    { label: 'React', value: 'react', },
+    { label: 'Node', value: 'node', },
+    { label: 'CDN', value: 'cdn', },
+  ]}
+>
+  <TabItem value="react">
+
+```js
+import Gr4vyEmbed from (`@gr4vy/embed-react)
+// or: const { default: Gr4vyEmbed } = require(`@gr4vy/embed-react`)
+
+<form action='/' id='payment-form'>
+  <Gr4vyEmbed
+    gr4vyId='acme'
+    form='#payment-form'
+    amount={1299}
+    currency='USD'
+    country='US'
+    token={token}
+  />
+  <input type="submit" />
+</form>
+```
+
+  </TabItem>
+
+  <TabItem value="node">
+
+```html
+<form action="/checkout" id="payment-form">
+  <div class="container" />
+  <input type="submit" />
+</form>
+
+<script>
+  import { setup } from (`@gr4vy/embed`)
+  // or: const { setup } = require(`@gr4vy/embed`);
+
+  setup({
+    gr4vyId: "acme",
+    element: ".container",
+    form: "#payment-form",
+    amount: 1299,
+    currency: "USD",
+    country: "US"
+    token: token,
+  });
+</script>
+```
+
+:::info Attaching the UI
+
+Gr4vy Embed needs to be attached to a HTML element. In this case we attached the
+UI to a `<div>` with the class `container`. The UI can be attached to any
+element using any [`querySelector`][queryselector]-compatible query.
+
+:::
+
+  </TabItem>
+
+   <TabItem value="cdn">
+
+```html
+<form action="/checkout" id="payment-form">
+  <div class="container" />
+  <input type="submit" />
+</form>
+
+<script src="path/to/gr4vy-embed.js"></script>
+<script>
+  gr4vy.setup({
+    gr4vyId: "acme",
+    element: ".container",
+    form: "#payment-form",
+    amount: 1299,
+    currency: "USD",
+    country: "US"
+    token: token,
+  });
+</script>
+```
+
+:::info Attaching the UI
+
+Gr4vy Embed needs to be attached to a HTML element. In this case we attached the
+UI to a `<div>` with the class `container`. The UI can be attached to any
+element using any [`querySelector`][queryselector]-compatible query.
+
+:::
+
+  </TabItem>
+
+</Tabs>
+
+You should now see Gr4vy Embed loaded in the page. The available payment methods
+will heavily depend on the enabled payment services in your account.
+
+<Image src={embed} title="The Gr4vy Embed checkout experience" />
+
+## Catch transaction ID
+
+The Gr4vy Embed UI will handle the capture of any payment details, and then
+creates a transaction. Once the transaction has been completed can either emit
+the transaction ID as an event, or submit any form it was attached to with the
+transaction ID embedded in the form.
+
+<Tabs
+  groupId="language"
+  defaultValue="react"
+  values={[
+    { label: 'React', value: 'react', },
+    { label: 'Node', value: 'node', },
+    { label: 'CDN', value: 'cdn', },
+  ]}
+>
+  <TabItem value="react">
+
+```js
+const Gr4vyEmbed = require(`@gr4vy/embed-react`)
+// or: import Gr4vyEmbed from (`@gr4vy/embed-react)
+
+<form action='/' id='payment-form'>
+  <Gr4vyEmbed
+    gr4vyId='acme'
+    form='#payment-form'
+    amount={1299}
+    currency='USD'
+    country='US'
+    token={token}
+    onEvent={
+      (eventName, data) => {
+        if (eventName === 'transactionCreated') {
+          console.log(data.id)
+        }
+      }
+    }
+  />
+  <input type="submit" />
+</form>
+```
+
+  </TabItem>
+
+  <TabItem value="node">
+
+```html
+<form action="/checkout" id="payment-form">
+  <div class="container" />
+  <input type="submit" />
+</form>
+
+<script>
+  import { setup } from (`@gr4vy/embed`);
+  // or: const { setup } = require(`@gr4vy/embed`);
+
+  setup({
+    gr4vyId: "acme",
+    element: ".container",
+    form: "#payment-form",
+    amount: 1299,
+    currency: "USD",
+    country: "US"
+    token: token,
+    onEvent: (eventName, data) => {
+      if (eventName === 'transactionCreated') {
+        console.log(data.id)
+      }
+    }
+  });
+</script>
+```
+
+  </TabItem>
+
+   <TabItem value="cdn">
+
+```html
+<form action="/checkout" id="payment-form">
+  <div class="container" />
+  <input type="submit" />
+</form>
+
+<script src="path/to/gr4vy-embed.js"></script>
+<script>
+  gr4vy.setup({
+    gr4vyId: "acme",
+    element: ".container",
+    form: "#payment-form",
+    amount: 1299,
+    currency: "USD",
+    country: "US"
+    token: token,
+    onEvent: (eventName, data) => {
+      if (eventName === 'transactionCreated') {
+        console.log(data.id)
+      }
+    }
+  });
+</script>
+```
+
+  </TabItem>
+
+</Tabs>
+
+:::info `form` vs `onEvent`
+
+In this example Gr4vy Embed will both log the transaction ID when a transaction
+was successfully created. Additionally, it will insert a hidden HTML input into
+the form with the name `gr4vy_transaction_id`.
+
+:::
+
+## Summary
+
+In this step you:
+
+- Installed and initialized Gr4vy Embed.
+- Caught the resulting transaction identifier.
+
+[embed]: https://github.com/gr4vy/embed
+[queryselector]:
+  https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector

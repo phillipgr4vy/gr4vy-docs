@@ -1,0 +1,87 @@
+---
+title: List and filter transactions
+sidebar_label: List transactions
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+All transactions can be listed by calling the [`GET /transactions`][api] API.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash
+curl -i -X GET "https://api.{gr4vyId}.gr4vy.app/transactions" \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+var fetch = require("node-fetch");
+
+fetch("https://api.{gr4vyId}.gr4vy.app/transactions", {
+  method: "GET",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]",
+  },
+});
+```
+
+</TabItem>
+</Tabs>
+
+The response includes a list of transactions as well as a cursor that points to
+the next and previous page of results.
+
+## Filter transactions
+
+The [`GET /transactions`][api] API supports various query parameters to filter
+the results. For example, the `search` query parameter can be used to filter
+results by either the transaction `id` or `external_identifier`.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash
+curl -i -X GET "https://api.{gr4vyId}.gr4vy.app/transactions?search=fe26475d-ec3e-4884-9553-f7356683f7f9" \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+var fetch = require("node-fetch");
+
+fetch(
+  "https://api.{gr4vyId}.gr4vy.app/transactions?search=fe26475d-ec3e-4884-9553-f7356683f7f9",
+  {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer [JWT_TOKEN]",
+    },
+  }
+);
+```
+
+</TabItem>
+</Tabs>
+
+[api]: /reference#operation/list-transactions

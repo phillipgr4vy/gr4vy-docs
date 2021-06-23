@@ -1,0 +1,68 @@
+---
+title: Locale
+slug: /embed/locale
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Image from "@site/src/modules/Image";
+import image from "./assets/embed-theme.png";
+
+## Overview
+
+Embed can be configured to use a different language using the `locale` property. By default, this will be set to `en` (English).
+Embed accepts a [ISO 639-1 Language Code](https://www.iso.org/iso-639-language-codes.html) (e.g. `en` or `fr`) and an optional [ISO 3166 Country Code](https://www.iso.org/iso-3166-country-codes.html) (e.g. `GB` or `NL`).
+The country code allows us to provide a localized version of the language based on a specific country, e.g. `fr-CA` would represent Canadian French.
+
+## Usage
+
+The locale can be set to any of the [supported Locales](#supported-locales).
+The locale property will fall back to English if a locale is not provided, is incorrect or not supported.
+
+> Note: Embed currently does not automatically detect the buyer's locale. The
+> locale will always be set to `en` when not provided.
+
+<Tabs
+  groupId="language"
+  defaultValue="react"
+  values={[
+    { label: 'React', value: 'react', },
+    { label: 'CDN', value: 'cdn', },
+  ]}
+>
+  <TabItem value="react">
+
+```tsx
+<Gr4vyEmbed currency="GBP" amount="2300" locale="en-GB" />
+```
+
+  </TabItem>
+
+  <TabItem value="cdn">
+
+```js
+setup({
+  ...,
+  amount: 1299,
+  country='GB'
+  currency: "GBP",
+  locale: 'en-GB'
+});
+/>
+```
+
+  </TabItem>
+</Tabs>
+
+## Supported Locales
+
+We currently support the following locales.
+
+| Locale Name          | Language Code (ISO 639-1) | Country Code (ISO 3166) | Locale  |
+| -------------------- | ------------------------- | ----------------------- | ------- |
+| American English     | `en`                      | `US`                    | `en-US` |
+| British English      | `en`                      | `GB`                    | `en-GB` |
+| Brazilian Portuguese | `pt`                      | `BR`                    | `pt-BR` |
+| French               | `fr`                      |                         | `fr`    |
+| Spanish              | `es`                      |                         | `es`    |
+| Portuguese           | `pt`                      |                         | `pt`    |
