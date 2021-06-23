@@ -1,10 +1,10 @@
-import React, { useLayoutEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 
 const Root = ({ children }) => {
   const [className, setClassName] = useState("guides")
 
-  useLayoutEffect(() => {
-    if (window?.location?.href?.indexOf?.("/reference") != -1) {
+  useEffect(() => {
+    if (window?.location?.href?.includes("/reference")) {
       setClassName("reference")
     }
   })
