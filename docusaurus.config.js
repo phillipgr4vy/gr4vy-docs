@@ -11,7 +11,7 @@ module.exports = {
   organizationName: "gr4vy",
   projectName: "gr4vy-developer-documentation",
   scripts: [
-    "/docs/js/analytics.js"
+    "/js/analytics.js"
   ],
   themeConfig: {
     hideableSidebar: false,
