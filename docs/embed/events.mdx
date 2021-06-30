@@ -55,6 +55,19 @@ Returns a full transaction object when the transaction was successfully created.
 }
 ```
 
+#### `paymentMethodSelected`
+
+Returns a full payment method object when a payment method was selected and submitted in Gr4vy Embed. The method could have been a newly created payment method or one previously stored.
+
+```json
+{
+  "type": "payment-method",
+  "id": "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+  "status": "stored",
+  ...
+}
+```
+
 #### `apiError`
 
 Returned when the form encounters an API error.
