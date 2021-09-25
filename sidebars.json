@@ -180,6 +180,21 @@
           "id": "embed/events"
         }
       ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Connectors",
+      "items": [
+        {
+          "type": "doc",
+          "id": "connectors/adyen-card"
+        },
+        {
+          "type": "doc",
+          "id": "connectors/banked-banked"
+        }
+      ]
     }
   ],
   "internal": [
