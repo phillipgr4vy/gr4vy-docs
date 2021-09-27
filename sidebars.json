@@ -195,6 +195,40 @@
           "id": "connectors/banked-banked"
         }
       ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Plugins",
+      "items": [
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Magento",
+          "items": [
+            {
+              "type": "doc",
+              "id": "plugins/magento/index"
+            },
+            {
+              "type": "doc",
+              "id": "plugins/magento/installation"
+            },
+            {
+              "type": "doc",
+              "id": "plugins/magento/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "plugins/magento/frontend"
+            },
+            {
+              "type": "doc",
+              "id": "plugins/magento/backend"
+            }
+          ]
+        }
+      ]
     }
   ],
   "internal": [
