@@ -193,6 +193,26 @@
         {
           "type": "doc",
           "id": "connectors/banked-banked"
+        },
+        {
+          "type": "doc",
+          "id": "connectors/braintree-card"
+        },
+        {
+          "type": "doc",
+          "id": "connectors/checkoutcom-card"
+        },
+        {
+          "type": "doc",
+          "id": "connectors/gocardless-gocardless"
+        },
+        {
+          "type": "doc",
+          "id": "connectors/paypal-paypal"
+        },
+        {
+          "type": "doc",
+          "id": "connectors/stripe-card"
         }
       ]
     },
