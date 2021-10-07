@@ -57,11 +57,8 @@ Transaction information is appended to the order comments history section within
 There are four types of transactional information, see examples below:
 
 1. Authorization message from Magento
-
 2. Authorization message from Gr4vy, with transaction ID
-
 3. Capture message from Gr4vy
-
 4. Refund message from Gr4vy
 
 ![Order Comments](./assets/backend_order_comments.png)

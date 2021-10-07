@@ -56,7 +56,7 @@ go get github.com/gr4vy/gr4vy-go
 
 :::info Composer
 
-Add the above to your composer.json and then run `composer install`.
+Add the above to your `composer.json` and then run `composer install`.
 
 :::
 
@@ -120,8 +120,9 @@ This assumes the key you created in step 1 is kept in a file called
 `private.key` that is kept in the same folder next to the code. You could store
 this key on disk, in an environment variable, or in a secure vault.
 
-The first argument of the `NewGr4vyClient` represents the unique ID of your Gr4vy instance. 
-Refer to the integrations panel of your dashboard for more details.
+The first argument of the `NewGr4vyClient` represents the unique ID of your
+Gr4vy instance. Refer to the integrations panel of your dashboard for more
+details.
 
 :::
 
@@ -139,11 +140,11 @@ $config = new Gr4vy\Gr4vyConfig("acme", $privateKeyLocation);
 :::info Parameters
 
 This assumes the key you created in step 1 is kept in a file called
-`private_key.pem` that is kept in the same folder next to the code. You could store
-this key on disk, in an environment variable, or in a secure vault.
+`private_key.pem` that is kept in the same folder next to the code. You could
+store this key on disk, in an environment variable, or in a secure vault.
 
-The first argument of the `Gr4vyConfig` represents the unique ID of your Gr4vy instance. 
-Refer to the integrations panel of your dashboard for more details.
+The first argument of the `Gr4vyConfig` represents the unique ID of your Gr4vy
+instance. Refer to the integrations panel of your dashboard for more details.
 
 :::
 
@@ -191,8 +192,8 @@ token, err = client.GetEmbedToken(embed)
 ```php
 $token = $config->getEmbedToken(
   array(
-    "amount"=> 200, 
-    "currency" => "USD", 
+    "amount"=> 200,
+    "currency" => "USD",
     "buyer_id"=> "d757c76a-cbd7-4b56-95a3-40125b51b29c"
   )
 );
@@ -201,12 +202,13 @@ $token = $config->getEmbedToken(
   </TabItem>
 </Tabs>
 
-This token can now be served in your checkout page, where it will be used by Gr4vy Embed.
+This token can now be served in your checkout page, where it will be used by
+Gr4vy Embed.
 
 :::info Manual Token Generation
 
-If you would prefer to generate the client token without using a Gr4vy server-side SDK, 
-please read our guide [here](/authentication#manual-jwt).
+If you would prefer to generate the client token without using a Gr4vy
+server-side SDK, please read our guide [here](/authentication#manual-jwt).
 
 :::
 
@@ -215,5 +217,5 @@ please read our guide [here](/authentication#manual-jwt).
 In this step you:
 
 - Created a signed JWT token using a server-side SDK.
-- Served the JWT token to your front-end application, where it will be used by Gr4vy Embed.
-
+- Served the JWT token to your front-end application, where it will be used by
+  Gr4vy Embed.

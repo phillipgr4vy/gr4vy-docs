@@ -5,7 +5,7 @@ slug: /connectors/gocardless-gocardless
 ---
 
 ## Sign-up
-GoCardless provides a self-service sign-up for a sandbox account.  To sign-up for an account simply visit the [sign-up page](https://manage-sandbox.gocardless.com/signup) and fill in the details.
+GoCardless provides a self-service sign-up for a sandbox account.  To sign-up for an account visit the [sign-up page](https://manage-sandbox.gocardless.com/signup) and fill in the details.
 
 ## Credentials
 When setting up GoCardless in the Gr4vy Dashboard, you will need to configure the following credentials, which are obtained from GoCardless:
@@ -21,5 +21,5 @@ If there are no access tokens in the list you will need to create a new Access T
 ![GoCardless Create Access Token](./assets/gocardless_create_access_token.png)
 
 ### Mode
- 
+
 The mode is used to configure if the credentials are for usage with the `Live` or `Sandbox` APIs.

@@ -5,7 +5,7 @@ slug: /web-checkout/key
 ---
 
 import Image from "@site/src/modules/Image";
-import dashboard_key from "./assets/dashboard_integrations_key.png";
+import key from "./assets/dashboard_integrations_key.png";
 
 Before your application can communicate with the Gr4vy API you will need to
 create a new API key. The Gr4vy API handles authentication using a signed **JSON
@@ -18,7 +18,9 @@ curl -X GET https://api.{gr4vyId}.gr4vy.app/transactions \
 
 :::info We recommend you use an SDK
 
-Our SDKs makes the process of generating a token a lot easier and is probably available in your preferred programming language. We will get to this in the next step.
+Our SDKs makes the process of generating a token a lot easier and is probably
+available in your preferred programming language. We will get to this in the
+next step.
 
 :::
 
@@ -27,12 +29,11 @@ Our SDKs makes the process of generating a token a lot easier and is probably av
 To use the API you will need to generate a new **private API key**. Head over to
 your Gr4vy dashboard and visit the **Integrations** page.
 
-<Image src={dashboard_key} title="Generate a new private key" />
+<Image src={key} title="Generate a new private key" />
 
-On this page, click the "Create a new key" button and a key will be generated and 
-downloaded with the key ID shown in the list. You will need to store these securely 
-as we will not show these to you again.
-
+On this page, click the "Create a new key" button and a key will be generated
+and downloaded with the key ID shown in the list. You will need to store these
+securely as we will not show these to you again.
 
 :::info About private keys
 
