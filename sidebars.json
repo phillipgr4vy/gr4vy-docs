@@ -204,6 +204,10 @@
         },
         {
           "type": "doc",
+          "id": "connectors/cybersource-card"
+        },
+        {
+          "type": "doc",
           "id": "connectors/gocardless-gocardless"
         },
         {
