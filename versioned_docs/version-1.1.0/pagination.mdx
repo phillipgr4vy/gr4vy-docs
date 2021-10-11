@@ -1,0 +1,80 @@
+---
+title: Pagination
+slug: /pagination
+---
+
+Many of the Gr4vy API endpoints support cursor-based pagination. When a page is
+requested, the response will include cursors for the next and previous page of
+results.
+
+```bash {5-6}
+curl -i -X GET "https://api.{gr4vyId}.gr4vy.app/buyers" \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+```json
+{
+  "items": [
+    {
+      "id": "42074b2a-d2fa-417a-b7cf-5776b069689d",
+      "type": "buyer",
+      "display_name": "Gerry Vine",
+      "external_identifier": null,
+      "created_at": "2021-03-12T15:05:27.199271+00:00",
+      "updated_at": "2021-03-12T15:05:27.199271+00:00"
+    },
+    {
+      "id": "9e2e7380-5177-4b8e-8677-3854bf94d6c3",
+      "type": "buyer",
+      "display_name": "Retha Palm",
+      "external_identifier": null,
+      "created_at": "2021-03-12T10:47:51.989637+00:00",
+      "updated_at": "2021-03-12T10:47:51.989637+00:00"
+    },
+    ...
+  ],
+  "limit": 20,
+  "next_cursor": "eQA2M2E2ZmQwZS1lYzhkLTQ3ZWItYjI0Yy0zMDlhYzg0OTViNTMAMjAyMS0wMi0yN1QyMjoyNDo1MS4wMTIxNTA",
+  "previous_cursor": null
+}
+```
+
+## Using cursors
+
+If present, the `next_cursor` and `previous_cursor` values can be used to
+request the next and previous page of results by passing the `cursor` query
+parameter with the value of either cursor.
+
+```bash {5-6}
+curl -i -X GET "https://api.{gr4vyId}.gr4vy.app/buyers?cursor=eQA2M2E2ZmQwZS1lYzhkLTQ3ZWItYjI0Yy0zMDlhYzg0OTViNTMAMjAyMS0wMi0yN1QyMjoyNDo1MS4wMTIxNTA" \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+## Page limits
+
+Any of the APIs that support cursor pagination also support the `limit` query
+parameter to control the number of items returned. Check the reference
+documentation for each endpoint for the range of limit values allowed.
+
+```bash {5-6}
+curl -i -X GET "https://api.{gr4vyId}.gr4vy.app/buyers?limit=1" \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+```json
+{
+  "items": [
+    {
+      "id": "42074b2a-d2fa-417a-b7cf-5776b069689d",
+      "type": "buyer",
+      "display_name": "Gerry Vine",
+      "external_identifier": null,
+      "created_at": "2021-03-12T15:05:27.199271+00:00",
+      "updated_at": "2021-03-12T15:05:27.199271+00:00"
+    }
+  ],
+  "limit": 1,
+  "next_cursor": "cAA5ZTJlNzM4MC01MTc3LTRiOGUtODY3Ny0zODU0YmY5NGQ2YzMAMjAyMS0wMy0xMlQxMDo0Nzo1MS45ODk2Mzc",
+  "previous_cursor": null
+}
+```

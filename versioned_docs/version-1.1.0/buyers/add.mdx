@@ -1,0 +1,80 @@
+---
+title: Add a buyer
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+You can add a buyer by calling the [`POST /buyers`][api] API. The call accepts
+an optional `external_identifier` (for example the user's email, username, or a
+database ID) and an optional `display_name` which will be shown in the admin
+panel.
+
+:::note Top tip
+
+There is no need create a buyer first before creating a transaction. A buyer can
+be [automatically created][transactions] and associated when a transaction is
+made.
+
+[transactions]: /buyers/associate-transaction
+
+:::
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {5-6}
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/buyers" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "display_name": "John L.",
+          "external_identifier": "412231123"
+        }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+const buyerRequest = new BuyerRequest();
+buyerRequest.displayName = "John L.";
+buyerRequest.externalIdentifier = "412231123";
+
+const buyer = await client.addBuyer(buyerRequest);
+console.log(buyer.body.display_name);
+```
+
+  </TabItem>
+</Tabs>
+
+:::note
+
+A buyer can be created without any `external_identifier` and `display_name`. In
+that case the buyer only serves as a way to link stored payments methods to a
+user ID. In this case you will need to keep track of the buyer's `ID` in your
+own database to link it back to a user record.
+
+:::
+
+The API returns a new buyer resource.
+
+```json title="POST /buyers"
+{
+  "type": "buyer",
+  "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  "external_identifier": "412231123",
+  "display_name": "John L.",
+  "created_at": "2013-07-16T19:23:00.000Z",
+  "updated_at": "2013-07-16T19:23:00.000Z"
+}
+```
+
+[api]: /reference#operation/add-buyer

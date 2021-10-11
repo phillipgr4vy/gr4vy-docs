@@ -1,0 +1,96 @@
+---
+title: List payment methods for a buyer
+sidebar_label: List methods for a buyer
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+To list all the vaulted payment methods for a buyer, call the
+[`GET /buyers/payment-methods`][api] API with the `buyer_id` and/or
+`buyer_external_identifier` as a query parameter.
+
+## List by buyer ID
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash
+curl -i -X GET "https://api.{gr4vyId}.gr4vy.app/buyers/payment-methods?buyer_id=fe26475d-ec3e-4884-9553-f7356683f7f9" \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+const paymentMethods = await client.listBuyerPaymentMethods(
+  "fe26475d-ec3e-4884-9553-f7356683f7f9"
+);
+console.log(paymentMethods.body);
+```
+
+  </TabItem>
+</Tabs>
+
+## List by external ID
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash
+curl -i -X GET "https://api.{gr4vyId}.gr4vy.app/buyers/payment-methods?buyer_external_identifier=user-1234" \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+const paymentMethods = await client.listBuyerPaymentMethods(null, "user-1234");
+console.log(paymentMethods.body);
+```
+
+  </TabItem>
+</Tabs>
+
+## Response
+
+The response is a [list of all the previously stored payment methods][api] for
+that buyer in a mini format.
+
+```json title="GET /buyers/payment-methods?buyer_id=fe26475d-ec3e-4884-9553-f7356683f7f9"
+{
+  "items": [
+    {
+      "type": "payment-method",
+      "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
+      "method": "card",
+      "details": {
+        "suffix": "1111",
+        "scheme": "visa",
+        "expiration_date": "11/25"
+      }
+    }
+  ],
+  "limit": 20,
+  "next_cursor": null,
+  "previous_cursor": null
+}
+```
+
+[api]: /reference#operation/list-buyer-payment-methods

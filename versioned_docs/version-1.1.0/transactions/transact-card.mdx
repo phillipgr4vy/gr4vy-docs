@@ -1,0 +1,193 @@
+---
+title: Create a card transaction
+sidebar_label: Card transaction
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+A card transaction can be created by calling the
+[`POST /transactions`][authorize] API. The call requires an `amount`,
+`currency`, and a `payment_method` for the card.
+
+:::note
+
+Check out our guides to learn more about [payment methods](/payment-methods) and
+the ability to tie a payment method to a [buyer](/buyers).
+
+:::
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {5-12}
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/transactions" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "amount": 1299,
+          "currency": "USD",
+          "payment_method": {
+            "method": "card",
+            "number": "4111111111111111",
+            "expiration_date": "11/25",
+            "security_code": "123"
+          }
+        }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js {10-17}
+var fetch = require("node-fetch");
+
+fetch("https://api.{gr4vyId}.gr4vy.app/transactions", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    amount: 1299,
+    currency: "USD",
+    payment_method: {
+      method: "card",
+      number: "4111111111111111",
+      expiration_date: "11/21",
+      security_code: "123",
+    },
+  }),
+});
+```
+
+</TabItem>
+</Tabs>
+
+This API will return the [authorized transaction][authorize]. The status of this
+transaction can vary for a few reasons including the status provided by the
+payment service, as well as the requested `intent`.
+
+:::info Statuses
+
+See our guide on [transaction statuses](/transactions/statuses) for more
+details.
+
+:::
+
+## Capture
+
+By default a card transaction is only authorized and not automatically captured.
+A transaction can be captured either directly when creating a transaction, or as
+a separate API call.
+
+### Simultaneous authorize and capture
+
+To capture a transaction immediately, set the `intent` to `capture`.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {7}
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/transactions" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "amount": 1299,
+          "currency": "USD",
+          "intent": "capture",
+          "payment_method": {
+            "method": "card",
+            "number": "4111111111111111",
+            "expiration_date": "11/25",
+            "security_code": "123"
+          }
+        }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js {12}
+var fetch = require("node-fetch");
+
+fetch("https://api.{gr4vyId}.gr4vy.app/transactions", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    amount: 1299,
+    currency: "USD",
+    intent: "capture",
+    payment_method: {
+      method: "card",
+      number: "4111111111111111",
+      expiration_date: "11/21",
+      security_code: "123",
+    },
+  }),
+});
+```
+
+</TabItem>
+</Tabs>
+
+### Capture after authorization
+
+Alternatively, it is possible to perform a capture on a previously authorized
+transaction by calling the
+[`POST /transactions/{transaction_id}/capture`][capture] API.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {7}
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9/capture \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+var fetch = require("node-fetch");
+
+fetch(
+  "https://api.{gr4vyId}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9/capture",
+  {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer [JWT_TOKEN]",
+    },
+  }
+);
+```
+
+</TabItem>
+</Tabs>
+
+[authorize]: /reference#operation/authorize-transaction
+[capture]: /reference#operation/capture-transaction

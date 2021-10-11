@@ -1,0 +1,29 @@
+---
+title: Transactions
+sidebar_label: Introduction
+slug: /transactions
+---
+
+In Gr4vy a transaction represents a payment made using a
+[payment method](/payment-methods) using any kind of payment instrument like a
+card or PayPal.
+
+## Features
+
+The transactions API can be used to:
+
+- Create a transaction using a card
+- Create a transaction using a PayPal
+- Store a card used in a transaction so that it can be used again later
+- Associate a transaction to a buyer
+- Further authorize, capture, or refund a previously created transaction
+
+:::note Using Gr4vy Embed
+
+There is little need to use these APIs directly if you are using [Gr4vy Embed]
+instead. [Gr4vy Embed] automatically creates transactions against these APIs and
+can even bind them to a previously created buyer.
+
+:::
+
+[gr4vy embed]: /web-checkout/embed

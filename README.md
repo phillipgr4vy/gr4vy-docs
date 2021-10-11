@@ -41,7 +41,7 @@ The `guides` directory serves as the 'next' version.  The label for this is set 
   ...
   versions: {
     current: {
-      label: `1.1.0-beta`,
+      label: `Beta`,
     },
   }
   ...

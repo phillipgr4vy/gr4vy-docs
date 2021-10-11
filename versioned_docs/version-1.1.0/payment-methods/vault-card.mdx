@@ -1,0 +1,76 @@
+---
+title: Vault a card
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+Filling in card details can be a tedious task for most users. To make this
+easier we offer the ability to vault a card with Gr4vy. When a card is vaulted
+we store (sometimes called "tokenize") the card with all your card payment
+services. Once this is done the card can be used in a transaction without having
+to request these details from the buyer again.
+
+:::info Gr4vy Embed
+
+When using [Gr4vy Embed][embed] we automatically take care of this for you and
+make it possible for a recurring customer to re-use a card they previously used
+in your app. The card is automatically vaulted and bound to the buyer ID or
+external ID provided.
+
+:::
+
+A card can be stored in Gr4vy by calling the [`POST /payment-methods`][api] API.
+The call requires a `method`, the card `number`, its `security_code`, and its
+`expiration_date`.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {5-8}
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/payment-methods" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "method": "card",
+        "number": "4111111111111111",
+        "expiration_date": "11 / 22",
+        "security_code": "123",
+      }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+const request = new CardRequest();
+request.method = "card";
+request.number = "4111111111111111";
+request.expirationDate = "11/22";
+request.securityCode = "123";
+
+const paymentMethod = await client.storePaymentMethod(request);
+```
+
+  </TabItem>
+</Tabs>
+
+The API returns [the details for the newly vaulted card][api].
+
+:::info Link to buyer
+
+The API also accepts a `buyer_id` or `buyer_external_identifier` which can be
+used to associate a card to a previously created [buyer].
+
+:::
+
+[api]: /reference#operation/store-payment-method
+[buyer]: /buyers/associate-card
+[embed]: /web-checkout/embed

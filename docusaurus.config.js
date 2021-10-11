@@ -117,7 +117,7 @@ module.exports = {
             "https://github.com/gr4vy/gr4vy-developer-documentation/edit/main",
           versions: {
             current: {
-              label: "1.1.0-beta",
+              label: "Beta",
             },
           },
         },

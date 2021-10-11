@@ -1,0 +1,217 @@
+---
+title: Authentication
+slug: /authentication
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+Gr4vy uses **Bearer (Token) Authentication ** to authenticate any API request.
+The tokens used in these requests are **JSON Web Tokens (JWT)** that can be
+created server side. All API requests must be made over HTTPS and any API calls
+made to HTTP will not be accepted.
+
+In this guide we will show you how to:
+
+- [Use Bearer (Token) Authentication](#authenticate-an-api-call) to authenticate
+  a single API call.
+- [Create the cryptographic key-pair](#create-an-api-key-pair) used to sign a
+  JWT.
+- With a key-pair in hand you can then either
+  - [Use an SDK to create a JWT](#jwt-using-sdk) which is by far the easier
+    option.
+  - [Or manually create JWT](#manual-jwt) in case you can't to use our SDKs.
+
+:::note Learn more about JWT
+
+Visit [`jwt.io`](https://jwt.io) to learn more about JWT and the tools
+available in your programming language to create and validate them.
+
+:::
+
+## Authenticate an API call
+
+Every Gr4vy APIs that requires authentication expect `authorization` HTTP-header
+with a signed JWT token as it's value (prefixed with `bearer`).
+
+```bash {2}
+curl -i -X GET "https://api.{gr4vyId}.gr4vy.app/transactions" \
+    -H "authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+```
+
+## Create an API key-pair
+
+To sign a JWT you will need to register a new cryptographic key-pair with your
+Gr4vy instance. A key-pair consist of the public and a private keys that will be
+used to sign (and subsequently verify) the JWT.
+
+To create a new API key-pair visit the **Integrations** panel in your admin
+console and generate and download a new API key-pair. You can store the key-pair
+with your code or store it in a secure environment accessible to your
+application.
+
+## JWT using SDK
+
+JWTs can be generated using one of our SDKs, or manually using a compatible JWT
+library. For your convenience we recommend using one of our SDKs as they make
+the process a lot easier.
+
+First, install the SDK.
+
+<Tabs
+  groupId="language"
+  defaultValue="node"
+  values={[
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="node">
+
+```bash
+npm install @gr4vy/node --save
+# or: yarn install @gr4vy/node
+```
+
+  </TabItem>
+</Tabs>
+
+Then, initialize the client with your private key and generate the token.
+
+<Tabs
+  groupId="language"
+  defaultValue="node"
+  values={[
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="node">
+
+```js
+const fs = require("fs");
+const { Client } = require("@gr4vy/node");
+const key = String(fs.readFileSync("./private.key"));
+
+const client = new Client({
+  gId: "acme",
+  privateKey: key,
+});
+
+const token = client.getBearerToken(["transactions.read"]);
+```
+
+  </TabItem>
+</Tabs>
+
+:::info Automatic authentication using SDKs
+
+The SDKs actually make it easy to make direct API calls without needing to use
+the token. Still, generating a token to be used outside of the SDK can be useful
+in a micro-services architecture. In all other situations use the built-in SDK
+methods for making an API call.
+
+:::
+
+## Manual JWT
+
+In some cases you might not want to use one of our SDKs, or an SDK in your
+language might not be available. In those cases you can construct, and sign the
+JWT with one of the many libraries available on [`jwt.io`](https://jwt.io).
+
+At the high level a JWT is build up out of 3 pieces:
+
+- A **header** defining the algorithm and key used to create the JWT.
+- A set of **claims** that define the token's scope and other permissions.
+- A cryptographic **signature** based on the header and the claims, signed using
+  your private key.
+
+Combine, these 3 pieces make up the JSON Web Token (JWT). See
+[`jwt.io`](https://jwt.io) for more details on the specification and available
+libraries for generating JWTs.
+
+### JWT header
+
+The JWT header defines the type of encryption algorithm as well as the private
+key used to generate the signature.
+
+```json title="Header"
+{
+  "typ": "JWT",
+  "alg": "ES512",
+  "kid": "d757c76acbd74b56"
+}
+```
+
+:::note values
+
+The `typ` and `alg` are fixed and do not allow for other values. The `kid` is
+the ID of your private key, which you can find in the **Integrations** panel of
+your dashboard. The `kid` is also the so-called _thumbprint_ of your JWT
+key. Some libraries can automatically calculate this thumbprint based off the
+private key.
+
+:::
+
+### JWT claims
+
+The claims define when the token was created and what access it has.
+
+```json title="Claims"
+{
+  "iss": "My JWT Generation Tool",
+  "nbf": 1607976645,
+  "exp": 1607976314,
+  "jti": "0fe1fb1b-2f7e-4c8d-b0eb-aae5d0ec98f7",
+  "scopes": ["transactions.read"],
+  "embed": {
+    "amount": "200",
+    "currency": "USD",
+    "buyer_id": "d757c76a-cbd7-4b56-95a3-40125b51b29c"
+  }
+}
+```
+
+### Supported JWT claims
+
+The API supports the following JWT claims.
+
+|          | Description                                                                                                         | Required |
+| -------- | :------------------------------------------------------------------------------------------------------------------ | :------- |
+| `iss`    | A unique ID that represents your code making this call. This helps identify what library made an API call to Gr4vy. | Yes      |
+| `nbf`    | The unix timestamp that this token was created at.                                                                  | Yes      |
+| `exp`    | The unix timestamp that this token expires at.                                                                      | Yes      |
+| `jti`    | A random unique ID used for cryptographic entropy. This needs to be unique between API calls.                       | Yes      |
+| `scopes` | A list of scopes that give this token access to the API.                                                            | Yes      |
+| `data`   | A dictionary of key-value pairs used to pin the amount, currency, and buyer info for use in Gr4vy Embed.            | No       |
+
+### Supported scopes
+
+The API supports the following values for the `scopes` claims.
+
+| Scope               | Description                                                                                                                                        |
+| :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `*.read`            | Allows read-access to any resource. This is used by default in the SDKs                                                                            |
+| `*.write`           | Allows write-access to any resource. This is used by default in the SDKs. This does not also allow read access.                                    |
+| `{resource_name}.read`  | Allows read-access to a type or resource. For example, `payment-services.read` enabled read-access for buyers data.                                          |
+| `{resource_name}.write` | Allows write-access to a type or resource. For example, `payment-services.write` enabled write-access for buyers data. This does not also allow read access. |
+| `embed`             | A scope that represents all the access needed by Gr4vy Embed.                                                                                      |
+
+### Signature & assembly
+
+Finally, the JWT signature is generated by appending the Base64-encoded header
+and claims (separated with a `.`) and run it through the `ES256` algorithm.
+
+```
+ECDSASHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  public_key,
+  private_key
+)
+```
+
+The assembled JWT is then formed by appending the Base64-encoded header, claims,
+and signature separated by a full stop.
+
+```
+base64UrlEncode(header) + "." + base64UrlEncode(payload) + "." + base64UrlEncode(signature)
+```

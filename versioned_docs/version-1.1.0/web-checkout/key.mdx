@@ -1,0 +1,51 @@
+---
+title: "Step 1: Create an API key"
+sidebar_label: 1. Create API key
+slug: /web-checkout/key
+---
+
+import Image from "@site/src/modules/Image";
+import key from "./assets/dashboard_integrations_key.png";
+
+Before your application can communicate with the Gr4vy API you will need to
+create a new API key. The Gr4vy API handles authentication using a signed **JSON
+Web Token** (also called a JWT) which is passed as in a HTTP header.
+
+```bash
+curl -X GET https://api.{gr4vyId}.gr4vy.app/transactions \
+  -H "authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIi..."
+```
+
+:::info We recommend you use an SDK
+
+Our SDKs makes the process of generating a token a lot easier and is probably
+available in your preferred programming language. We will get to this in the
+next step.
+
+:::
+
+## Create a new private key
+
+To use the API you will need to generate a new **private API key**. Head over to
+your Gr4vy dashboard and visit the **Integrations** page.
+
+<Image src={key} title="Generate a new private key" />
+
+On this page, click the "Create a new key" button and a key will be generated
+and downloaded with the key ID shown in the list. You will need to store these
+securely as we will not show these to you again.
+
+:::info About private keys
+
+Learn more about private keys, key-pairs, and JWT in our
+[in-depth guide on authentication](/authentication).
+
+:::
+
+## Summary
+
+In this step you:
+
+- Learned how Gr4vy authenticates API calls.
+- Created a new private key for the API.
+- Stored this API key in a secure place where your application can access it.

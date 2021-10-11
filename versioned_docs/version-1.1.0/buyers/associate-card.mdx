@@ -1,0 +1,104 @@
+---
+title: Associate a card to a buyer
+sidebar_label: Link card to buyer
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+It is possible to bind a tokenized card to a buyer when it is being created.
+There are a few ways to do so.
+
+## Associate by `buyer_id`
+
+The easiest way to associate a buyer to a card is to pass along a `buyer_id`
+when creating a card.
+
+This will find a buyer with that `id` and associate the card to it. If a buyer
+with that `id` could not be found it's ignored.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {9}
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/payment-methods" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "method": "card",
+        "number": "4111111111111111",
+        "expiration_date": "11 / 22",
+        "security_code": "123",
+        "buyer_id": "fe26475d-ec3e-4884-9553-f7356683f7f9"
+      }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+const request = new CardRequest();
+request.method = "card";
+request.number = "4111111111111111";
+request.expirationDate = "11/25";
+request.securityCode = "123";
+request.buyerId = "fe26475d-ec3e-4884-9553-f7356683f7f9";
+
+const paymentMethod = await client.storePaymentMethod(request);
+```
+
+  </TabItem>
+</Tabs>
+
+## Associate by `buyer_external_identifier`
+
+Alternatively, a card can be associated to a buyer by it's
+`external_identifier`. If a buyer with that `external_identifier` could not be
+found it's ignored.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {9}
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/payment-methods" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "method": "card",
+        "number": "4111111111111111",
+        "expiration_date": "11 / 22",
+        "security_code": "123",
+        "buyer_external_identifier": "412231123"
+      }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+const request = new CardRequest();
+request.method = "card";
+request.number = "4111111111111111";
+request.expirationDate = "11/25";
+request.securityCode = "123";
+request.buyerExternalIdentifier = "412231123";
+
+const paymentMethod = await client.storePaymentMethod(request);
+```
+
+  </TabItem>
+</Tabs>

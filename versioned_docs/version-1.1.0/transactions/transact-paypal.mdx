@@ -1,0 +1,201 @@
+---
+title: Create a PayPal transaction
+sidebar_label: PayPal transaction
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+A transaction can be created for a PayPal account by calling the
+[`POST /transactions`][api] API. The call requires an `amount`, `currency`, and
+a `payment_method` with a `redirect_url`.
+
+:::info Using Gr4vy Embed
+
+There is little need to use these APIs directly if you are using [Gr4vy Embed]
+instead. [Gr4vy Embed] automatically creates transactions against these APIs and
+can even bind them to a previously created buyer.
+
+:::
+
+:::note 2-step process
+
+Transacting with a PayPal account is a 2-step process that requires a
+buyer-redirect to get explicit authorization.
+
+:::
+
+## Step 1. Initialize a new PayPal transaction
+
+The first step is to initialize a new PayPal transaction. A `redirect_url` needs
+to be provided to redirect the user back to your application after they have
+approved access to their PayPal account.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {5-11}
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/transactions" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "amount": 1299,
+          "currency": "USD",
+          "intent": "capture",
+          "payment_method": {
+            "method": "paypal",
+            "redirect_url": "https://example.com/complete"
+          }
+        }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js {10-15}
+var fetch = require("node-fetch");
+
+fetch("https://api.{gr4vyId}.gr4vy.app/transactions", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    amount: 1299,
+    currency: "USD",
+    intent: "capture",
+    payment_method: {
+      method: "paypal",
+      redirect_url: "https://example.com/callback",
+    },
+  }),
+});
+```
+
+</TabItem>
+</Tabs>
+
+The API returns a new `transaction` resource for which the `status` is set to
+`buyer_approval_pending`.
+
+```json title="POST /transactions"
+{
+  "type": "transaction",
+  "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  "status": "buyer_approval_pending",
+  "amount": 1299,
+  "currency": "USD",
+  "payment_method": {
+    "type": "payment-method",
+    "id": null,
+    "method": "paypal",
+    "status": "buyer_approval_pending",
+    "buyer": null,
+    "details": {
+      "email_address": null,
+      "authorization_url": "https://api.*.gr4vy.app/transactions/approvals/NDY5NzNlOWQtODhhNy00NGE2LWFiZmUtYmU0ZmYwMTM0ZmY0"
+    },
+    ...
+  },
+  ...
+}
+```
+
+:::info Statuses
+
+See our guide on [transaction statuses](/transactions/statuses) for more
+details.
+
+:::
+
+## Step 2. Redirect the user
+
+For the next step, you will need to redirect the buyer to the URL specified in
+the `details.approval_url` field of the response.
+
+The buyer then logs in to their PayPal account and authorizes it to be used by
+Gr4vy. After this, the buyer is redirected back to the `redirect_url` you
+specified earlier. For example:
+
+```
+https://example.com/complete?transaction_id=fe26475d-ec3e-4884-9553-f7356683f7f9&transaction_status=authorized
+```
+
+The `transaction_id` query parameter represents the ID of the transaction and
+the `transaction_status` represents the new status of the transaction.
+
+## (Optional) Step 3. Confirm the transaction
+
+Finally, you could make an optional API call to confirm the transaction has been
+successfully authorized or captured.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash
+curl -i -X GET "https://api.{gr4vyId}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9" \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+const fetch = require("node-fetch");
+
+fetch(
+  "https://api.{gr4vyId}.gr4vy.app/transactions/fe26475d-ec3e-4884-9553-f7356683f7f9",
+  {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer [JWT_TOKEN]",
+    },
+  }
+);
+```
+
+  </TabItem>
+</Tabs>
+
+The API will return the same `transaction` resource with its updated status.
+
+```json title="GET /transactions/fe26475d-ec3e-4884-9553-f7356683f7f9" {4}
+{
+  "type": "transaction",
+  "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+  "status": "captured",
+  "amount": 1299,
+  "currency": "USD",
+  "payment_method": {
+    "type": "payment-method",
+    "id": "421a4e92-f0c4-4fdc-8233-921bce75133e",
+    "method": "paypal",
+    "status": "used",
+    "buyer": null,
+    "details": {
+      "email_address": "john@example.com",
+      "authorization_url": null
+    },
+    ...
+  },
+  ...
+}
+```
+
+[api]: /reference#operation/authorize-new-transaction
+[guides]: /payment-methods

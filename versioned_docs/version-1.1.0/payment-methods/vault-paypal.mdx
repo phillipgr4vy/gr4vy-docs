@@ -1,0 +1,183 @@
+---
+title: Tokenize a PayPal account
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+A PayPal account can be stored by calling the [`POST /payment-methods`][api]
+API. The call requires a `method` and a `redirect_url`. Additionally, the API
+call accepts a `buyer_id` or `buyer_external_identifier` which can be used to
+associate a card to a previously created [buyer].
+
+:::info 2-step process
+
+Storing a PayPal account is a 2-step process that requires a buyer-redirect to
+get explicit authorization.
+
+:::
+
+[api]: /reference#operation/store-payment-method
+[buyer]: /buyers/add
+
+## Step 1. Initialize a new PayPal payment method
+
+The first step is to initialize a new PayPal payment method. A `redirect_url`
+needs to be provided to redirect the user back to your application after they
+have approved access to their PayPal account.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {5-9}
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/payment-methods" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "method": "paypal",
+        "return_url": "https://example.com/complete",
+        "buyer_external_identifier": "user-789123"
+      }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js {10-14}
+const fetch = require("node-fetch");
+
+fetch("https://api.{gr4vyId}.gr4vy.app/payment-methods", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    method: "paypal",
+    return_url: "https://example.com/complete",
+    buyer_external_identifier: "user-789123",
+  }),
+});
+```
+
+  </TabItem>
+</Tabs>
+
+The API returns a new `payment-method` resource for which the `status` is set to
+`buyer_approval_pending`.
+
+```json title="POST /payment-methods"
+{
+  "type": "payment-method",
+  "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
+  "method": "paypal",
+  "status": "buyer_approval_pending",
+  "token": null,
+  "details": {
+    "email_address": null,
+    "authorization_url": "https://api.***.gr4vy.app/transactions/ffc88ec9-e1ee-45ba-993d-b5902c3b2a8c"
+  },
+  "created_at": "2013-07-16T19:23:00.000Z",
+  "updated_at": "2013-07-16T19:23:00.000Z",
+  "external_identifier": null,
+  "buyer": {
+    "type": "buyer",
+    "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    "external_identifier": "user-789123",
+    "display_name": "John L.",
+    "created_at": "2013-07-16T19:23:00.000Z",
+    "updated_at": "2013-07-16T19:23:00.000Z"
+  }
+}
+```
+
+## Step 2. Redirect the user
+
+For the next step, you will need to redirect the buyer to the URL specified in
+the `details.authorization_url` field of the response.
+
+The buyer then logs in to their PayPal account and authorizes it to be used by
+Gr4vy. After this, the buyer is redirected back to the `redirect_url` you
+specified earlier. For example:
+
+```
+http://localhost:3000?complete?payment_method_id=77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5&payment_method_status=stored
+```
+
+The `payment_method_id` query parameter represents the ID of the payment method
+that this PayPal account has been stored as. The `status` represents the status
+of the payment method, which in most cases should be `stored`.
+
+## (Optional) Step 3. Confirm the authorization
+
+Finally, you could make an optional API call to confirm the payment method has
+been fully stored.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash
+curl -i -X GET "https://api.{gr4vyId}.gr4vy.app/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5" \
+    -H "Authorization: Bearer [JWT_TOKEN]"
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js
+const fetch = require("node-fetch");
+
+fetch(
+  "https://api.{gr4vyId}.gr4vy.app/payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
+  {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer [JWT_TOKEN]",
+    },
+  }
+);
+```
+
+  </TabItem>
+</Tabs>
+
+The API will return the same `payment-method` resource with its updated status.
+
+```json title="GET /payment-methods/77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5/authorize"
+{
+  "type": "payment-method",
+  "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
+  "method": "paypal",
+  "status": "stored",
+  "token": "0123456789123458",
+  "details": {
+    "email_address": "john@example.com",
+    "authorization_url": null
+  },
+  "created_at": "2013-07-16T19:23:00.000Z",
+  "updated_at": "2013-07-16T19:23:00.000Z",
+  "external_identifier": null,
+  "buyer": {
+    "type": "buyer",
+    "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+    "external_identifier": "user-789123",
+    "display_name": "John L.",
+    "created_at": "2013-07-16T19:23:00.000Z",
+    "updated_at": "2013-07-16T19:23:00.000Z"
+  }
+}
+```

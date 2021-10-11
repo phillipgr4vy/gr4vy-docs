@@ -1,0 +1,76 @@
+---
+title: Vault a transaction's payment method
+sidebar_label: Vault a payment method
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+It is possible to vault (store) a card or any other payment method that supports
+vaulting by setting the `store` field in the request body to `true`.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {7}
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/transactions" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "amount": 1299,
+          "currency": "USD",
+          "store": true
+          "payment_method": {
+            "method": "card",
+            "number": "4111111111111111",
+            "expiration_date": "11/25",
+            "security_code": "123"
+          }
+        }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js {12}
+var fetch = require("node-fetch");
+
+fetch("https://api.{gr4vyId}.gr4vy.app/transactions", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    amount: 1299,
+    currency: "USD",
+    store: true,
+    payment_method: {
+      method: "card",
+      number: "4111111111111111",
+      expiration_date: "11/21",
+      security_code: "123",
+    },
+  }),
+});
+```
+
+</TabItem>
+</Tabs>
+
+This eliminates the need to separately vault the payment method and then use it
+to create a transaction.
+
+:::note Payment methods
+
+Learn more about [payment method vaulting](/payment-methods) as well as linking
+payment methods to registered [buyers](/buyers).
+
+:::

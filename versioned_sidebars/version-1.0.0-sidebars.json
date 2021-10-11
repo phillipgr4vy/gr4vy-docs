@@ -181,30 +181,5 @@
         }
       ]
     }
-  ],
-  "internal": [
-    {
-      "collapsed": true,
-      "type": "category",
-      "label": "Internal",
-      "items": [
-        {
-          "type": "doc",
-          "id": "version-1.0.0/internal/index"
-        },
-        {
-          "type": "doc",
-          "id": "version-1.0.0/internal/domains"
-        },
-        {
-          "type": "doc",
-          "id": "version-1.0.0/internal/api-authentication"
-        },
-        {
-          "type": "doc",
-          "id": "version-1.0.0/payment-methods/flow-charts"
-        }
-      ]
-    }
   ]
 }
