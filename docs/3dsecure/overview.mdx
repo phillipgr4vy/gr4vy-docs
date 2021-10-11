@@ -1,0 +1,28 @@
+---
+title: 3-D Secure
+sidebar_label: Overview
+slug: /3dsecure/overview
+---
+
+Gr4vy has a **Universal 3-D Secure** solution that provides merchants with a
+flexible way to integrate 3-D Secure with various levels of complexity.
+Universal 3-D Secure will automatically handle the device fingerprinting,
+redirecting the buyer, as well as handling the different 3-D Secure nuances
+between the different payment services.
+
+There are currently 3 ways to integrate 3-D Secure.
+
+- [Gr4vy Embed](embed) will automatically detect 3-D Secure for a transaction
+  and handle all the user interaction to complete the transaction.
+- [Hosted 3-D Secure](hosted) offers 3-D Secure via our API, allowing you to
+  capture your own card data but then rely on Gr4vy's hosted 3-D Secure to
+  handle the user interaction.
+- [External](external) 3-D Secure data can be passed to Gr4vy if you want to create
+  your own card checkout experience including your own 3-D Secure integration.
+
+:::info PCI Compliance
+
+Only [Gr4vy Embed](embed) provides a fully PCI compliant solution. The other 2
+integrations would require you to go through your own PCI certification.
+
+:::

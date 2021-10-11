@@ -57,6 +57,33 @@
     {
       "collapsed": false,
       "type": "category",
+      "label": "3-D Secure",
+      "items": [
+        {
+          "type": "doc",
+          "id": "3dsecure/overview"
+        },
+        {
+          "type": "doc",
+          "id": "3dsecure/setup"
+        },
+        {
+          "type": "doc",
+          "id": "3dsecure/embed"
+        },
+        {
+          "type": "doc",
+          "id": "3dsecure/hosted"
+        },
+        {
+          "type": "doc",
+          "id": "3dsecure/external"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "type": "category",
       "label": "Payment Services",
       "items": [
         {

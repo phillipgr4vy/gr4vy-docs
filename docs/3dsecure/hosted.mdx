@@ -1,0 +1,130 @@
+---
+title: Hosted 3-D Secure
+sidebar_label: Hosted via API
+slug: /3dsecure/hosted
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+**Universal 3-D Secure** is also available without Gr4vy Embed as long as any
+payment service has been [set up](setup) for 3-D Secure.
+
+## Usage
+
+All you need to do to use 3-D Secure via the API is to [set up](setup) 3-D
+Secure on any of the enabled payment services and pass a `redirect_url` when
+creating the transaction.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {12}
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/transactions" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "amount": 1299,
+          "currency": "USD",
+          "payment_method": {
+            "method": "card",
+            "number": "4111111111111111",
+            "expiration_date": "11/25",
+            "security_code": "123",
+            "redirect_url": "https://example.com/callback",
+            "buyer_external_identifier": "user-1234",
+          }
+        }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js {17}
+var fetch = require("node-fetch");
+
+fetch("https://api.{gr4vyId}.gr4vy.app/transactions", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    amount: 1299,
+    currency: "USD",
+    payment_method: {
+      method: "card",
+      number: "4111111111111111",
+      expiration_date: "11/21",
+      security_code: "123",
+      buyer_external_identifier: "user-1234",
+      redirect_url: "https://example.com/callback",
+    },
+  }),
+});
+```
+
+</TabItem>
+</Tabs>
+
+With 3-D Secure configured for a payment service, we will automatically detect
+if it is required to get the buyer's approval for a transaction. If it is required
+the API will return a transaction with the status `buyer_approval_pending` and 
+an `approval_url` that the buyer can be sent to.
+
+```json {4,6}
+{
+  "type": "transaction",
+  "id": "869df4fc-a3db-43db-806a-14464d9e6920",
+  "status": "buyer_approval_pending",
+  "payment_method": {
+    "approval_url": "https://embed.{gr4vyId}.gr4vy.app/...",
+    ...
+  },
+  ...
+}
+```
+
+You can then redirect the buyer to the `approval_url` and Gr4vy will handle all
+the intricacies of 3-D Secure. Once the buyer has approved (or rejected) the
+transaction the browser is redirected back to the `redirect_url` that was set
+when the transaction was created.
+
+The `redirect_url` will be appended with both a transaction ID and status.
+
+```
+https://example.com/callback?gr4vy_transaction_id=123&gr4vy_transaction_status=capture_succeeded
+```
+
+We strongly recommend confirming the actual transaction status by fetching the
+updated transaction by its `id`.
+
+## Buyers & Billing Details
+
+To optimize 3-D Secure it is highly recommended to provide a buyer with billing
+details attached to Gr4vy Embed.
+
+A buyer can be set up via our [`POST /buyers`](../reference#operation/add-buyer)
+API. The buyer can then be attached to Gr4vy Embed by using the `buyerId` or
+`buyerExternalIdentifier` property. The buyer's name, email address, and billing
+address will be used to help reduce buyers being requested to complete a 3-D
+Secure challenge.
+
+## Features
+
+For every transaction Gr4vy will handle the following steps.
+
+1. Detect if the selected payment service for this transaction has 3-D Secure
+   enabled
+1. Detect if the card used in the transaction is enrolled for 3-D Secure
+1. Handle the seemless frictionless 3-D Secure flow including the device finger
+   printing once the user is redirect to the `approval_url`.
+1. Handle the 3-D Secure challenge flow, where a buyer is directed to their bank
+   to approve the transaction.

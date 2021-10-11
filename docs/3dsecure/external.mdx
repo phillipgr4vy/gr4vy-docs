@@ -1,0 +1,105 @@
+---
+title: 3-D Secure with external MPI
+sidebar_label: External MPI
+slug: /3dsecure/external
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+Gr4vy's **Universal 3-D Secure** can also be used with your own, external, 3-D
+Secure MPI.
+
+## Usage
+
+To use 3-D Secure with your own MPI, we assume you have handled the 3-D Secure
+on your end and have collected the relevant data received at the end of the
+flow.
+
+The `POST /transactions` API supports directly passing 3-D Secure data as part
+of the transaction request. We will pass this data along to the payment service
+assuming it this data via their API.
+
+<Tabs
+  groupId="language"
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+    { label: 'Node', value: 'node', },
+  ]}
+>
+  <TabItem value="curl">
+
+```bash {14-22}
+curl -i -X POST "https://api.{gr4vyId}.gr4vy.app/transactions" \
+    -H "Authorization: Bearer [JWT_TOKEN]" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "amount": 1299,
+          "currency": "USD",
+          "payment_method": {
+            "method": "card",
+            "number": "4111111111111111",
+            "expiration_date": "11/25",
+            "security_code": "123",
+            "redirect_url": "https://example.com/callback"
+          },
+          "three_d_secure_data": {
+            "cavv": "3q2+78r+ur7erb7vyv66vv8=",
+            "eci": "05",
+            "version": "2.1.0",
+            "directory_response": "C",
+            "caav_algorithm": "1",
+            "xid": "ODgxNDc2MDg2MDExODk5MAAAAAA=",
+            "authentication_response": "Y"
+          }
+        }'
+```
+
+  </TabItem>
+  <TabItem value="node">
+
+```js {19}
+var fetch = require("node-fetch");
+
+fetch("https://api.{gr4vyId}.gr4vy.app/transactions", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer [JWT_TOKEN]",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    amount: 1299,
+    currency: "USD",
+    payment_method: {
+      method: "card",
+      number: "4111111111111111",
+      expiration_date: "11/21",
+      security_code: "123",
+      redirect_url: "https://example.com/callback",
+    },
+    three_d_secure_data: {
+      cavv: "3q2+78r+ur7erb7vyv66vv8=",
+      eci: "05",
+      version: "2.1.0",
+      directory_response: "C",
+      caav_algorithm: "1",
+      xid: "ODgxNDc2MDg2MDExODk5MAAAAAA=",
+      authentication_response: "Y",
+    },
+  }),
+});
+```
+
+</TabItem>
+</Tabs>
+
+:::caution Payment service compatibility
+
+Not all payment services support external 3-D Secure data, and therefore even
+when this data is provided we still expect a `redirect_url` as well. If none of
+the selected payment services support the pass-through of 3-D Secure data the
+Gr4vy API might [return a pending transaction](hosted) with an `approval_url` in
+the response.
+
+:::

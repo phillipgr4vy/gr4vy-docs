@@ -2,3 +2,5 @@ allow:
   - canadian
   - color
   - colors
+  - fraud
+  - execute
