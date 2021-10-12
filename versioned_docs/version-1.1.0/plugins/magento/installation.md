@@ -18,23 +18,12 @@ You can do this via SSH or via the account dashboard of your hosting provider.
 
 ## Installation options
 
-### Installing the module manually
-
-* Download the "Downloadable Package" Gr4vy module from your customer account, unzip it
-* Use an SSH client to connect to your server and navigate to path `<web_root>/app/code` *(note: the user should write permissions to this folder and its subfolders)*
-* Upload all the files and folders from the module zip file into the Magento root directory
-* Via SSH, navigate to the root Magento folder and run the following command:
-
-```
-php bin/magento module:enable Gr4vy_Payment
-```
-
 ### Installing the module via Composer
 
 The module can be installed by running the command below in the Magento root directory:
 
 ```
-composer require gr4vy/payment-module
+composer require gr4vy/magento
 ```
 
 ## Setup and Deployment
