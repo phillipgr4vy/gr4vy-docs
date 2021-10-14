@@ -104,6 +104,10 @@
         },
         {
           "type": "doc",
+          "id": "version-1.1.0/connectors/cybersource-card"
+        },
+        {
+          "type": "doc",
           "id": "version-1.1.0/connectors/gocardless-gocardless"
         },
         {
@@ -151,7 +155,7 @@
       ]
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "type": "category",
       "label": "APIs",
       "items": [
@@ -170,7 +174,7 @@
       ]
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "type": "category",
       "label": "Resources",
       "items": [
@@ -272,102 +276,6 @@
             {
               "type": "doc",
               "id": "version-1.1.0/transactions/statuses"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "collapsed": true,
-      "type": "category",
-      "label": "Embed",
-      "items": [
-        {
-          "type": "doc",
-          "id": "version-1.1.0/embed/locale"
-        },
-        {
-          "type": "doc",
-          "id": "version-1.1.0/embed/theming"
-        },
-        {
-          "type": "doc",
-          "id": "version-1.1.0/embed/options"
-        },
-        {
-          "type": "doc",
-          "id": "version-1.1.0/embed/events"
-        }
-      ]
-    },
-    {
-      "collapsed": true,
-      "type": "category",
-      "label": "Connectors",
-      "items": [
-        {
-          "type": "doc",
-          "id": "version-1.1.0/connectors/adyen-card"
-        },
-        {
-          "type": "doc",
-          "id": "version-1.1.0/connectors/banked-banked"
-        },
-        {
-          "type": "doc",
-          "id": "version-1.1.0/connectors/braintree-card"
-        },
-        {
-          "type": "doc",
-          "id": "version-1.1.0/connectors/checkoutcom-card"
-        },
-        {
-          "type": "doc",
-          "id": "version-1.1.0/connectors/cybersource-card"
-        },
-        {
-          "type": "doc",
-          "id": "version-1.1.0/connectors/gocardless-gocardless"
-        },
-        {
-          "type": "doc",
-          "id": "version-1.1.0/connectors/paypal-paypal"
-        },
-        {
-          "type": "doc",
-          "id": "version-1.1.0/connectors/stripe-card"
-        }
-      ]
-    },
-    {
-      "collapsed": true,
-      "type": "category",
-      "label": "Plugins",
-      "items": [
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Magento",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-1.1.0/plugins/magento/index"
-            },
-            {
-              "type": "doc",
-              "id": "version-1.1.0/plugins/magento/installation"
-            },
-            {
-              "type": "doc",
-              "id": "version-1.1.0/plugins/magento/configuration"
-            },
-            {
-              "type": "doc",
-              "id": "version-1.1.0/plugins/magento/frontend"
-            },
-            {
-              "type": "doc",
-              "id": "version-1.1.0/plugins/magento/backend"
             }
           ]
         }
